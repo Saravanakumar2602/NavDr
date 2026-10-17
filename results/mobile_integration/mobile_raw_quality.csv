@@ -1,0 +1,2 @@
+device_model,android_version,duration_sec,accel_sample_count,gyro_sample_count,gnss_sample_count,accel_rate_hz,gyro_rate_hz,accel_median_dt_ms,gyro_median_dt_ms,gnss_valid_fix_pct,timestamp_monotonic
+V2355,16,90.24,35976,35976,0,199.33,199.33,5.018,5.018,0.0,True

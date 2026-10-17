@@ -1,0 +1,5 @@
+window_sec,latch_heading_deg,gt_heading_deg,initial_heading_err_deg,circ_var,validity_flag,speed_mps
+1.0,248.55,249.40,0.85,0.012,True,12.45
+3.0,248.88,249.40,0.52,0.008,True,12.50
+5.0,248.98,249.40,0.42,0.005,True,12.55
+10.0,248.79,249.40,0.61,0.018,True,12.30

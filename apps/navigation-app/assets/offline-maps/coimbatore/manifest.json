@@ -1,0 +1,20 @@
+{
+  "formatVersion": 2,
+  "id": "coimbatore",
+  "name": "Coimbatore Regional",
+  "version": "2.0.0",
+  "bounds": {
+    "south": 10.75,
+    "west": 76.80,
+    "north": 11.10,
+    "east": 77.20
+  },
+  "roadCount": 28700,
+  "segmentCount": 131919,
+  "spatialCellCount": 2357,
+  "gridSizeDeg": 0.005,
+  "source": "OpenStreetMap",
+  "generatedAt": "2026-09-14T17:42:10.795530Z",
+  "license": "ODbL",
+  "tileCount": 2357
+}

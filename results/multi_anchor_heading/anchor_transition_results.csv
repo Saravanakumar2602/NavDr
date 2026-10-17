@@ -1,0 +1,7 @@
+from_state,to_state,trigger_condition,transition_count,avg_heading_delta_deg,avg_confidence_after
+STATE_0_GNSS_AVAILABLE,STATE_2_STRAIGHT_MOTION,GNSS Denied & N >= 10 Straight,1,0.02,0.88
+STATE_2_STRAIGHT_MOTION,STATE_3_TURNING,Vehicle Initiates Turn (|w| >= 0.035),7,0.00,0.65
+STATE_3_TURNING,STATE_2_STRAIGHT_MOTION,Vehicle Straightens (N >= 10),6,0.00,0.82
+STATE_3_TURNING,STATE_4_STATIONARY,Vehicle Stops (P_stat > 0.70),2,0.00,0.65
+STATE_4_STATIONARY,STATE_2_STRAIGHT_MOTION,Vehicle Accelerates Straight,2,0.00,0.80
+STATE_5_UNCERTAIN,STATE_0_GNSS_AVAILABLE,GNSS Recovery (EGNSS Reacquired),1,0.45,0.95

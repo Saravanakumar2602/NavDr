@@ -1,0 +1,18 @@
+{
+  "milestone": "M035",
+  "title": "Heading Uncertainty & SpeedNet Vector Projection Diagnostic",
+  "active_benchmark": 218.93,
+  "counterfactual_maes_kmh": {
+    "cf1_est_speed_est_heading": 39.34,
+    "cf2_gt_speed_est_heading": 34.91,
+    "cf3_est_speed_gt_heading": 7.17,
+    "cf4_gt_speed_gt_heading": 0.0
+  },
+  "correlations": {
+    "pearson_r_heading_err_scalar_speed_err": 0.1116,
+    "spearman_r_heading_err_scalar_speed_err": 0.1718,
+    "pearson_r_heading_err_vector_speed_err": 0.6295,
+    "spearman_r_heading_err_vector_speed_err": 0.6385
+  },
+  "decision": "BRANCH CLOSED \u2014 SCALAR SPEED ERROR DOMINATES VECTOR VELOCITY ERROR. NO INTERVENTION JUSTIFIED."
+}

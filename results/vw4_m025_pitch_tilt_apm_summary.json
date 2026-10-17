@@ -1,0 +1,73 @@
+{
+  "milestone": "M025",
+  "title": "Pitch-Tilt-Compensated Longitudinal Acceleration for APM",
+  "m019_benchmark": 220.12,
+  "selected_val_mode": "none",
+  "results_table": [
+    {
+      "name": "F0 (Control M019)",
+      "desc": "M019 Baseline Control (Raw a_long, No Pitch Comp)",
+      "speed_mae_kmh": 7.33,
+      "brk_mae_kmh": 11.54,
+      "brk_bias_kmh": 9.82,
+      "err_60s": 27.53,
+      "err_120s": 428.79,
+      "err_300s": 220.12,
+      "pct_vs_263": -16.3,
+      "pct_vs_254": -13.4,
+      "pct_vs_220": 0.0
+    },
+    {
+      "name": "F1 (Direct Pitch Comp)",
+      "desc": "Direct Pitch Compensation (a_long - g*sin(theta_acc))",
+      "speed_mae_kmh": 7.33,
+      "brk_mae_kmh": 11.54,
+      "brk_bias_kmh": 9.82,
+      "err_60s": 27.54,
+      "err_120s": 428.82,
+      "err_300s": 219.59,
+      "pct_vs_263": -16.5,
+      "pct_vs_254": -13.6,
+      "pct_vs_220": -0.2
+    },
+    {
+      "name": "F2 (Smoothed Pitch Comp)",
+      "desc": "EMA-Smoothed Pitch Compensation (alpha=0.90)",
+      "speed_mae_kmh": 7.33,
+      "brk_mae_kmh": 11.54,
+      "brk_bias_kmh": 9.82,
+      "err_60s": 27.53,
+      "err_120s": 428.77,
+      "err_300s": 219.72,
+      "pct_vs_263": -16.5,
+      "pct_vs_254": -13.5,
+      "pct_vs_220": -0.2
+    },
+    {
+      "name": "F3 (Braking-Only Comp)",
+      "desc": "Pitch Compensation Applied Only During Active Braking",
+      "speed_mae_kmh": 7.33,
+      "brk_mae_kmh": 11.54,
+      "brk_bias_kmh": 9.82,
+      "err_60s": 27.53,
+      "err_120s": 428.79,
+      "err_300s": 220.12,
+      "pct_vs_263": -16.3,
+      "pct_vs_254": -13.4,
+      "pct_vs_220": 0.0
+    },
+    {
+      "name": "F4 (Best Validated + M019)",
+      "desc": "Best Validated Configuration (none)",
+      "speed_mae_kmh": 7.33,
+      "brk_mae_kmh": 11.54,
+      "brk_bias_kmh": 9.82,
+      "err_60s": 27.53,
+      "err_120s": 428.79,
+      "err_300s": 220.12,
+      "pct_vs_263": -16.3,
+      "pct_vs_254": -13.4,
+      "pct_vs_220": 0.0
+    }
+  ]
+}

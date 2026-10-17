@@ -1,0 +1,6 @@
+time_rel_sec,speednet_est_speed_mps,gnss_reference_speed_mps,prob_stat
+0.0,0.05,NOT AVAILABLE,0.98
+10.0,0.04,NOT AVAILABLE,0.98
+30.0,0.05,NOT AVAILABLE,0.98
+60.0,0.05,NOT AVAILABLE,0.98
+90.0,0.04,NOT AVAILABLE,0.98

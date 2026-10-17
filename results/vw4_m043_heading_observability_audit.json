@@ -1,0 +1,55 @@
+{
+  "milestone": "M043",
+  "title": "Heading Observability Audit & Causal Orientation Enhancement Study",
+  "phase0_consistency_audit": {
+    "reproducibility": {
+      "60": 27.88,
+      "120": 426.17,
+      "300": 218.93
+    },
+    "verdict": "E. Legitimate non-monotonic trajectory behavior + A. M042 checkpoint search filter masking early transient.",
+    "explanation": "Previous M042 reported continuous compliance up to D_max = 491.50m by searching for exceedance only after sample 500 (t=50s), masking the early transient error (PE ~ 38m, FPER ~ 38% at t=10s-30s). Corrected interpretation: The trajectory error is non-monotonic: FPER starts high (~38%), decays to a global minimum of 6.69% (27.35m) at 60s (409m) due to trajectory reconvergence, and then explodes to 48.80% (426.85m) at 120s (874.76m) as the vehicle executes a severe braking turn."
+  },
+  "heading_characterization": {
+    "mean_h_err_deg": -18.55,
+    "median_h_err_deg": -22.54,
+    "mae_h_err_deg": 64.66,
+    "rmse_h_err_deg": 80.54,
+    "p95_h_err_deg": 157.6,
+    "max_h_err_deg": 179.86,
+    "drift_rate_deg_s": -0.4454,
+    "drift_rate_deg_min": -26.72
+  },
+  "regime_heading_characterization": {
+    "Straight": {
+      "count": 1153,
+      "mae_deg": 94.5,
+      "max_deg": 179.86
+    },
+    "Moderate Turn": {
+      "count": 613,
+      "mae_deg": 43.96,
+      "max_deg": 170.43
+    },
+    "Strong Turn": {
+      "count": 837,
+      "mae_deg": 49.47,
+      "max_deg": 147.51
+    },
+    "Stationary": {
+      "count": 1055,
+      "mae_deg": 99.57,
+      "max_deg": 179.86
+    }
+  },
+  "counterfactuals": {
+    "cf0_production_speed_gyro_heading": 213.81,
+    "cf1_gt_speed_gyro_heading": 328.44,
+    "cf2_production_speed_gt_heading": 438.68,
+    "cf3_oracle_floor_gt_speed_gt_heading": 5.64,
+    "ekf_baseline_300s": 218.93
+  },
+  "final_verdict": "C. M043 DIAGNOSTIC ONLY \u2014 heading is not sufficiently observable for a justified intervention.",
+  "observability_rationale": "A 6-axis IMU (accelerometer + gyroscope) observes roll and pitch tilt via gravity projection during stationary conditions, but YAW ANGLE IS KINEMATICALLY UNOBSERVABLE during dynamic 2D vehicle motion without magnetometer or external velocity updates. Causal bias estimation and zero-velocity locks cannot prevent integrated yaw drift during curved maneuvers (700m-1000m), and static heading overrides disrupt EKF geometric self-cancellation.",
+  "production_pipeline_changed": false
+}

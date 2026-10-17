@@ -1,0 +1,102 @@
+{
+  "milestone": "M036",
+  "title": "Adaptive Receptive-Field SpeedNet Backbone Tuning",
+  "active_benchmark": 218.93,
+  "selected_val_winner": "F2 (SpeedNet v2 W=50 Longer)",
+  "val_nav_results": [
+    [
+      "F0 (Control W40)",
+      "F0 (SpeedNet v2 W=40 Control)",
+      494.83,
+      356.99
+    ],
+    [
+      "F1 (W30 Shorter)",
+      "F1 (SpeedNet v2 W=30 Shorter)",
+      1023.05,
+      410.78
+    ],
+    [
+      "F2 (W50 Longer)",
+      "F2 (SpeedNet v2 W=50 Longer)",
+      400.4,
+      377.32
+    ],
+    [
+      "F3 (Multi-Branch Ensemble)",
+      "F3 (Adaptive Multi-Branch W30/W40/W50)",
+      784.57,
+      300.86
+    ]
+  ],
+  "test_results_table": [
+    {
+      "id": "F0 (Control W40)",
+      "name": "F0 (SpeedNet v2 W=40 Control)",
+      "params": 89220,
+      "speed_mae_kmh": 7.33,
+      "brk_mae_kmh": 11.57,
+      "brk_bias_kmh": 9.85,
+      "err_60s": 27.35,
+      "err_120s": 426.85,
+      "err_300s": 218.93,
+      "mean_pos_m": 269.2,
+      "final_along_m": -197.64,
+      "final_cross_m": -94.18,
+      "pct_vs_263": -16.8,
+      "pct_vs_220": -0.5,
+      "pct_vs_218": 0.0
+    },
+    {
+      "id": "F1 (W30 Shorter)",
+      "name": "F1 (SpeedNet v2 W=30 Shorter)",
+      "params": 89220,
+      "speed_mae_kmh": 9.07,
+      "brk_mae_kmh": 14.03,
+      "brk_bias_kmh": 11.57,
+      "err_60s": 191.43,
+      "err_120s": 1108.72,
+      "err_300s": 1287.41,
+      "mean_pos_m": 920.42,
+      "final_along_m": 869.69,
+      "final_cross_m": -949.24,
+      "pct_vs_263": 389.3,
+      "pct_vs_220": 484.9,
+      "pct_vs_218": 488.0
+    },
+    {
+      "id": "F2 (W50 Longer)",
+      "name": "F2 (SpeedNet v2 W=50 Longer)",
+      "params": 89220,
+      "speed_mae_kmh": 8.72,
+      "brk_mae_kmh": 14.86,
+      "brk_bias_kmh": 13.33,
+      "err_60s": 97.71,
+      "err_120s": 930.98,
+      "err_300s": 1165.94,
+      "mean_pos_m": 867.38,
+      "final_along_m": -153.78,
+      "final_cross_m": -1155.75,
+      "pct_vs_263": 343.1,
+      "pct_vs_220": 429.7,
+      "pct_vs_218": 432.6
+    },
+    {
+      "id": "F3 (Multi-Branch Ensemble)",
+      "name": "F3 (Adaptive Multi-Branch W30/W40/W50)",
+      "params": 267660,
+      "speed_mae_kmh": 8.01,
+      "brk_mae_kmh": 13.04,
+      "brk_bias_kmh": 11.55,
+      "err_60s": 14.65,
+      "err_120s": 1045.15,
+      "err_300s": 1275.85,
+      "mean_pos_m": 966.19,
+      "final_along_m": 357.7,
+      "final_cross_m": -1224.68,
+      "pct_vs_263": 384.9,
+      "pct_vs_220": 479.6,
+      "pct_vs_218": 482.8
+    }
+  ]
+}

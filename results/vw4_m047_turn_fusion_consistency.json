@@ -1,0 +1,156 @@
+{
+  "milestone": "M047",
+  "title": "Turn-Segment Navigation Fusion Consistency Study",
+  "verdict": "B. REJECTED",
+  "production_changed": "NO (Production baseline remains 100% locked)",
+  "baseline_reproduction": {
+    "60": 27.88,
+    "120": 426.17,
+    "300": 218.93,
+    "1km": 307.46,
+    "1km_fper": 30.74
+  },
+  "turn_fusion_audit": {
+    "A_Straight": {
+      "sample_count": 1795,
+      "duration_s": 179.5,
+      "pct_time": 59.83,
+      "mean_speed_err_ms": 0.63,
+      "mean_nhc_innov_ms": 0.05,
+      "rmse_nhc_innov_ms": 0.14,
+      "p95_nhc_innov_ms": 0.31,
+      "mean_heading_err_deg": 76.61,
+      "err_growth_rate_ms": 0.28,
+      "mean_along_track_m": -230.83,
+      "mean_cross_track_m": 46.36
+    },
+    "B_ModerateTurn": {
+      "sample_count": 368,
+      "duration_s": 36.8,
+      "pct_time": 12.27,
+      "mean_speed_err_ms": 2.65,
+      "mean_nhc_innov_ms": 0.27,
+      "rmse_nhc_innov_ms": 0.37,
+      "p95_nhc_innov_ms": 0.72,
+      "mean_heading_err_deg": 40.91,
+      "err_growth_rate_ms": 0.95,
+      "mean_along_track_m": -139.41,
+      "mean_cross_track_m": 46.59
+    },
+    "C_StrongTurn": {
+      "sample_count": 837,
+      "duration_s": 83.7,
+      "pct_time": 27.9,
+      "mean_speed_err_ms": 2.58,
+      "mean_nhc_innov_ms": 0.72,
+      "rmse_nhc_innov_ms": 0.92,
+      "p95_nhc_innov_ms": 1.93,
+      "mean_heading_err_deg": 49.47,
+      "err_growth_rate_ms": 1.61,
+      "mean_along_track_m": -123.28,
+      "mean_cross_track_m": 50.15
+    },
+    "D_BrakingTurn": {
+      "sample_count": 432,
+      "duration_s": 43.2,
+      "pct_time": 14.4,
+      "mean_speed_err_ms": 2.21,
+      "mean_nhc_innov_ms": 0.58,
+      "rmse_nhc_innov_ms": 0.78,
+      "p95_nhc_innov_ms": 1.71,
+      "mean_heading_err_deg": 45.78,
+      "err_growth_rate_ms": 2.59,
+      "mean_along_track_m": -120.29,
+      "mean_cross_track_m": 30.61
+    }
+  },
+  "counterfactuals": {
+    "CF0_Production_Baseline": {
+      "pe_300m": 218.93,
+      "pe_1km": 307.46
+    },
+    "CF1_No_NHC": {
+      "pe_300m": 926.28,
+      "pe_1km": 953.45
+    },
+    "CF3_Freeze_NHC_Strong_Turn": {
+      "pe_300m": 573.68,
+      "pe_1km": 496.5
+    }
+  },
+  "validation_sweep": [
+    {
+      "candidate": "F0_Baseline_thresh_NoGate",
+      "family": "F0_Baseline",
+      "threshold_ms": null,
+      "val_300s_pe_m": 27575.41,
+      "val_fper_pct": 110.36,
+      "nhc_acceptance_pct": 100.0
+    },
+    {
+      "candidate": "F1_thresh_0.5m/s",
+      "family": "F1",
+      "threshold_ms": 0.5,
+      "val_300s_pe_m": 24192.39,
+      "val_fper_pct": 96.82,
+      "nhc_acceptance_pct": 15.69
+    },
+    {
+      "candidate": "F2_thresh_1.0m/s",
+      "family": "F2",
+      "threshold_ms": 1.0,
+      "val_300s_pe_m": 22605.88,
+      "val_fper_pct": 90.47,
+      "nhc_acceptance_pct": 29.2
+    },
+    {
+      "candidate": "F3_thresh_1.5m/s",
+      "family": "F3",
+      "threshold_ms": 1.5,
+      "val_300s_pe_m": 30528.37,
+      "val_fper_pct": 122.17,
+      "nhc_acceptance_pct": 47.11
+    },
+    {
+      "candidate": "F4_thresh_2.0m/s",
+      "family": "F4",
+      "threshold_ms": 2.0,
+      "val_300s_pe_m": 14174.23,
+      "val_fper_pct": 56.72,
+      "nhc_acceptance_pct": 65.54
+    },
+    {
+      "candidate": "F5_thresh_3.0m/s",
+      "family": "F5",
+      "threshold_ms": 3.0,
+      "val_300s_pe_m": 19700.74,
+      "val_fper_pct": 78.84,
+      "nhc_acceptance_pct": 86.04
+    }
+  ],
+  "validation_winner": {
+    "candidate": "F4_thresh_2.0m/s",
+    "family": "F4",
+    "threshold_ms": 2.0,
+    "val_300s_pe_m": 14174.23,
+    "val_fper_pct": 56.72,
+    "nhc_acceptance_pct": 65.54
+  },
+  "locked_test_results": {
+    "60s_pe_m": 7.72,
+    "120s_pe_m": 1075.52,
+    "300s_pe_m": 808.02,
+    "1km_pe_m": 1291.78,
+    "60s_fper_pct": 1.88,
+    "120s_fper_pct": 122.83,
+    "300s_fper_pct": 58.36,
+    "1km_fper_pct": 129.16,
+    "overall_nhc_acceptance_pct": 88.9,
+    "regime_acceptance_pct": {
+      "A_Straight": 95.82,
+      "B_ModerateTurn": 85.33,
+      "C_StrongTurn": 75.63,
+      "D_BrakingTurn": 77.31
+    }
+  }
+}

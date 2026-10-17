@@ -1,0 +1,81 @@
+{
+  "milestone": "M044",
+  "title": "Causal Turn/Deceleration Measurement-Weighting Study",
+  "phase0_reproducibility": {
+    "60": 27.88,
+    "120": 426.17,
+    "300": 218.93
+  },
+  "validation_best_selection": {
+    "family": "F3",
+    "w_thresh": 12.5,
+    "j_thresh": -0.5,
+    "r_scale": 10.0,
+    "val_pe": 145.08
+  },
+  "test_evaluation": {
+    "baseline_f0": {
+      "60": {
+        "err_m": 27.88,
+        "d_ref_m": 409.0,
+        "fper_pct": 6.82,
+        "err_per_km": 68.18,
+        "status": "PASS"
+      },
+      "120": {
+        "err_m": 426.17,
+        "d_ref_m": 874.76,
+        "fper_pct": 48.72,
+        "err_per_km": 487.18,
+        "status": "FAIL"
+      },
+      "300": {
+        "err_m": 218.93,
+        "d_ref_m": 1384.63,
+        "fper_pct": 15.81,
+        "err_per_km": 158.11,
+        "status": "FAIL"
+      }
+    },
+    "baseline_1km": {
+      "err_m": 307.46,
+      "fper_pct": 30.74
+    },
+    "candidate_selected": {
+      "60": {
+        "err_m": 40.11,
+        "d_ref_m": 409.0,
+        "fper_pct": 9.81,
+        "err_per_km": 98.07,
+        "status": "PASS"
+      },
+      "120": {
+        "err_m": 376.29,
+        "d_ref_m": 874.76,
+        "fper_pct": 43.02,
+        "err_per_km": 430.17,
+        "status": "FAIL"
+      },
+      "300": {
+        "err_m": 574.98,
+        "d_ref_m": 1384.63,
+        "fper_pct": 41.53,
+        "err_per_km": 415.26,
+        "status": "FAIL"
+      }
+    },
+    "candidate_1km": {
+      "err_m": 559.34,
+      "d_ref_m": 1000.17,
+      "fper_pct": 55.93,
+      "err_per_km": 559.25,
+      "status": "FAIL"
+    },
+    "candidate_stats": {
+      "apm_suppressed": 0,
+      "speednet_downweighted": 677
+    }
+  },
+  "final_verdict": "B. REJECTED \u2014 Candidate F3 (selected on validation) is REJECTED on the locked test set due to severe 300s position error expansion (+162.6% degradation from 218.93m to 574.98m) and 1km error expansion (+81.9% degradation from 307.46m to 559.34m) caused by geometric self-cancellation disruption. The production pipeline remains LOCKED at M028/M040 baseline (218.93 m @ 300s).",
+  "production_pipeline_changed": false
+}

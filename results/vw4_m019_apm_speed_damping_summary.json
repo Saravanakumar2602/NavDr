@@ -1,0 +1,78 @@
+{
+  "milestone": "M019",
+  "title": "Acceleration-Integrated Pseudo-Measurement (APM) Speed Damping",
+  "historical_benchmark": 263.11,
+  "m013_control": 254.11,
+  "m014_control": 233.18,
+  "best_apm_params": {
+    "bound_ms": 0.5,
+    "w_thresh": 3.0
+  },
+  "results_table": [
+    {
+      "name": "F0 (Control M014)",
+      "desc": "SpeedNet v2 W=40 Baseline Control (No APM)",
+      "speed_mae_kmh": 7.36,
+      "speed_bias_kmh": 5.92,
+      "brk_mae_kmh": 11.62,
+      "err_60s": 27.36,
+      "err_120s": 428.45,
+      "err_300s": 233.18,
+      "pct_vs_263": -11.4,
+      "pct_vs_254": -8.2,
+      "pct_vs_233": 0.0
+    },
+    {
+      "name": "F1 (Unconstrained APM)",
+      "desc": "Unconstrained APM (a_long < -0.5 m/s\u00b2)",
+      "speed_mae_kmh": 7.36,
+      "speed_bias_kmh": 5.92,
+      "brk_mae_kmh": 11.62,
+      "err_60s": 50.45,
+      "err_120s": 559.75,
+      "err_300s": 864.17,
+      "pct_vs_263": 228.4,
+      "pct_vs_254": 240.1,
+      "pct_vs_233": 270.6
+    },
+    {
+      "name": "F2 (Bounded APM)",
+      "desc": "Bounded APM (bound=0.5 m/s)",
+      "speed_mae_kmh": 7.36,
+      "speed_bias_kmh": 5.92,
+      "brk_mae_kmh": 11.62,
+      "err_60s": 28.26,
+      "err_120s": 440.05,
+      "err_300s": 232.67,
+      "pct_vs_263": -11.6,
+      "pct_vs_254": -8.4,
+      "pct_vs_233": -0.2
+    },
+    {
+      "name": "F3 (Turn-Exclusion APM)",
+      "desc": "Bounded APM + Turn Exclusion (w_thresh=3.0\u00b0)",
+      "speed_mae_kmh": 7.36,
+      "speed_bias_kmh": 5.92,
+      "brk_mae_kmh": 11.62,
+      "err_60s": 27.53,
+      "err_120s": 428.79,
+      "err_300s": 220.12,
+      "pct_vs_263": -16.3,
+      "pct_vs_254": -13.4,
+      "pct_vs_233": -5.6
+    },
+    {
+      "name": "F4 (Best Validated + M014)",
+      "desc": "Best Validated APM Strategy (F3)",
+      "speed_mae_kmh": 7.36,
+      "speed_bias_kmh": 5.92,
+      "brk_mae_kmh": 11.62,
+      "err_60s": 27.53,
+      "err_120s": 428.79,
+      "err_300s": 220.12,
+      "pct_vs_263": -16.3,
+      "pct_vs_254": -13.4,
+      "pct_vs_233": -5.6
+    }
+  ]
+}

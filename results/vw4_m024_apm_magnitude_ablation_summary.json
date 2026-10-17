@@ -1,0 +1,99 @@
+{
+  "milestone": "M024",
+  "title": "APM Correction-Magnitude Ablation",
+  "m019_benchmark": 220.12,
+  "selected_val_bound": 0.25,
+  "results_table": [
+    {
+      "name": "F0 (Control 0.50 m/s)",
+      "desc": "M019 Baseline Control (delta_v_max = 0.50 m/s)",
+      "speed_mae_kmh": 7.33,
+      "brk_mae_kmh": 11.54,
+      "brk_bias_kmh": 9.82,
+      "err_60s": 27.53,
+      "err_120s": 428.79,
+      "err_300s": 220.12,
+      "pct_vs_263": -16.3,
+      "pct_vs_254": -13.4,
+      "pct_vs_220": 0.0
+    },
+    {
+      "name": "F1 (0.25 m/s)",
+      "desc": "delta_v_max = 0.25 m/s (0.90 km/h)",
+      "speed_mae_kmh": 7.33,
+      "brk_mae_kmh": 11.58,
+      "brk_bias_kmh": 9.87,
+      "err_60s": 27.48,
+      "err_120s": 429.27,
+      "err_300s": 220.2,
+      "pct_vs_263": -16.3,
+      "pct_vs_254": -13.3,
+      "pct_vs_220": 0.0
+    },
+    {
+      "name": "F2 (0.35 m/s)",
+      "desc": "delta_v_max = 0.35 m/s (1.26 km/h)",
+      "speed_mae_kmh": 7.33,
+      "brk_mae_kmh": 11.56,
+      "brk_bias_kmh": 9.85,
+      "err_60s": 27.5,
+      "err_120s": 429.12,
+      "err_300s": 218.72,
+      "pct_vs_263": -16.9,
+      "pct_vs_254": -13.9,
+      "pct_vs_220": -0.6
+    },
+    {
+      "name": "F3 (0.40 m/s)",
+      "desc": "delta_v_max = 0.40 m/s (1.44 km/h)",
+      "speed_mae_kmh": 7.33,
+      "brk_mae_kmh": 11.56,
+      "brk_bias_kmh": 9.84,
+      "err_60s": 27.51,
+      "err_120s": 429.03,
+      "err_300s": 219.21,
+      "pct_vs_263": -16.7,
+      "pct_vs_254": -13.7,
+      "pct_vs_220": -0.4
+    },
+    {
+      "name": "F4 (0.60 m/s)",
+      "desc": "delta_v_max = 0.60 m/s (2.16 km/h)",
+      "speed_mae_kmh": 7.32,
+      "brk_mae_kmh": 11.53,
+      "brk_bias_kmh": 9.79,
+      "err_60s": 27.56,
+      "err_120s": 428.51,
+      "err_300s": 221.03,
+      "pct_vs_263": -16.0,
+      "pct_vs_254": -13.0,
+      "pct_vs_220": 0.4
+    },
+    {
+      "name": "F5 (0.75 m/s)",
+      "desc": "delta_v_max = 0.75 m/s (2.70 km/h)",
+      "speed_mae_kmh": 7.32,
+      "brk_mae_kmh": 11.51,
+      "brk_bias_kmh": 9.76,
+      "err_60s": 27.6,
+      "err_120s": 427.92,
+      "err_300s": 222.23,
+      "pct_vs_263": -15.5,
+      "pct_vs_254": -12.5,
+      "pct_vs_220": 1.0
+    },
+    {
+      "name": "F6 (Best Validated + M019)",
+      "desc": "Best Validated Bound (delta_v_max = 0.25 m/s)",
+      "speed_mae_kmh": 7.33,
+      "brk_mae_kmh": 11.58,
+      "brk_bias_kmh": 9.87,
+      "err_60s": 27.48,
+      "err_120s": 429.27,
+      "err_300s": 220.2,
+      "pct_vs_263": -16.3,
+      "pct_vs_254": -13.3,
+      "pct_vs_220": 0.0
+    }
+  ]
+}

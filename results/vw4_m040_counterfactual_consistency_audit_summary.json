@@ -1,0 +1,26 @@
+{
+  "milestone": "M040",
+  "title": "Counterfactual Navigation Consistency Audit",
+  "active_benchmark": 218.93,
+  "audit_answers": {
+    "q1_why_gt_gt_worse": "GT+GT pure kinematic integration (362.50m) lacks EKF NHC and ZUPT measurement corrections that anchor the 218.93m production EKF trajectory.",
+    "q2_m039_prefix_bug": "M039 script called metric evaluator with dur=300 for prefix arrays, causing identical 60s/120s/300s metric reports. M040 fixed this prefix slicing audit.",
+    "q3_ekf_compatible_gt_speed": "Replacing SpeedNet speed with GT speed in the production EKF degrades 300s error from 218.93m to 511.61m.",
+    "q4_self_cancellation_status": "Demonstrated: SpeedNet speed bias during turns compensates for gyro-integrated heading drift in the production EKF.",
+    "q5_recommendation": "Mechanism unresolved; further speculative intervention not justified. Retain locked 218.93m benchmark."
+  },
+  "ekf_results": {
+    "60s": {
+      "CF0": 27.88,
+      "CF1": 165.1
+    },
+    "120s": {
+      "CF0": 426.17,
+      "CF1": 514.15
+    },
+    "300s": {
+      "CF0": 218.93,
+      "CF1": 511.62
+    }
+  }
+}

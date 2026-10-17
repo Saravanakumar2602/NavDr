@@ -1,0 +1,60 @@
+{
+  "milestone": "M041",
+  "title": "SIH Benchmark Compliance & Distance-Normalized Evaluation",
+  "locked_benchmark_reproduction": {
+    "60s_locked": 27.35,
+    "60s_measured": 27.88,
+    "120s_locked": 426.85,
+    "120s_measured": 426.17,
+    "300s_locked": 218.93,
+    "300s_measured": 218.93,
+    "reproduction_status": "MATCHED"
+  },
+  "outage_evaluations": {
+    "60": {
+      "outage_sec": 60,
+      "d_ref_m": 409.0,
+      "pos_err_m": 27.88,
+      "allowable_err_m": 40.9,
+      "fper_pct": 6.82,
+      "err_per_km": 68.18,
+      "margin_pct": 3.18,
+      "status": "PASS"
+    },
+    "120": {
+      "outage_sec": 120,
+      "d_ref_m": 874.76,
+      "pos_err_m": 426.17,
+      "allowable_err_m": 87.48,
+      "fper_pct": 48.72,
+      "err_per_km": 487.18,
+      "margin_pct": -38.72,
+      "status": "FAIL"
+    },
+    "300": {
+      "outage_sec": 300,
+      "d_ref_m": 1384.63,
+      "pos_err_m": 218.93,
+      "allowable_err_m": 138.46,
+      "fper_pct": 15.81,
+      "err_per_km": 158.11,
+      "margin_pct": -5.81,
+      "status": "FAIL"
+    }
+  },
+  "evaluation_1km": {
+    "reached_1km": true,
+    "elapsed_time_sec": 150.0,
+    "reference_dist_m": 1000.17,
+    "final_pos_err_m": 307.46,
+    "fper_pct": 30.74,
+    "err_per_km": 307.41,
+    "sih_limit_m": 100.02,
+    "status": "FAIL"
+  },
+  "operating_envelope": {
+    "max_pass_distance_m": 49.78,
+    "max_pass_time_sec": 5.1,
+    "fper_at_limit_pct": 46.5
+  }
+}

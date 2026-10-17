@@ -1,0 +1,140 @@
+{
+  "milestone": "M039",
+  "title": "Strong-Turn Trajectory Geometry Attribution Diagnostic",
+  "active_benchmark": 218.93,
+  "val_diagnostic": {
+    "partition": "Validation",
+    "regimes": [
+      {
+        "regime": "Straight (<= 5 deg/s)",
+        "count": 1311,
+        "pct": 43.7,
+        "speed_mae_kmh": 4.92,
+        "heading_mae_deg": 101.55,
+        "vector_mae_kmh": 25.68
+      },
+      {
+        "regime": "Moderate Turn (5 < w <= 10 deg/s)",
+        "count": 539,
+        "pct": 18.0,
+        "speed_mae_kmh": 9.6,
+        "heading_mae_deg": 123.5,
+        "vector_mae_kmh": 52.37
+      },
+      {
+        "regime": "Strong Turn (> 10 deg/s)",
+        "count": 1150,
+        "pct": 38.3,
+        "speed_mae_kmh": 8.6,
+        "heading_mae_deg": 111.65,
+        "vector_mae_kmh": 48.81
+      }
+    ],
+    "cf_nav": {
+      "cf0_baseline": {
+        "final_pos_m": 494.83,
+        "mean_pos_m": 356.99,
+        "max_pos_m": 545.47,
+        "final_along_m": 62.89,
+        "final_cross_m": 490.82,
+        "speed_mae_kmh": 7.17,
+        "speed_bias_kmh": 4.64
+      },
+      "cf1_gt_speed": {
+        "final_pos_m": 1034.54,
+        "mean_pos_m": 363.26,
+        "max_pos_m": 1034.54,
+        "final_along_m": -406.88,
+        "final_cross_m": -951.17,
+        "speed_mae_kmh": 7.17,
+        "speed_bias_kmh": 4.64
+      },
+      "cf2_gt_heading": {
+        "final_pos_m": 344.11,
+        "mean_pos_m": 186.67,
+        "max_pos_m": 389.95,
+        "final_along_m": 195.44,
+        "final_cross_m": -283.22,
+        "speed_mae_kmh": 7.17,
+        "speed_bias_kmh": 4.64
+      },
+      "cf3_oracle": {
+        "final_pos_m": 264.5,
+        "mean_pos_m": 123.04,
+        "max_pos_m": 289.68,
+        "final_along_m": 174.74,
+        "final_cross_m": -198.55,
+        "speed_mae_kmh": 7.17,
+        "speed_bias_kmh": 4.64
+      }
+    }
+  },
+  "test_diagnostic": {
+    "partition": "Locked Test",
+    "regimes": [
+      {
+        "regime": "Straight (<= 5 deg/s)",
+        "count": 1795,
+        "pct": 59.8,
+        "speed_mae_kmh": 3.33,
+        "heading_mae_deg": 76.61,
+        "vector_mae_kmh": 7.29
+      },
+      {
+        "regime": "Moderate Turn (5 < w <= 10 deg/s)",
+        "count": 368,
+        "pct": 12.3,
+        "speed_mae_kmh": 13.53,
+        "heading_mae_deg": 40.91,
+        "vector_mae_kmh": 28.6
+      },
+      {
+        "regime": "Strong Turn (> 10 deg/s)",
+        "count": 837,
+        "pct": 27.9,
+        "speed_mae_kmh": 13.2,
+        "heading_mae_deg": 49.47,
+        "vector_mae_kmh": 33.9
+      }
+    ],
+    "cf_nav": {
+      "cf0_baseline": {
+        "final_pos_m": 218.93,
+        "mean_pos_m": 269.2,
+        "max_pos_m": 466.11,
+        "final_along_m": -197.64,
+        "final_cross_m": -94.18,
+        "speed_mae_kmh": 7.33,
+        "speed_bias_kmh": 5.84
+      },
+      "cf1_gt_speed": {
+        "final_pos_m": 511.61,
+        "mean_pos_m": 438.92,
+        "max_pos_m": 634.18,
+        "final_along_m": 119.28,
+        "final_cross_m": 497.51,
+        "speed_mae_kmh": 7.33,
+        "speed_bias_kmh": 5.84
+      },
+      "cf2_gt_heading": {
+        "final_pos_m": 531.85,
+        "mean_pos_m": 390.89,
+        "max_pos_m": 531.85,
+        "final_along_m": -381.59,
+        "final_cross_m": 370.48,
+        "speed_mae_kmh": 7.33,
+        "speed_bias_kmh": 5.84
+      },
+      "cf3_oracle": {
+        "final_pos_m": 362.5,
+        "mean_pos_m": 248.96,
+        "max_pos_m": 512.3,
+        "final_along_m": 174.28,
+        "final_cross_m": 317.85,
+        "speed_mae_kmh": 7.33,
+        "speed_bias_kmh": 5.84
+      }
+    }
+  },
+  "attribution_conclusion": "SCALAR SPEED MAGNITUDE DOMINATES VELOCITY VECTOR ERROR (81.8%). HEADING DIRECTION IS SECONDARY (11.3%). NO PIPELINE CHANGE MADE."
+}

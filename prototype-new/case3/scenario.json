@@ -1,0 +1,55 @@
+{
+  "scenario_id": "case_03_deep_urban_canyon",
+  "title": "CASE 03 \u2014 DEEP URBAN CANYON",
+  "subtitle": "GNSS Multipath Degradation & High-Rise Signal Blackout (Cyber City Gurugram)",
+  "environment": {
+    "type": "Deep Urban Canyon",
+    "location_name": "DLF Cyber City Gurugram",
+    "lat_center": 28.495,
+    "lon_center": 77.088,
+    "gnss_condition": "MULTIPATH DEGRADATION / HIGH-RISE CANOPY DENIAL"
+  },
+  "navigation_engine": {
+    "name": "M029 Multi-Anchor Heading Architecture",
+    "locked_benchmark": {
+      "m028_err_300s_m": 218.93,
+      "m029_err_300s_m": 48.2,
+      "comparison_label": "Benchmark: M028 218.93 m \u2192 M029 48.20 m @ 300 s"
+    }
+  },
+  "timeline": {
+    "total_duration_sec": 300.0,
+    "gnss_aided_pre_outage_sec": 30.0,
+    "gnss_outage_start_sec": 30.0,
+    "gnss_outage_end_sec": 270.0,
+    "gnss_outage_duration_sec": 240.0,
+    "gnss_aided_post_outage_sec": 30.0
+  },
+  "waypoints": {
+    "start": {
+      "lat": 28.488,
+      "lon": 77.08,
+      "name": "Open Boulevard Checkpoint"
+    },
+    "canyon_entry": {
+      "lat": 28.491,
+      "lon": 77.083,
+      "name": "Cyber City Glass Tower Gate"
+    },
+    "mid_canyon": {
+      "lat": 28.495,
+      "lon": 77.088,
+      "name": "Traffic Light & Turn Corridor"
+    },
+    "canyon_exit": {
+      "lat": 28.499,
+      "lon": 77.094,
+      "name": "Boulevard Clearing Boundary"
+    },
+    "destination": {
+      "lat": 28.502,
+      "lon": 77.098,
+      "name": "Open Highway Plaza"
+    }
+  }
+}

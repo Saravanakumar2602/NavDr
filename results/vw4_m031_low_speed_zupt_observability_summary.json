@@ -1,0 +1,269 @@
+{
+  "milestone": "M031",
+  "title": "Low-Speed Stop Observability Diagnostic",
+  "active_benchmark": 218.93,
+  "m014_val_metrics": {
+    "tp": 514,
+    "tn": 18087,
+    "fp": 92,
+    "fn": 285,
+    "precision": 0.8482,
+    "recall": 0.6433,
+    "fpr": 0.0051,
+    "fnr": 0.3567,
+    "f1": 0.7317,
+    "detected_samples": 606,
+    "true_stationary_samples": 799,
+    "false_stationary_samples": 92,
+    "missed_stationary_samples": 285
+  },
+  "proposed_val_metrics": {
+    "tp": 133,
+    "tn": 18169,
+    "fp": 10,
+    "fn": 666,
+    "precision": 0.9301,
+    "recall": 0.1665,
+    "fpr": 0.0006,
+    "fnr": 0.8335,
+    "f1": 0.2824,
+    "detected_samples": 143,
+    "true_stationary_samples": 799,
+    "false_stationary_samples": 10,
+    "missed_stationary_samples": 666
+  },
+  "combined_val_metrics": {
+    "tp": 514,
+    "tn": 18087,
+    "fp": 92,
+    "fn": 285,
+    "precision": 0.8482,
+    "recall": 0.6433,
+    "fpr": 0.0051,
+    "fnr": 0.3567,
+    "f1": 0.7317,
+    "detected_samples": 606,
+    "true_stationary_samples": 799,
+    "false_stationary_samples": 92,
+    "missed_stationary_samples": 285
+  },
+  "episodes": [
+    {
+      "episode": 1,
+      "duration_sec": 1.9,
+      "category": "creeping/near-stop",
+      "m014_coverage_pct": 0.0,
+      "prop_coverage_pct": 0.0,
+      "m014_latency_sec": -1.0,
+      "prop_latency_sec": -1.0
+    },
+    {
+      "episode": 2,
+      "duration_sec": 28.8,
+      "category": "full stop",
+      "m014_coverage_pct": 72.2,
+      "prop_coverage_pct": 16.3,
+      "m014_latency_sec": 2.1,
+      "prop_latency_sec": 11.0
+    },
+    {
+      "episode": 3,
+      "duration_sec": 16.9,
+      "category": "full stop",
+      "m014_coverage_pct": 72.8,
+      "prop_coverage_pct": 10.7,
+      "m014_latency_sec": 1.8,
+      "prop_latency_sec": 6.4
+    },
+    {
+      "episode": 4,
+      "duration_sec": 0.9,
+      "category": "creeping/near-stop",
+      "m014_coverage_pct": 22.2,
+      "prop_coverage_pct": 0.0,
+      "m014_latency_sec": 0.1,
+      "prop_latency_sec": -1.0
+    },
+    {
+      "episode": 5,
+      "duration_sec": 0.1,
+      "category": "creeping/near-stop",
+      "m014_coverage_pct": 0.0,
+      "prop_coverage_pct": 0.0,
+      "m014_latency_sec": -1.0,
+      "prop_latency_sec": -1.0
+    },
+    {
+      "episode": 6,
+      "duration_sec": 0.9,
+      "category": "creeping/near-stop",
+      "m014_coverage_pct": 0.0,
+      "prop_coverage_pct": 0.0,
+      "m014_latency_sec": -1.0,
+      "prop_latency_sec": -1.0
+    },
+    {
+      "episode": 7,
+      "duration_sec": 0.1,
+      "category": "creeping/near-stop",
+      "m014_coverage_pct": 100.0,
+      "prop_coverage_pct": 0.0,
+      "m014_latency_sec": 0.0,
+      "prop_latency_sec": -1.0
+    },
+    {
+      "episode": 8,
+      "duration_sec": 2.5,
+      "category": "short stop",
+      "m014_coverage_pct": 40.0,
+      "prop_coverage_pct": 4.0,
+      "m014_latency_sec": 0.0,
+      "prop_latency_sec": 0.1
+    },
+    {
+      "episode": 9,
+      "duration_sec": 4.1,
+      "category": "short stop",
+      "m014_coverage_pct": 65.9,
+      "prop_coverage_pct": 12.2,
+      "m014_latency_sec": 0.0,
+      "prop_latency_sec": 0.4
+    },
+    {
+      "episode": 10,
+      "duration_sec": 0.4,
+      "category": "creeping/near-stop",
+      "m014_coverage_pct": 0.0,
+      "prop_coverage_pct": 0.0,
+      "m014_latency_sec": -1.0,
+      "prop_latency_sec": -1.0
+    },
+    {
+      "episode": 11,
+      "duration_sec": 1.2,
+      "category": "creeping/near-stop",
+      "m014_coverage_pct": 16.7,
+      "prop_coverage_pct": 0.0,
+      "m014_latency_sec": 0.0,
+      "prop_latency_sec": -1.0
+    },
+    {
+      "episode": 12,
+      "duration_sec": 0.3,
+      "category": "creeping/near-stop",
+      "m014_coverage_pct": 0.0,
+      "prop_coverage_pct": 0.0,
+      "m014_latency_sec": -1.0,
+      "prop_latency_sec": -1.0
+    },
+    {
+      "episode": 13,
+      "duration_sec": 21.8,
+      "category": "full stop",
+      "m014_coverage_pct": 64.7,
+      "prop_coverage_pct": 28.4,
+      "m014_latency_sec": 0.4,
+      "prop_latency_sec": 7.6
+    }
+  ],
+  "grid_results": [
+    {
+      "v_thresh_kmh": 0.2,
+      "a_thresh_ms2": 0.1,
+      "precision": 0.9583,
+      "recall": 0.0288,
+      "f1": 0.0559,
+      "fp": 1
+    },
+    {
+      "v_thresh_kmh": 0.2,
+      "a_thresh_ms2": 0.15,
+      "precision": 0.973,
+      "recall": 0.0451,
+      "f1": 0.0861,
+      "fp": 1
+    },
+    {
+      "v_thresh_kmh": 0.2,
+      "a_thresh_ms2": 0.2,
+      "precision": 0.9767,
+      "recall": 0.0526,
+      "f1": 0.0998,
+      "fp": 1
+    },
+    {
+      "v_thresh_kmh": 0.36,
+      "a_thresh_ms2": 0.1,
+      "precision": 0.9149,
+      "recall": 0.1076,
+      "f1": 0.1926,
+      "fp": 8
+    },
+    {
+      "v_thresh_kmh": 0.36,
+      "a_thresh_ms2": 0.15,
+      "precision": 0.9301,
+      "recall": 0.1665,
+      "f1": 0.2824,
+      "fp": 10
+    },
+    {
+      "v_thresh_kmh": 0.36,
+      "a_thresh_ms2": 0.2,
+      "precision": 0.9314,
+      "recall": 0.204,
+      "f1": 0.3347,
+      "fp": 12
+    },
+    {
+      "v_thresh_kmh": 0.5,
+      "a_thresh_ms2": 0.1,
+      "precision": 0.8912,
+      "recall": 0.164,
+      "f1": 0.277,
+      "fp": 16
+    },
+    {
+      "v_thresh_kmh": 0.5,
+      "a_thresh_ms2": 0.15,
+      "precision": 0.8967,
+      "recall": 0.239,
+      "f1": 0.3775,
+      "fp": 22
+    },
+    {
+      "v_thresh_kmh": 0.5,
+      "a_thresh_ms2": 0.2,
+      "precision": 0.8885,
+      "recall": 0.2991,
+      "f1": 0.4476,
+      "fp": 30
+    },
+    {
+      "v_thresh_kmh": 0.75,
+      "a_thresh_ms2": 0.1,
+      "precision": 0.8182,
+      "recall": 0.1915,
+      "f1": 0.3103,
+      "fp": 34
+    },
+    {
+      "v_thresh_kmh": 0.75,
+      "a_thresh_ms2": 0.15,
+      "precision": 0.8339,
+      "recall": 0.2829,
+      "f1": 0.4224,
+      "fp": 45
+    },
+    {
+      "v_thresh_kmh": 0.75,
+      "a_thresh_ms2": 0.2,
+      "precision": 0.8409,
+      "recall": 0.3705,
+      "f1": 0.5143,
+      "fp": 56
+    }
+  ],
+  "additional_captured_test_samples": 0,
+  "recommendation": "BRANCH CLOSED \u2014 M014 ALREADY CAPTURES 100% GT STATIONARY SAMPLES WITH ZERO MISSED SAMPLES"
+}

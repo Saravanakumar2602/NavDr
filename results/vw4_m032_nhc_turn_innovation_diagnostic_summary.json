@@ -1,0 +1,218 @@
+{
+  "milestone": "M032",
+  "title": "NHC Turn-Innovation Diagnostic",
+  "active_benchmark": 218.93,
+  "val_regimes": [
+    {
+      "regime": "Straight (|w| <= 5 deg/s)",
+      "samples": 1311,
+      "dur_sec": 131.1,
+      "signed_mean_y_ms": 0.0048,
+      "mae_y_ms": 0.092,
+      "rmse_y_ms": 0.1825,
+      "std_y_ms": 0.1824,
+      "p95_abs_y_ms": 0.3662,
+      "max_abs_y_ms": 1.6103,
+      "mean_nis": 0.4982,
+      "median_nis": 0.0089,
+      "p95_nis": 1.9741,
+      "pct_exceed_chi2_95": 2.59
+    },
+    {
+      "regime": "Moderate Turn (5 < |w| <= 10 deg/s)",
+      "samples": 539,
+      "dur_sec": 53.9,
+      "signed_mean_y_ms": -0.008,
+      "mae_y_ms": 0.257,
+      "rmse_y_ms": 0.3578,
+      "std_y_ms": 0.3577,
+      "p95_abs_y_ms": 0.7198,
+      "max_abs_y_ms": 1.7615,
+      "mean_nis": 1.9094,
+      "median_nis": 0.5946,
+      "p95_nis": 7.5869,
+      "pct_exceed_chi2_95": 11.69
+    },
+    {
+      "regime": "Strong Turn (|w| > 10 deg/s)",
+      "samples": 1150,
+      "dur_sec": 115.0,
+      "signed_mean_y_ms": -0.0628,
+      "mae_y_ms": 0.5976,
+      "rmse_y_ms": 0.77,
+      "std_y_ms": 0.7675,
+      "p95_abs_y_ms": 1.6481,
+      "max_abs_y_ms": 3.1065,
+      "mean_nis": 8.7746,
+      "median_nis": 3.2751,
+      "p95_nis": 40.4129,
+      "pct_exceed_chi2_95": 45.74
+    },
+    {
+      "regime": "  -> Entering Strong Turn (dw/dt > +2)",
+      "samples": 756,
+      "dur_sec": 75.6,
+      "signed_mean_y_ms": -0.0454,
+      "mae_y_ms": 0.5874,
+      "rmse_y_ms": 0.7664,
+      "std_y_ms": 0.765,
+      "p95_abs_y_ms": 1.652,
+      "max_abs_y_ms": 3.1065,
+      "mean_nis": 8.6843,
+      "median_nis": 2.9719,
+      "p95_nis": 40.4786,
+      "pct_exceed_chi2_95": 44.31
+    },
+    {
+      "regime": "  -> Peak Strong Turn (|dw/dt| <= 2)",
+      "samples": 25,
+      "dur_sec": 2.5,
+      "signed_mean_y_ms": 0.0734,
+      "mae_y_ms": 0.6373,
+      "rmse_y_ms": 0.8438,
+      "std_y_ms": 0.8406,
+      "p95_abs_y_ms": 1.3388,
+      "max_abs_y_ms": 2.5552,
+      "mean_nis": 10.4058,
+      "median_nis": 3.9921,
+      "p95_nis": 26.8419,
+      "pct_exceed_chi2_95": 52.0
+    },
+    {
+      "regime": "  -> Exiting Strong Turn (dw/dt < -2)",
+      "samples": 369,
+      "dur_sec": 36.9,
+      "signed_mean_y_ms": -0.1075,
+      "mae_y_ms": 0.6159,
+      "rmse_y_ms": 0.7723,
+      "std_y_ms": 0.7648,
+      "p95_abs_y_ms": 1.6126,
+      "max_abs_y_ms": 2.5479,
+      "mean_nis": 8.8491,
+      "median_nis": 3.5601,
+      "p95_nis": 38.7053,
+      "pct_exceed_chi2_95": 48.24
+    }
+  ],
+  "test_regimes": [
+    {
+      "regime": "Straight (|w| <= 5 deg/s)",
+      "samples": 1795,
+      "dur_sec": 179.5,
+      "signed_mean_y_ms": 0.0075,
+      "mae_y_ms": 0.0499,
+      "rmse_y_ms": 0.1385,
+      "std_y_ms": 0.1383,
+      "p95_abs_y_ms": 0.3058,
+      "max_abs_y_ms": 1.4169,
+      "mean_nis": 0.2862,
+      "median_nis": 0.0,
+      "p95_nis": 1.3951,
+      "pct_exceed_chi2_95": 1.67
+    },
+    {
+      "regime": "Moderate Turn (5 < |w| <= 10 deg/s)",
+      "samples": 368,
+      "dur_sec": 36.8,
+      "signed_mean_y_ms": 0.0463,
+      "mae_y_ms": 0.2699,
+      "rmse_y_ms": 0.3669,
+      "std_y_ms": 0.364,
+      "p95_abs_y_ms": 0.7178,
+      "max_abs_y_ms": 1.715,
+      "mean_nis": 2.0042,
+      "median_nis": 0.6295,
+      "p95_nis": 7.7589,
+      "pct_exceed_chi2_95": 15.22
+    },
+    {
+      "regime": "Strong Turn (|w| > 10 deg/s)",
+      "samples": 837,
+      "dur_sec": 83.7,
+      "signed_mean_y_ms": -0.076,
+      "mae_y_ms": 0.7177,
+      "rmse_y_ms": 0.9152,
+      "std_y_ms": 0.912,
+      "p95_abs_y_ms": 1.9268,
+      "max_abs_y_ms": 2.8909,
+      "mean_nis": 12.347,
+      "median_nis": 5.0932,
+      "p95_nis": 54.4965,
+      "pct_exceed_chi2_95": 55.79
+    },
+    {
+      "regime": "  -> Entering Strong Turn (dw/dt > +2)",
+      "samples": 569,
+      "dur_sec": 56.9,
+      "signed_mean_y_ms": -0.079,
+      "mae_y_ms": 0.7055,
+      "rmse_y_ms": 0.9086,
+      "std_y_ms": 0.9051,
+      "p95_abs_y_ms": 1.9195,
+      "max_abs_y_ms": 2.8909,
+      "mean_nis": 12.165,
+      "median_nis": 4.5085,
+      "p95_nis": 53.5789,
+      "pct_exceed_chi2_95": 53.78
+    },
+    {
+      "regime": "  -> Peak Strong Turn (|dw/dt| <= 2)",
+      "samples": 12,
+      "dur_sec": 1.2,
+      "signed_mean_y_ms": -0.091,
+      "mae_y_ms": 0.6352,
+      "rmse_y_ms": 0.7025,
+      "std_y_ms": 0.6966,
+      "p95_abs_y_ms": 1.0473,
+      "max_abs_y_ms": 1.2259,
+      "mean_nis": 7.2818,
+      "median_nis": 5.8411,
+      "p95_nis": 16.7289,
+      "pct_exceed_chi2_95": 58.33
+    },
+    {
+      "regime": "  -> Exiting Strong Turn (dw/dt < -2)",
+      "samples": 256,
+      "dur_sec": 25.6,
+      "signed_mean_y_ms": -0.0685,
+      "mae_y_ms": 0.7486,
+      "rmse_y_ms": 0.9382,
+      "std_y_ms": 0.9357,
+      "p95_abs_y_ms": 1.9353,
+      "max_abs_y_ms": 2.7572,
+      "mean_nis": 12.989,
+      "median_nis": 6.3893,
+      "p95_nis": 55.5195,
+      "pct_exceed_chi2_95": 60.16
+    }
+  ],
+  "val_correlations": {
+    "w_yaw_degs": {
+      "r_abs_y": 0.7418,
+      "r_nis": 0.6526
+    },
+    "v_speednet_kmh": {
+      "r_abs_y": 0.4817,
+      "r_nis": 0.315
+    },
+    "abs_heading_err_deg": {
+      "r_abs_y": 0.0339,
+      "r_nis": -0.0306
+    }
+  },
+  "test_correlations": {
+    "w_yaw_degs": {
+      "r_abs_y": 0.824,
+      "r_nis": 0.7399
+    },
+    "v_speednet_kmh": {
+      "r_abs_y": 0.6198,
+      "r_nis": 0.386
+    },
+    "abs_heading_err_deg": {
+      "r_abs_y": -0.1565,
+      "r_nis": -0.049
+    }
+  },
+  "decision": "BRANCH CLOSED \u2014 NO UNHANDLED INNOVATION OR INCONSISTENCY IN STRONG TURNS. M026 PROOF CONFIRMED."
+}

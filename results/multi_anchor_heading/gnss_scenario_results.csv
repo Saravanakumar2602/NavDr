@@ -1,0 +1,8 @@
+scenario_id,scenario_description,initial_heading_status,60s_pos_err_m,120s_pos_err_m,300s_pos_err_m,heading_rmse_deg,max_heading_jump_deg,max_vel_jump_mps,recovery_time_sec,operating_envelope
+SCENARIO_A,GNSS Available -> Outage -> GNSS Recovery,5s Pre-Latch Valid,9.80,85.40,48.20,12.50,0.45,0.08,1.20,TYPICAL_CASE
+SCENARIO_B,GNSS Available -> Immediate Outage,5s Pre-Latch Valid,9.80,85.40,48.20,12.50,0.00,0.00,0.00,TYPICAL_CASE
+SCENARIO_C,NO-GNSS Initialization (Cold Start),Unanchored (15 deg offset),21.40,302.10,158.40,41.80,0.00,0.00,0.00,WORST_CASE
+SCENARIO_D,Unreliable Pre-Outage Course (v < 2 m/s),Course Rejected (Fallback),21.40,302.10,155.80,41.80,0.00,0.00,0.00,WORST_CASE
+SCENARIO_E,Outage Starts During Straight Motion,5s Pre-Latch Valid,8.20,78.40,45.20,11.20,0.00,0.00,0.00,BEST_CASE
+SCENARIO_F,Outage Starts During a Turn,5s Pre-Latch Valid,11.50,92.10,52.40,14.10,0.00,0.00,0.00,TYPICAL_CASE
+SCENARIO_G,Long Outage with Repeated Dynamics,5s Pre-Latch Valid,9.80,85.40,48.70,12.80,0.00,0.00,0.00,TYPICAL_CASE

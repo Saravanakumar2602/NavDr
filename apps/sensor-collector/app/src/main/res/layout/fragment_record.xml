@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/bg_navy_dark">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Status & Duration Banner -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Status: READY ●"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/status_ready"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="8dp"
+                android:background="@drawable/bg_status_ready" />
+
+            <TextView
+                android:id="@+id/tvDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.0 s"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="monospace"
+                android:layout_marginStart="12dp" />
+        </LinearLayout>
+
+        <!-- Accelerometer Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="@drawable/bg_card_navy"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/accel_header"
+                    android:textStyle="bold"
+                    android:textColor="@color/cyan_accent"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tvAccelHz"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-- Hz"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp"
+                    android:fontFamily="monospace" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvAccelValues"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="X: +0.00 | Y: +0.00 | Z: +0.00\nMAG: 0.00 m/s²"
+                android:textColor="@color/white"
+                android:fontFamily="monospace"
+                android:textSize="14sp"
+                android:lineSpacingExtra="4dp" />
+        </LinearLayout>
+
+        <!-- Gyroscope Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="@drawable/bg_card_navy"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/gyro_header"
+                    android:textStyle="bold"
+                    android:textColor="@color/cyan_accent"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tvGyroHz"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-- Hz"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp"
+                    android:fontFamily="monospace" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvGyroValues"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="X: +0.000 | Y: +0.000 | Z: +0.000\nMAG: 0.000 rad/s"
+                android:textColor="@color/white"
+                android:fontFamily="monospace"
+                android:textSize="14sp"
+                android:lineSpacingExtra="4dp" />
+        </LinearLayout>
+
+        <!-- GNSS Telemetry Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="@drawable/bg_card_navy"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/gnss_header"
+                    android:textStyle="bold"
+                    android:textColor="@color/cyan_accent"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tvGnssStatusBadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SEARCHING..."
+                    android:textColor="@color/status_warning"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvGnssData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LAT: -- | LON: -- | ALT: --\nSPEED: -- m/s | ACCURACY: -- m"
+                android:textColor="@color/white"
+                android:fontFamily="monospace"
+                android:textSize="13sp"
+                android:lineSpacingExtra="4dp" />
+        </LinearLayout>
+
+        <!-- Session Metrics Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="@drawable/bg_card_navy"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/metrics_header"
+                android:textStyle="bold"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/tvMetricsSummary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IMU Events: 0 | GNSS Fixes: 0\nEst. Disk Storage: 0.0 MB"
+                android:textColor="@color/text_secondary"
+                android:fontFamily="monospace"
+                android:textSize="12sp"
+                android:lineSpacingExtra="4dp" />
+        </LinearLayout>
+
+        <!-- Primary Action Button -->
+        <Button
+            android:id="@+id/btnToggle"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="@string/btn_start_recording"
+            android:textColor="@color/bg_navy_dark"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/cyan_accent" />
+
+        <!-- Inspect Last Recording Button -->
+        <Button
+            android:id="@+id/btnViewLastSession"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="INSPECT LAST RECORDING"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/blue_primary"
+            android:layout_marginTop="12dp"
+            android:visibility="gone" />
+
+    </LinearLayout>
+</ScrollView>

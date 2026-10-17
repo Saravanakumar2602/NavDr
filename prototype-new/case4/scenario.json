@@ -1,0 +1,55 @@
+{
+  "scenario_id": "case_04_deep_valley",
+  "title": "CASE 04 \u2014 DEEP VALLEY / MOUNTAIN ROAD",
+  "subtitle": "Mountain Terrain Horizon Obstruction Navigation (Solang Valley Highway)",
+  "environment": {
+    "type": "Mountain Valley Corridor",
+    "location_name": "Solang Valley NH3 Highway",
+    "lat_center": 32.315,
+    "lon_center": 77.155,
+    "gnss_condition": "MOUNTAIN RIDGE SHADOW / HORIZON SIGNAL DENIAL"
+  },
+  "navigation_engine": {
+    "name": "M029 Multi-Anchor Heading Architecture",
+    "locked_benchmark": {
+      "m028_err_300s_m": 218.93,
+      "m029_err_300s_m": 48.2,
+      "comparison_label": "Benchmark: M028 218.93 m \u2192 M029 48.20 m @ 300 s"
+    }
+  },
+  "timeline": {
+    "total_duration_sec": 300.0,
+    "gnss_aided_pre_outage_sec": 30.0,
+    "gnss_outage_start_sec": 30.0,
+    "gnss_outage_end_sec": 270.0,
+    "gnss_outage_duration_sec": 240.0,
+    "gnss_aided_post_outage_sec": 30.0
+  },
+  "waypoints": {
+    "start": {
+      "lat": 32.29,
+      "lon": 77.135,
+      "name": "Open Valley Entrance"
+    },
+    "gorge_entry": {
+      "lat": 32.302,
+      "lon": 77.144,
+      "name": "Deep Mountain Gorge Entry"
+    },
+    "mid_gorge": {
+      "lat": 32.315,
+      "lon": 77.155,
+      "name": "Himalayan Ridge Shadow Zone"
+    },
+    "gorge_exit": {
+      "lat": 32.328,
+      "lon": 77.168,
+      "name": "Mountain Plateau Exit"
+    },
+    "destination": {
+      "lat": 32.336,
+      "lon": 77.175,
+      "name": "High Plateau Checkpoint"
+    }
+  }
+}

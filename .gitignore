@@ -1,0 +1,141 @@
+# ==============================================================================
+# NavDR — Intelligent Dead Reckoning (IDR) Navigation Stack
+# Problem Statement: SIH 26168
+# Production .gitignore — Essential Source Code Only
+# ==============================================================================
+
+# OS & Environment Metadata
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE & Editor Configuration
+.idea/
+**/.idea/
+.vscode/
+**/.vscode/
+*.swp
+*.swo
+*~
+
+# Python Caches & Bytecode
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.pytest_cache/
+.coverage
+htmlcov/
+.ipynb_checkpoints
+
+# Virtual Environments
+venv/
+env/
+ENV/
+.venv/
+
+# Secrets & Environment Variables
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+secrets/
+
+# Node.js & React Native Dependencies
+node_modules/
+**/node_modules/
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+.metro-health-check*
+*.tsbuildinfo
+
+# Expo Generated & Build Directories
+.expo/
+**/.expo/
+web-build/
+expo-env.d.ts
+
+# Android & Gradle Build Artifacts
+.gradle/
+**/.gradle/
+.kotlin/
+**/.kotlin/
+local.properties
+**/local.properties
+**/build/
+build/
+app/build/
+**/app/build/
+.cxx/
+**/.cxx/
+*.iml
+*.hprof
+*.jsbundle
+index.android.bundle
+**/index.android.bundle
+
+# Application Binaries & Packages (APKs & AABs)
+*.apk
+**/*.apk
+*.aab
+**/*.aab
+
+# Executables & System Binaries
+powershell.exe
+powershell.bat
+powershell.cmd
+*.exe
+*.dll
+
+# Large Raw Datasets & Telemetry Archives (>100MB)
+IO-VNBD/
+**/IO-VNBD/
+recordings-from-bus/
+olddata/
+data/
+*.zip
+*.7z
+*.tar.gz
+*.tar
+
+# Large Binary NumPy Data & Prediction Dumps
+*.npz
+**/*.npz
+
+# Binary Documents (PDFs & Word Docs)
+*.docx
+**/*.docx
+*.pdf
+**/*.pdf
+
+# Scratch Files, Internal Logs & Intermediate Audit Reports
+scratch/
+notes/
+*.log
+runcommand.md
+stage_*.md
+screen_*.png
+device_screenshot.png
+mobile/
+
+.git_backup_sih/
+

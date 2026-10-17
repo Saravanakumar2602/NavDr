@@ -1,0 +1,86 @@
+{
+  "milestone": "M023",
+  "title": "Acceleration-Variance-Gated Multi-Stage ZUPT Transition Fusion",
+  "m019_benchmark": 220.12,
+  "selected_val_mode": "m014_control",
+  "results_table": [
+    {
+      "name": "F0 (Control M019 / M014)",
+      "desc": "M019 Control (Original M014 ZUPT Detector)",
+      "speed_mae_kmh": 7.33,
+      "brk_mae_kmh": 11.54,
+      "brk_bias_kmh": 9.82,
+      "err_60s": 27.53,
+      "err_120s": 428.79,
+      "err_300s": 220.12,
+      "pct_vs_263": -16.3,
+      "pct_vs_254": -13.4,
+      "pct_vs_220": 0.0
+    },
+    {
+      "name": "F1 (M014 ZUPT Only)",
+      "desc": "M014 ZUPT Detector Baseline",
+      "speed_mae_kmh": 7.33,
+      "brk_mae_kmh": 11.54,
+      "brk_bias_kmh": 9.82,
+      "err_60s": 27.53,
+      "err_120s": 428.79,
+      "err_300s": 220.12,
+      "pct_vs_263": -16.3,
+      "pct_vs_254": -13.4,
+      "pct_vs_220": 0.0
+    },
+    {
+      "name": "F2 (Var-Gated Transition)",
+      "desc": "Variance-Gated ZUPT Transition (sigma_a\u00b2 <= 0.15)",
+      "speed_mae_kmh": 7.33,
+      "brk_mae_kmh": 11.58,
+      "brk_bias_kmh": 9.78,
+      "err_60s": 35.12,
+      "err_120s": 382.49,
+      "err_300s": 174.06,
+      "pct_vs_263": -33.8,
+      "pct_vs_254": -31.5,
+      "pct_vs_220": -20.9
+    },
+    {
+      "name": "F3 (Var-Gated + Persist)",
+      "desc": "Variance-Gated ZUPT + 3-sample Persistence",
+      "speed_mae_kmh": 7.32,
+      "brk_mae_kmh": 11.56,
+      "brk_bias_kmh": 9.8,
+      "err_60s": 33.58,
+      "err_120s": 386.93,
+      "err_300s": 181.77,
+      "pct_vs_263": -30.9,
+      "pct_vs_254": -28.5,
+      "pct_vs_220": -17.4
+    },
+    {
+      "name": "F4 (Two-Stage Detector)",
+      "desc": "Two-Stage ZUPT (Stage 1 Soft ZUPT + Stage 2 Hard ZUPT)",
+      "speed_mae_kmh": 7.32,
+      "brk_mae_kmh": 11.56,
+      "brk_bias_kmh": 9.8,
+      "err_60s": 31.19,
+      "err_120s": 410.89,
+      "err_300s": 198.82,
+      "pct_vs_263": -24.4,
+      "pct_vs_254": -21.8,
+      "pct_vs_220": -9.7
+    },
+    {
+      "name": "F5 (Best Validated + M019)",
+      "desc": "Best Validated Configuration (m014_control)",
+      "speed_mae_kmh": 7.33,
+      "brk_mae_kmh": 11.54,
+      "brk_bias_kmh": 9.82,
+      "err_60s": 27.53,
+      "err_120s": 428.79,
+      "err_300s": 220.12,
+      "pct_vs_263": -16.3,
+      "pct_vs_254": -13.4,
+      "pct_vs_220": 0.0
+    }
+  ]
+}

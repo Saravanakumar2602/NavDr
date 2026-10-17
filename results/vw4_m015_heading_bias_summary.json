@@ -1,0 +1,93 @@
+{
+  "milestone": "M015",
+  "title": "Controlled Heading-Error Experiment",
+  "historical_benchmark": 263.11,
+  "m013_control": 254.11,
+  "m014_control": 233.18,
+  "results_table": [
+    {
+      "name": "F0 (Control)",
+      "desc": "M014 Benchmark (ZUPT + M013 F4)",
+      "mean_h_err_deg": 64.62,
+      "median_h_err_deg": 51.17,
+      "p95_h_err_deg": 157.09,
+      "final_h_err_deg": 133.36,
+      "err_60s": 27.36,
+      "err_120s": 428.45,
+      "err_300s": 233.18,
+      "pct_vs_263": -11.4,
+      "pct_vs_254": -8.2,
+      "pct_vs_233": 0.0
+    },
+    {
+      "name": "F1 (Stationary Bias Only)",
+      "desc": "Stationary Gyro Bias (ZARU) Only",
+      "mean_h_err_deg": 38.74,
+      "median_h_err_deg": 33.25,
+      "p95_h_err_deg": 122.67,
+      "final_h_err_deg": 171.49,
+      "err_60s": 14.41,
+      "err_120s": 300.78,
+      "err_300s": 363.53,
+      "pct_vs_263": 38.2,
+      "pct_vs_254": 43.1,
+      "pct_vs_233": 55.9
+    },
+    {
+      "name": "F2 (Stationary Bias + M014)",
+      "desc": "Stationary Gyro Bias + M014 Pipeline",
+      "mean_h_err_deg": 36.12,
+      "median_h_err_deg": 29.5,
+      "p95_h_err_deg": 118.49,
+      "final_h_err_deg": 162.92,
+      "err_60s": 17.8,
+      "err_120s": 264.48,
+      "err_300s": 324.7,
+      "pct_vs_263": 23.4,
+      "pct_vs_254": 27.8,
+      "pct_vs_233": 39.2
+    },
+    {
+      "name": "F3 (Turn-Aware Clamping)",
+      "desc": "Turn-Aware Gyro Rate Clamping (15 deg/s max)",
+      "mean_h_err_deg": 69.73,
+      "median_h_err_deg": 59.25,
+      "p95_h_err_deg": 161.03,
+      "final_h_err_deg": 59.1,
+      "err_60s": 132.28,
+      "err_120s": 414.78,
+      "err_300s": 1091.87,
+      "pct_vs_263": 315.0,
+      "pct_vs_254": 329.7,
+      "pct_vs_233": 368.3
+    },
+    {
+      "name": "F4 (Heading Conf Gating)",
+      "desc": "Gyro Rate Confidence Gating (var_w > 0.01)",
+      "mean_h_err_deg": 73.34,
+      "median_h_err_deg": 68.51,
+      "p95_h_err_deg": 162.46,
+      "final_h_err_deg": 99.32,
+      "err_60s": 74.22,
+      "err_120s": 559.27,
+      "err_300s": 1352.76,
+      "pct_vs_263": 414.1,
+      "pct_vs_254": 432.4,
+      "pct_vs_233": 480.1
+    },
+    {
+      "name": "F5 (Best Validated + M014)",
+      "desc": "Selected Best Heading (F2: ZARU Bias + M014)",
+      "mean_h_err_deg": 36.12,
+      "median_h_err_deg": 29.5,
+      "p95_h_err_deg": 118.49,
+      "final_h_err_deg": 162.92,
+      "err_60s": 17.8,
+      "err_120s": 264.48,
+      "err_300s": 324.7,
+      "pct_vs_263": 23.4,
+      "pct_vs_254": 27.8,
+      "pct_vs_233": 39.2
+    }
+  ]
+}

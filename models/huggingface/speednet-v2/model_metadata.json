@@ -1,0 +1,89 @@
+{
+  "model_name": "SpeedNet v2",
+  "version": "2.0.0",
+  "architecture": {
+    "type": "1D CNN + BiLSTM",
+    "conv_layers": [
+      {
+        "in_channels": 6,
+        "out_channels": 32,
+        "kernel_size": 3,
+        "padding": 1,
+        "batch_norm": true,
+        "activation": "ReLU"
+      },
+      {
+        "in_channels": 32,
+        "out_channels": 64,
+        "kernel_size": 3,
+        "padding": 1,
+        "batch_norm": true,
+        "activation": "ReLU"
+      }
+    ],
+    "recurrent_layer": {
+      "type": "BiLSTM",
+      "input_size": 64,
+      "hidden_size": 64,
+      "num_layers": 1,
+      "bidirectional": true
+    },
+    "shared_fc": {
+      "in_features": 128,
+      "out_features": 64,
+      "activation": "ReLU"
+    }
+  },
+  "input_window": {
+    "window_size_samples": 40,
+    "duration_seconds": 4.0,
+    "input_rate_hz": 10.0,
+    "input_channels": 6,
+    "channel_order": [
+      "accel_x",
+      "accel_y",
+      "accel_z",
+      "gyro_x",
+      "gyro_y",
+      "gyro_z"
+    ]
+  },
+  "dataset": "IO-VNBD",
+  "outputs": [
+    {
+      "name": "v_fwd",
+      "type": "continuous",
+      "unit": "m/s",
+      "description": "Forward speed estimate"
+    },
+    {
+      "name": "w_yaw",
+      "type": "continuous",
+      "unit": "rad/s",
+      "description": "Yaw rate estimate"
+    },
+    {
+      "name": "logit_stat",
+      "type": "binary_logit",
+      "unit": "dimensionless",
+      "description": "Zero-speed / stationary logit"
+    },
+    {
+      "name": "delta_v",
+      "type": "continuous",
+      "unit": "m/s",
+      "description": "Auxiliary short-term velocity change"
+    }
+  ],
+  "export_formats": [
+    "ONNX",
+    "TorchScript Lite (.ptl)"
+  ],
+  "intended_device": "Smartphone / Edge (Native Android & ONNX Runtime Mobile)",
+  "source_project": "SIH 2026 Problem Statement 26168 \u2014 Intelligent Dead Reckoning (IDR)",
+  "benchmark_status": {
+    "offline_trajectory_benchmark": "218.93 m @ 300s (M028 / M029 system benchmark)",
+    "edge_hardware_latency": "Not yet benchmarked",
+    "edge_power_consumption": "Not yet benchmarked"
+  }
+}

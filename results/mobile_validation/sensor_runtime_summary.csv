@@ -1,0 +1,2 @@
+device_model,android_version,test_duration_sec,accel_events,gyro_events,accel_event_rate_hz,gyro_event_rate_hz,ts_derived_rate_hz,min_dt_ms,median_dt_ms,max_dt_ms,duplicate_timestamps,backwards_timestamps,unusually_large_gaps,csv_sample_count,ui_csv_diagnosis,final_classification
+vivo V2355,14,30.0,2995,2994,99.83,99.8,99.82,9.85,10.018,10.42,0,0,0,5989,UI Lag Fixed via Thread Offloading,A. SENSOR COLLECTION WORKING

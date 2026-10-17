@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIH 2026 IDR Prototype Showcase — Main Launcher</title>
+  <meta name="description" content="Main Launcher for SIH 2026 Intelligent Dead-Reckoning (IDR) Environmental Showcase Scenarios.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070a12;
+      --card-bg: rgba(15, 23, 42, 0.85);
+      --card-border: rgba(255, 255, 255, 0.12);
+      --text: #f1f5f9;
+      --sub: #94a3b8;
+      --emerald: #10b981;
+      --cyan: #06b6d4;
+      --sky: #38bdf8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 20px;
+    }
+    .launcher-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      backdrop-filter: blur(16px);
+      max-width: 840px;
+      width: 100%;
+      padding: 36px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+    }
+    .badge-hdr {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--emerald);
+      background: rgba(16, 185, 129, 0.15);
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      margin-bottom: 12px;
+    }
+    h1 { font-size: 26px; font-weight: 700; margin-bottom: 6px; }
+    p.desc { font-size: 13px; color: var(--sub); margin-bottom: 28px; line-height: 1.5; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .case-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 20px;
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .case-card:hover:not(.disabled) {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-2px);
+      border-color: var(--cyan);
+      box-shadow: 0 8px 24px rgba(6, 182, 212, 0.2);
+    }
+    .case-card.disabled { opacity: 0.45; cursor: not-allowed; }
+    .case-number-badge {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      color: var(--cyan);
+      background: rgba(6, 182, 212, 0.12);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      padding: 3px 8px;
+      border-radius: 4px;
+      align-self: flex-start;
+      margin-bottom: 10px;
+    }
+    .card-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .card-sub { font-size: 12px; color: var(--sub); margin-bottom: 12px; flex: 1; }
+    .tag {
+      font-size: 10.5px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+      align-self: flex-start;
+    }
+    .tag-active { background: rgba(16, 185, 129, 0.2); color: var(--emerald); }
+    .tag-disabled { background: rgba(255,255,255,0.1); color: var(--sub); }
+    .footer-disclosure {
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 11px;
+      color: var(--sub);
+      text-align: center;
+    }
+    .footer-disclosure b { color: var(--emerald); }
+  </style>
+</head>
+<body>
+  <div class="launcher-card">
+    <span class="badge-hdr">SIH 2026 PROTOTYPE SHOWCASE</span>
+    <h1>Intelligent Dead-Reckoning (IDR)</h1>
+    <p class="desc">Interactive Environmental Showcase Demonstrations powered by the <b>M029 Multi-Anchor Heading Architecture</b>.</p>
+    
+    <div class="grid">
+      
+      <!-- CASE 01 -->
+      <a href="case1/index.html" class="case-card">
+        <div class="case-number-badge">CASE 01</div>
+        <div class="card-title">CASE 01: Dense Forest</div>
+        <div class="card-sub">Real satellite tree canopy imagery (Bandipur Forest Reserve NH766). Simulated dense tree canopy signal outage.</div>
+        <span class="tag tag-active">LAUNCH CASE 01</span>
+      </a>
+
+      <!-- CASE 02 -->
+      <a href="case2/index.html" class="case-card">
+        <div class="case-number-badge">CASE 02</div>
+        <div class="card-title">CASE 02: Underground Tunnel</div>
+        <div class="card-sub">Real mountain terrain satellite imagery (Chenani-Nashri Tunnel NH44). Subterranean tunnel vault blackout.</div>
+        <span class="tag tag-active">LAUNCH CASE 02</span>
+      </a>
+
+      <!-- CASE 03 -->
+      <a href="case3/index.html" class="case-card">
+        <div class="case-number-badge">CASE 03</div>
+        <div class="card-title">CASE 03: Deep Urban Canyon</div>
+        <div class="card-sub">High-rise skyscraper glass tower corridor (Cyber City Gurugram). Simulated multipath degradation & GNSS blackout.</div>
+        <span class="tag tag-active">LAUNCH CASE 03</span>
+      </a>
+
+      <!-- CASE 04 -->
+      <a href="case4/index.html" class="case-card">
+        <div class="case-number-badge">CASE 04</div>
+        <div class="card-title">CASE 04: Deep Valley / Mountain Road</div>
+        <div class="card-sub">Winding Himalayan mountain gorge (Solang Valley NH3). Simulated mountain ridge horizon shadow & blackout.</div>
+        <span class="tag tag-active">LAUNCH CASE 04</span>
+      </a>
+
+      <!-- CASE 05 -->
+      <a href="case5/index.html" class="case-card">
+        <div class="case-number-badge">CASE 05</div>
+        <div class="card-title">CASE 05: GNSS Interference / Jamming</div>
+        <div class="card-sub">Open express highway corridor (Yamuna Expressway). Software-simulated measurement suppression & interference event.</div>
+        <span class="tag tag-active">LAUNCH CASE 05</span>
+      </a>
+
+      <!-- CASE 06 -->
+      <a href="case6/index.html" class="case-card">
+        <div class="case-number-badge">CASE 06</div>
+        <div class="card-title">CASE 06: Planetary / Deep-Space Nav</div>
+        <div class="card-sub">Mars Jezero Crater Rover Traverse. Earth to Deep Space to Planetary concept demonstration (GNSS NOT AVAILABLE).</div>
+        <span class="tag tag-active">LAUNCH CASE 06</span>
+      </a>
+
+    </div>
+
+    <div class="footer-disclosure">
+      <b>Navigation Core:</b> M029 Multi-Anchor Heading Architecture (SpeedNet v2 + Pre-Outage Course Latch + Motion-Gated Zero Yaw + SpeedNet Yaw Fusion + 7-State EKF + ZUPT + APM).<br/>
+      <b>Benchmark: M028 218.93 m → M029 48.20 m @ 300 s</b> (IO-VNBD Benchmark Dataset).<br/>
+      <span style="font-size:10px; opacity:0.8; margin-top:4px; display:block;">On the IO-VNBD benchmark, the M029 heading-anchor architecture reduced the 300 s Vw04 position error from 218.93 m to 48.20 m. The same architecture is now integrated into the prototype and will be validated using real smartphone sensor data.</span>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    
+    <!-- Outer Telemetry Signal Arcs -->
+    <path
+        android:strokeColor="#00E5FF"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000"
+        android:pathData="M 38,30 A 24,24 0 0,1 70,30" />
+    <path
+        android:strokeColor="#00E5FF"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000"
+        android:pathData="M 38,78 A 24,24 0 0,0 70,78" />
+
+    <!-- Connected Geometric Node Lines -->
+    <path
+        android:strokeColor="#1E3A8A"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round"
+        android:pathData="M 28,28 L 54,54 M 80,28 L 54,54 M 28,80 L 54,54 M 80,80 L 54,54" />
+
+    <!-- Telemetry Node Dots -->
+    <path android:fillColor="#00E5FF" android:pathData="M 28,28 m -4,0 a 4,4 0 1,0 8,0 a 4,4 0 1,0 -8,0" />
+    <path android:fillColor="#00E5FF" android:pathData="M 80,28 m -4,0 a 4,4 0 1,0 8,0 a 4,4 0 1,0 -8,0" />
+    <path android:fillColor="#00E5FF" android:pathData="M 28,80 m -4,0 a 4,4 0 1,0 8,0 a 4,4 0 1,0 -8,0" />
+    <path android:fillColor="#00E5FF" android:pathData="M 80,80 m -4,0 a 4,4 0 1,0 8,0 a 4,4 0 1,0 -8,0" />
+
+    <!-- Central Sensor Hub Circle -->
+    <path
+        android:fillColor="#0E1E38"
+        android:strokeColor="#00E5FF"
+        android:strokeWidth="2"
+        android:pathData="M 54,54 m -18,0 a 18,18 0 1,0 36,0 a 18,18 0 1,0 -36,0" />
+
+    <!-- Cyan Oscilloscope Waveform inside Hub -->
+    <path
+        android:strokeColor="#00E5FF"
+        android:strokeWidth="2.2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillColor="#00000000"
+        android:pathData="M 38,54 L 45,54 L 48,46 L 52,62 L 56,42 L 60,58 L 63,54 L 70,54" />
+</vector>

@@ -1,0 +1,92 @@
+{
+  "milestone": "M013",
+  "title": "Hard Physical Inference Constraints & EKF Innovation Filtering",
+  "provenance_benchmark": "SpeedNet v2 (W=40) + Raw Gyro + Fixed NHC",
+  "target_300s_err": 263.11,
+  "results_table": [
+    {
+      "name": "F0 (Control)",
+      "speed_mae_kmh": 7.59,
+      "speed_bias_kmh": 6.39,
+      "err_60s": 22.75,
+      "err_120s": 440.2,
+      "err_300s": 263.11,
+      "pct_vs_bench": 0.0,
+      "act_count": 0,
+      "act_pct": 0.0,
+      "avg_mag_kmh": 0.0,
+      "max_mag_kmh": 0.0,
+      "neg_bounds": 0
+    },
+    {
+      "name": "F1 (Hard Upper-Bound)",
+      "speed_mae_kmh": 7.44,
+      "speed_bias_kmh": -5.11,
+      "err_60s": 331.86,
+      "err_120s": 1175.88,
+      "err_300s": 1364.78,
+      "pct_vs_bench": 418.7,
+      "act_count": 2632,
+      "act_pct": 87.7,
+      "avg_mag_kmh": 13.11,
+      "max_mag_kmh": 64.01,
+      "neg_bounds": 168
+    },
+    {
+      "name": "F2 (Bounded Acceleration)",
+      "speed_mae_kmh": 7.27,
+      "speed_bias_kmh": -4.96,
+      "err_60s": 329.86,
+      "err_120s": 1181.12,
+      "err_300s": 1331.06,
+      "pct_vs_bench": 405.9,
+      "act_count": 2630,
+      "act_pct": 87.7,
+      "avg_mag_kmh": 12.94,
+      "max_mag_kmh": 63.76,
+      "neg_bounds": 164
+    },
+    {
+      "name": "F3 (Deceleration-Only)",
+      "speed_mae_kmh": 7.03,
+      "speed_bias_kmh": 5.5,
+      "err_60s": 46.05,
+      "err_120s": 918.85,
+      "err_300s": 748.5,
+      "pct_vs_bench": 184.5,
+      "act_count": 601,
+      "act_pct": 20.0,
+      "avg_mag_kmh": 4.46,
+      "max_mag_kmh": 31.83,
+      "neg_bounds": 4
+    },
+    {
+      "name": "F4 (Confidence-Gated)",
+      "speed_mae_kmh": 7.36,
+      "speed_bias_kmh": 5.92,
+      "err_60s": 26.73,
+      "err_120s": 464.0,
+      "err_300s": 254.11,
+      "pct_vs_bench": -3.4,
+      "act_count": 1245,
+      "act_pct": 41.5,
+      "avg_mag_kmh": 1.14,
+      "max_mag_kmh": 14.51,
+      "neg_bounds": 65
+    },
+    {
+      "name": "F5 (EKF Innovation-Gated)",
+      "speed_mae_kmh": 7.59,
+      "speed_bias_kmh": 6.39,
+      "err_60s": 348.72,
+      "err_120s": 759.41,
+      "err_300s": 567.36,
+      "pct_vs_bench": 115.6,
+      "act_count": 0,
+      "act_pct": 0.0,
+      "avg_mag_kmh": 0.0,
+      "max_mag_kmh": 0.0,
+      "neg_bounds": 0
+    }
+  ]
+}

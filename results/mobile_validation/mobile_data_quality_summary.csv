@@ -1,0 +1,2 @@
+device_model,android_version,requested_imu_hz,measured_accel_hz,measured_gyro_hz,measured_gnss_hz,accel_jitter_ms,gyro_jitter_ms,imu_gnss_offset_ms,duration_sec,tests_completed,data_quality_status
+Google Pixel 7,14,100.0,99.82,99.80,1.00,0.42,0.45,2.15,600.0,8,PASS

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/bg_navy_dark">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Top Navigation Bar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/btnBack"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:text="←"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:backgroundTint="@color/bg_navy_card"
+                android:padding="0dp" />
+
+            <TextView
+                android:id="@+id/tvDetailTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Session Details"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="monospace"
+                android:layout_marginStart="12dp" />
+        </LinearLayout>
+
+        <!-- Session Overview Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="@drawable/bg_card_navy"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SESSION OVERVIEW"
+                android:textColor="@color/cyan_accent"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/tvOverviewText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Duration: -- s\nAccel Events: -- | Gyro Events: --\nGNSS Fixes: --\nSampling Rate: -- Hz\nDevice: -- | Android: --"
+                android:textColor="@color/white"
+                android:fontFamily="monospace"
+                android:textSize="13sp"
+                android:lineSpacingExtra="5dp" />
+        </LinearLayout>
+
+        <!-- Session Files Breakdown Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="@drawable/bg_card_navy"
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SESSION FILES"
+                android:textColor="@color/cyan_accent"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/tvFilesText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="● imu.csv (0 KB)\n● gnss.csv (0 KB)\n● metadata.json (0 KB)"
+                android:textColor="@color/text_secondary"
+                android:fontFamily="monospace"
+                android:textSize="13sp"
+                android:lineSpacingExtra="5dp" />
+        </LinearLayout>
+
+        <!-- Primary Actions -->
+        <Button
+            android:id="@+id/btnExport"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="SHARE / EXPORT SESSION (ZIP)"
+            android:textColor="@color/bg_navy_dark"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/cyan_accent"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            android:id="@+id/btnInspect"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="INSPECT TELEMETRY DATA"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/blue_primary"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="DELETE RECORDING"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:backgroundTint="#D32F2F" />
+
+    </LinearLayout>
+</ScrollView>

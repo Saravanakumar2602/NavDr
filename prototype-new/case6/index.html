@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIH 2026 IDR Prototype — Case 06: Planetary & Deep-Space Navigation</title>
+  <meta name="description" content="Showcase Prototype Case 6 for SIH 2026 Intelligent Dead-Reckoning (IDR) Project — Planetary / Deep-Space GNSS-Independent Navigation Concept Demonstration powered by M028 Concept Adapter.">
+  
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- HEADER BAR -->
+    <header class="app-header">
+      <div class="header-left">
+        <div class="case-number-icon">CASE 06</div>
+        <div>
+          <div class="header-title-row">
+            <h1 class="header-title">INTELLIGENT DEAD RECKONING</h1>
+            <span class="concept-tag">CONCEPT DEMONSTRATION</span>
+          </div>
+          <p class="header-subtitle">CASE 06 — PLANETARY / DEEP-SPACE NAVIGATION (GNSS-INDEPENDENT CONCEPT)</p>
+        </div>
+      </div>
+      
+      <div class="header-center">
+        <a href="../case1/index.html" class="case-badge clickable" title="Switch to Case 1">CASE 01: Forest</a>
+        <a href="../case2/index.html" class="case-badge clickable" title="Switch to Case 2">CASE 02: Tunnel</a>
+        <a href="../case3/index.html" class="case-badge clickable" title="Switch to Case 3">CASE 03: Urban Canyon</a>
+        <a href="../case4/index.html" class="case-badge clickable" title="Switch to Case 4">CASE 04: Deep Valley</a>
+        <a href="../case5/index.html" class="case-badge clickable" title="Switch to Case 5">CASE 05: Jamming</a>
+        <div class="case-badge active">CASE 06: Planetary</div>
+      </div>
+
+      <div class="header-right">
+        <div id="gnss-status-badge" class="status-badge gnss-unavailable">
+          <span class="status-dot"></span>
+          <span id="gnss-status-text">GNSS NOT AVAILABLE</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- EARTH TO PLANET TRANSITION STEPPER BAR -->
+    <div class="stepper-bar">
+      <div class="stepper-title">MISSION PHASE TRANSITION:</div>
+      <div class="stepper-steps">
+        <div class="step-item active" id="step-1" onclick="jumpToPhase(10)">
+          <span class="step-name">1. Earth Launch</span>
+          <span class="step-badge gnss-avail">GNSS AVAILABLE</span>
+        </div>
+        <div class="step-arrow">-></div>
+        <div class="step-item" id="step-2" onclick="jumpToPhase(30)">
+          <span class="step-name">2. Spacecraft Departure</span>
+          <span class="step-badge gnss-trans">TRANSITIONING</span>
+        </div>
+        <div class="step-arrow">-></div>
+        <div class="step-item" id="step-3" onclick="jumpToPhase(50)">
+          <span class="step-name">3. Deep Space</span>
+          <span class="step-badge gnss-none">GNSS NOT AVAILABLE</span>
+        </div>
+        <div class="step-arrow">-></div>
+        <div class="step-item" id="step-4" onclick="jumpToPhase(70)">
+          <span class="step-name">4. Mars Jezero Arrival</span>
+          <span class="step-badge gnss-none">GNSS NOT AVAILABLE</span>
+        </div>
+        <div class="step-arrow">-></div>
+        <div class="step-item" id="step-5" onclick="jumpToPhase(90)">
+          <span class="step-name">5. Rover Surface Traverse</span>
+          <span class="step-badge dr-active">INERTIAL DR ACTIVE</span>
+        </div>
+      </div>
+      <button class="btn-replay-transition" onclick="triggerTransitionAnimation()">Replay Transition Visual</button>
+    </div>
+
+    <!-- MAIN SHOWCASE GRID -->
+    <main class="main-layout">
+      
+      <!-- MAP & SURFACE SECTION -->
+      <section class="map-section">
+        <div id="map" class="map-container"></div>
+        <div id="mars-ambient-overlay" class="mars-ambient"></div>
+        
+        <!-- MAP OVERLAY CONTROLS -->
+        <div class="map-overlay-card legend-card">
+          <div class="legend-title">PLANETARY SURFACE TRAJECTORY</div>
+          <div class="legend-item">
+            <span class="legend-color ground-truth"></span>
+            <span>Planned Rover Mission Path</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-color m028-model"></span>
+            <span>M029 Multi-Anchor DR Position</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-color raw-inertial"></span>
+            <span>Uncorrected Raw IMU Integration</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-color landmark-corr"></span>
+            <span>Simulated Landmark Correction (t=180s)</span>
+          </div>
+
+          <div class="map-layer-switch">
+            <button id="btn-map-sat" class="btn-map-mode active">Mars Topo Surface</button>
+            <button id="btn-map-dark" class="btn-map-mode">Dark Satellite</button>
+          </div>
+        </div>
+
+        <!-- SIMULATION CONTROL BAR -->
+        <div class="map-overlay-card control-card">
+          <div class="control-buttons">
+            <button id="btn-start" class="btn btn-primary">Start Mission</button>
+            <button id="btn-pause" class="btn btn-secondary" disabled>Pause</button>
+            <button id="btn-reset" class="btn btn-secondary">Reset</button>
+            <div class="speed-toggle">
+              <span class="speed-label">Speed:</span>
+              <button id="btn-speed-1x" class="btn-speed active">1x</button>
+              <button id="btn-speed-2x" class="btn-speed">2x</button>
+              <button id="btn-speed-5x" class="btn-speed">5x</button>
+            </div>
+          </div>
+          
+          <div class="scrubber-container">
+            <span id="time-display" class="time-display">T + 00:00s / 05:00s</span>
+            <input type="range" id="time-scrubber" class="time-scrubber" min="0" max="300" step="0.1" value="0">
+          </div>
+        </div>
+
+        <!-- LANDMARK BANNER NOTIFICATION -->
+        <div id="landmark-alert" class="landmark-alert hidden">
+          <div class="alert-text">
+            <strong>SIMULATED LANDMARK UPDATE AT T+180s</strong>
+            <span>Belva Crater Rim Optical Reference Feature Identified — Bounded Position Drift Reset</span>
+          </div>
+        </div>
+
+        <!-- TRANSITION OVERLAY MODAL -->
+        <div id="transition-modal" class="transition-modal hidden">
+          <div class="modal-content">
+            <button class="modal-close" onclick="closeTransitionModal()">X</button>
+            <div id="transition-animation-container" class="transition-anim">
+              <div class="planet-orb earth-orb">EARTH</div>
+              <div class="space-ship">SPACECRAFT DEPARTURE</div>
+              <div class="planet-orb mars-orb">MARS</div>
+            </div>
+            <div class="transition-msg" id="transition-msg-text">
+              Transitioning to GNSS-Independent Deep-Space Inertial Navigation Mode...
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SIDEBAR TELEMETRY & CONTROLS -->
+      <aside class="sidebar-section">
+        
+        <!-- PLANETARY NAVIGATION STATUS PANEL -->
+        <div class="panel-card status-panel-card">
+          <h2 class="panel-title">
+            <span>PLANETARY NAVIGATION STATUS</span>
+            <span id="engine-badge" class="badge-engine">M029 MULTI-ANCHOR</span>
+          </h2>
+          
+          <div class="status-grid">
+            <div class="status-box">
+              <span class="status-label">ENVIRONMENT</span>
+              <span id="val-environment" class="status-val text-amber">Mars Surface (Jezero)</span>
+            </div>
+            
+            <div class="status-box">
+              <span class="status-label">GNSS INFRASTRUCTURE</span>
+              <span id="val-gnss" class="status-val text-danger">NOT AVAILABLE</span>
+            </div>
+
+            <div class="status-box">
+              <span class="status-label">NAVIGATION MODE</span>
+              <span id="val-navmode" class="status-val text-cyan">M029 MULTI-ANCHOR HEADING</span>
+            </div>
+
+            <div class="status-box">
+              <span class="status-label">ESTIMATION ENGINE</span>
+              <span id="val-engine" class="status-val text-white">M029 MULTI-ANCHOR FUSION</span>
+            </div>
+
+            <div class="status-box">
+              <span class="status-label">ONBOARD IMU (100 Hz)</span>
+              <span id="val-imu" class="status-val text-green">ACTIVE</span>
+            </div>
+
+            <div class="status-box">
+              <span class="status-label">ROVER NHC DYNAMICS</span>
+              <span id="val-nhc" class="status-val text-green">ACTIVE</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- EARTH VS PLANETARY COMPARISON PANEL -->
+        <div class="panel-card comparison-card">
+          <h3 class="panel-subtitle">EARTH VS. PLANETARY NAVIGATION</h3>
+          <div class="comp-flex">
+            <div class="comp-box earth-side">
+              <div class="comp-head">EARTH ENVIRONMENT</div>
+              <div class="comp-row"><span class="lbl">GNSS:</span> <span class="val green">AVAILABLE</span></div>
+              <div class="comp-row"><span class="lbl">Nav Source:</span> <span class="val">GNSS + INS Fusion</span></div>
+              <div class="comp-row"><span class="lbl">Outage:</span> <span class="val">Temporary RF Blockage</span></div>
+            </div>
+            <div class="comp-divider">-></div>
+            <div class="comp-box planetary-side">
+              <div class="comp-head">PLANETARY / DEEP SPACE</div>
+              <div class="comp-row"><span class="lbl">GNSS:</span> <span class="val red">NOT AVAILABLE</span></div>
+              <div class="comp-row"><span class="lbl">Nav Source:</span> <span class="val cyan">Autonomous Inertial DR</span></div>
+              <div class="comp-row"><span class="lbl">Reason:</span> <span class="val">No Terrestrial Satellites</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DEMO SCOPE / SCIENTIFIC DISCLOSURE PANEL (MANDATORY) -->
+        <div class="panel-card disclosure-card">
+          <div class="disclosure-header">
+            <span class="disc-title">M029 ARCHITECTURE DISCLOSURE</span>
+          </div>
+          <p class="disclosure-text">
+            Powered by the <strong>M029 Multi-Anchor Heading Architecture</strong> (SpeedNet v2 + Causal Pre-Outage Course Latch + Motion-Gated Zero Yaw + SpeedNet Yaw Fusion + 7-State EKF).<br/><br/>
+            On the IO-VNBD benchmark, the M029 heading-anchor architecture reduced the 300 s Vw04 position error from 218.93 m to 48.20 m. The same architecture is now integrated into the prototype and will be validated using real smartphone sensor data.
+          </p>
+        </div>
+
+        <!-- REAL-TIME TELEMETRY CHARTS -->
+        <div class="panel-card chart-card">
+          <h3 class="panel-subtitle">ROVER TELEMETRY & KINEMATICS</h3>
+          
+          <div class="telemetry-grid">
+            <div class="telem-box">
+              <span class="t-lbl">ROVER SPEED</span>
+              <span id="val-speed" class="t-val">0.0 km/h</span>
+            </div>
+            <div class="telem-box">
+              <span class="t-lbl">TERRAIN PITCH</span>
+              <span id="val-pitch" class="t-val">0.0°</span>
+            </div>
+            <div class="telem-box">
+              <span class="t-lbl">SPECIFIC FORCE</span>
+              <span id="val-accel" class="t-val">0.00 m/s²</span>
+            </div>
+            <div class="telem-box">
+              <span class="t-lbl">M028 DRIFT</span>
+              <span id="val-drift-m028" class="t-val text-green">0.0 m</span>
+            </div>
+          </div>
+
+          <div class="chart-container">
+            <div class="chart-header">
+              <span>POSITION DRIFT ACCUMULATION (M)</span>
+              <span class="chart-legend"><span class="leg-dot raw"></span> Raw IMU: <span id="drift-raw-val">0m</span> | <span class="leg-dot m028"></span> M028: <span id="drift-m028-val">0m</span></span>
+            </div>
+            <canvas id="driftChart" width="400" height="120"></canvas>
+          </div>
+        </div>
+
+        <!-- CORE CONCEPT STATEMENT -->
+        <div class="panel-card message-card">
+          <div class="message-title">KEY NAVIGATION CONCEPT</div>
+          <p class="message-body">
+            "Navigation does not fundamentally depend on GNSS. When GNSS is unavailable in planetary or deep-space environments, autonomous inertial/dead-reckoning navigation can continue using onboard measurements and motion models."
+          </p>
+        </div>
+
+      </aside>
+
+    </main>
+  </div>
+
+  <!-- Leaflet & Chart Libraries -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Scenario Trajectory Data -->
+  <script src="data.js"></script>
+  
+  <!-- Application Logic -->
+  <script src="app.js"></script>
+</body>
+</html>

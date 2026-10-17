@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIH 2026 IDR Prototype — Case 02: Underground Tunnel Navigation</title>
+  <meta name="description" content="Showcase Prototype Case 2 for SIH 2026 Intelligent Dead-Reckoning (IDR) Project — Long Underground Tunnel GNSS-Denied Navigation powered by M028 Production Pipeline.">
+  
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- HEADER BAR -->
+    <header class="app-header">
+      <div class="header-left">
+        <div class="case-number-icon">CASE 02</div>
+        <div>
+          <h1 class="header-title">IDR PROTOTYPE SHOWCASE — CASE 02</h1>
+          <p class="header-subtitle">Long Underground Tunnel / Underpass GNSS-Denied Navigation (Chenani-Nashri Tunnel NH44)</p>
+        </div>
+      </div>
+      
+      <div class="header-center">
+        <a href="../case1/index.html" class="case-badge clickable" title="Switch to Case 1">CASE 01: Dense Forest</a>
+        <div class="case-badge active">CASE 02: Tunnel</div>
+        <a href="../case3/index.html" class="case-badge clickable" title="Switch to Case 3">CASE 03: Urban Canyon</a>
+        <a href="../case4/index.html" class="case-badge clickable" title="Switch to Case 4">CASE 04: Deep Valley</a>
+        <a href="../case5/index.html" class="case-badge clickable" title="Switch to Case 5">CASE 05: Jamming</a>
+        <a href="../case6/index.html" class="case-badge clickable" title="Switch to Case 6">CASE 06: Planetary</a>
+      </div>
+
+      <div class="header-right">
+        <div id="gnss-status-badge" class="status-badge gnss-online">
+          <span class="status-dot"></span>
+          <span id="gnss-status-text">GNSS ONLINE</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN SHOWCASE GRID -->
+    <main class="main-layout">
+      
+      <!-- MAP SECTION -->
+      <section class="map-section">
+        <div id="map" class="map-container"></div>
+        <div id="tunnel-ambient-overlay" class="tunnel-ambient"></div>
+        
+        <!-- MAP OVERLAY CONTROLS -->
+        <div class="map-overlay-card legend-card">
+          <div class="legend-title">TRAJECTORY LAYERS</div>
+          <div class="legend-item">
+            <span class="legend-color ground-truth"></span>
+            <span>Ground Truth Reference Route</span>
+          <          <div class="legend-item">
+            <span class="legend-color m028-model"></span>
+            <span>M029 Multi-Anchor DR Engine</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-color raw-inertial"></span>
+            <span>Raw Inertial (6,420 m Drift @ 300s)</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-color gnss-reconnect"></span>
+            <span>GNSS Recovery Bridge</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-box tunnel-zone"></span>
+            <span>Subterranean Concrete Tunnel Tube Casing</span>
+          </div>
+
+          <div class="map-layer-switch">
+            <button id="btn-map-sat" class="btn-map-mode active">Satellite View</button>
+            <button id="btn-map-dark" class="btn-map-mode">Dark Map</button>
+          </div>
+        </div>
+
+        <!-- SIMULATION CONTROL BAR -->
+        <div class="map-overlay-card control-card">
+          <div class="control-buttons">
+            <button id="btn-start" class="btn btn-primary">Start Scenario</button>
+            <button id="btn-pause" class="btn btn-secondary" disabled>Pause</button>
+            <button id="btn-reset" class="btn btn-secondary">Reset</button>
+            <div class="speed-toggle">
+              <span class="speed-label">Speed:</span>
+              <button id="btn-speed-1x" class="btn-speed active">1x</button>
+              <button id="btn-speed-2x" class="btn-speed">2x</button>
+              <button id="btn-speed-5x" class="btn-speed">5x</button>
+            </div>
+          </div>
+          
+          <!-- TIMELINE SCRUBBER -->
+          <div class="timeline-container">
+            <div class="timeline-slider-wrapper">
+              <input type="range" id="timeline-slider" min="0" max="300" step="0.1" value="0" />
+            </div>
+            <div class="timeline-checkpoints">
+              <span class="checkpoint" style="left: 0%" title="Open Approach">0s (Approach)</span>
+              <span class="checkpoint outage-start" style="left: 10%" title="South Portal Entry (GNSS Outage Start)">30s (South Portal)</span>
+              <span class="checkpoint stop-event" style="left: 50%" title="Mid-Tunnel Traffic Stop (ZUPT Active)">150s (Stop / ZUPT)</span>
+              <span class="checkpoint outage-end" style="left: 90%" title="North Portal Exit (GNSS Restored)">270s (North Portal)</span>
+              <span class="checkpoint" style="left: 100%" title="North Approach">300s (Finish)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SIDEBAR TELEMETRY & HUD PANEL -->
+      <aside class="sidebar-panel">
+        
+        <!-- ENVIRONMENT & GNSS HUD CARD -->
+        <div class="hud-card">
+          <div class="card-header">
+            <h3>ENVIRONMENT & NAVIGATION HUD</h3>
+            <span class="badge-live">LIVE 10 Hz</span>
+          </div>
+          
+          <div class="hud-grid">
+            <div class="hud-stat">
+              <span class="stat-label">Environment</span>
+              <span class="stat-value highlight-tunnel">Underground Tunnel</span>
+              <span class="stat-sub">Chenani-Nashri Tunnel NH44</span>
+            </div>
+            
+            <div class="hud-stat">
+              <span class="stat-label">GNSS Condition</span>
+              <span id="stat-gnss-condition" class="stat-value color-online">GNSS-AIDED</span>
+              <span class="stat-sub">Subterranean Vault Outage</span>
+            </div>
+
+            <div class="hud-stat">
+              <span class="stat-label">Navigation Mode</span>
+              <span id="stat-nav-mode" class="stat-value">GNSS-AIDED</span>
+              <span class="stat-sub">M029 Multi-Anchor Heading</span>
+            </div>
+
+            <div class="hud-stat">
+              <span class="stat-label">Outage Duration</span>
+              <span id="stat-outage-timer" class="stat-value mono">00:00 / 04:00</span>
+              <span class="stat-sub">Elapsed Denied Time</span>
+            </div>
+          </div>
+
+          <!-- TUNNEL PROGRESS BAR -->
+          <div class="tunnel-progress-container">
+            <div class="progress-label-row">
+              <span>TUNNEL VAULT PROGRESS</span>
+              <span id="tunnel-pct" class="mono">0%</span>
+            </div>
+            <div class="progress-bar-track">
+              <div id="tunnel-pct-bar" class="progress-bar-fill"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LIVE TUNNEL INTERIOR CAMERA VIEW WIDGET -->
+        <div class="hud-card tunnel-cam-card">
+          <div class="card-header">
+            <h3>TUNNEL INTERIOR VAULT HUD</h3>
+            <span id="cam-status-badge" class="badge-cam open">OPEN ROAD</span>
+          </div>
+          <div class="tunnel-cam-viewport">
+            <div id="tunnel-cam-feed" class="tunnel-cam-feed open-road">
+              <div class="vault-arch"></div>
+              <div class="tunnel-lights">
+                <span class="t-light"></span>
+                <span class="t-light"></span>
+                <span class="t-light"></span>
+              </div>
+              <div class="road-lanes"></div>
+              <div id="cam-overlay-text" class="cam-text">SAT SIGNAL 100% — OPEN SKY</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TELEMETRY & SPEEDOMETER CARD -->
+        <div class="hud-card">
+          <div class="card-header">
+            <h3>VEHICLE DYNAMICS TELEMETRY</h3>
+          </div>
+          
+          <div class="speedometer-container">
+            <div class="speed-gauge">
+              <div id="speed-value" class="speed-num">0.0</div>
+              <div class="speed-unit">km/h</div>
+              <div class="speed-subtitle">Estimated SpeedNet v2 Speed</div>
+            </div>
+            
+            <div class="telemetry-list">
+              <div class="telem-row">
+                <span>Longitudinal Accel ($a_{\text{long}}$):</span>
+                <span id="tele-accel" class="mono">0.00 m/s²</span>
+              </div>
+              <div class="telem-row">
+                <span>IMU Jerk ($j_{\text{long}}$):</span>
+                <span id="tele-jerk" class="mono">0.00 m/s³</span>
+              </div>
+              <div class="telem-row">
+                <span>Vehicle Heading ($\psi$):</span>
+                <span id="tele-heading" class="mono">0.0°</span>
+              </div>
+              <div class="telem-row">
+                <span>Stop Prob ($P_{\text{stat}}$):</span>
+                <span id="tele-pstat" class="mono">0.05</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- M029 SUBSYSTEM STATE INDICATORS -->
+        <div class="hud-card">
+          <div class="card-header">
+            <h3>M029 SUBSYSTEM PIPELINE STATES</h3>
+          </div>
+          
+          <div class="subsystem-grid">
+            <div class="subsystem-item">
+              <div id="led-speednet" class="led-light active"></div>
+              <div class="subsystem-info">
+                <span class="sub-name">SpeedNet v2 ($W=40$)</span>
+                <span class="sub-desc">Speed & Yaw Estimator</span>
+              </div>
+            </div>
+
+            <div class="subsystem-item">
+              <div id="led-nhc" class="led-light active"></div>
+              <div class="subsystem-info">
+                <span class="sub-name">GNSS Course Latch</span>
+                <span class="sub-desc">Causal Pre-Outage Anchor</span>
+              </div>
+            </div>
+
+            <div class="subsystem-item">
+              <div id="led-zupt" class="led-light"></div>
+              <div class="subsystem-info">
+                <span class="sub-name">Motion-Gated Zero Yaw</span>
+                <span class="sub-desc">Straight Line Constraint</span>
+              </div>
+            </div>
+
+            <div class="subsystem-item">
+              <div id="led-apm" class="led-light"></div>
+              <div class="subsystem-info">
+                <span class="sub-name">Heading Anchor Manager</span>
+                <span class="sub-desc">Priority State Machine</span>
+              </div>
+            </div>
+
+            <div class="subsystem-item">
+              <div id="led-jerk" class="led-light"></div>
+              <div class="subsystem-info">
+                <span class="sub-name">7-State EKF + ZUPT</span>
+                <span class="sub-desc">Kinematic Sensor Fusion</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DRIFT METERS COMPARISON -->
+        <div class="hud-card">
+          <div class="card-header">
+            <h3>INTEGRATED DRIFT COMPARISON</h3>
+          </div>
+          
+          <div class="drift-comparison">
+            <div class="drift-box m028-box">
+              <span class="drift-label">M029 DR ENGINE DRIFT</span>
+              <span id="drift-m028-value" class="drift-num">0.00 m</span>
+              <span class="drift-target">Benchmark: M028 218.93 m → M029 48.20 m @ 300 s</span>
+            </div>
+
+            <div class="drift-box raw-box">
+              <span class="drift-label">UNCONSTRAINED RAW INERTIAL</span>
+              <span id="drift-raw-value" class="drift-num">0.00 m</span>
+              <span class="drift-target">Baseline Open-Loop: 6,420 m @ 300s</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- M029 BENCHMARK DISCLOSURE CARD -->
+        <div class="hud-card disclosure-card">
+          <div class="card-header">
+            <h3>M029 ARCHITECTURE DISCLOSURE</h3>
+          </div>
+          <p class="disclosure-text">
+            <b>Navigation Engine:</b> Powered by the <b>M029 Multi-Anchor Heading Architecture</b> (SpeedNet v2 + Causal Pre-Outage Course Latch + Motion-Gated Zero Yaw + SpeedNet Yaw Fusion + 7-State EKF).
+          </p>
+          <div class="disclosure-benchmarks">
+            <div><span>Benchmark Reduction:</span> <b>M028 218.93 m → M029 48.20 m @ 300 s</b></div>
+            <div style="font-size:10px; margin-top:6px; opacity:0.85;">On the IO-VNBD benchmark, the M029 heading-anchor architecture reduced the 300 s Vw04 position error from 218.93 m to 48.20 m. The same architecture is now integrated into the prototype and will be validated using real smartphone sensor data.</div>
+          </div>
+        </div>v>
+          <p class="disclosure-note">
+            *Project benchmark — not tunnel-specific measurement.
+          </p>
+        </div>
+
+      </aside>
+
+    </main>
+  </div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- Data Fallback JS (allows seamless file:// opening) -->
+  <script src="data.js"></script>
+  <!-- Application JS -->
+  <script src="app.js"></script>
+</body>
+</html>

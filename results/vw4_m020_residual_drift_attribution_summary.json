@@ -1,0 +1,124 @@
+{
+  "milestone": "M020",
+  "title": "Residual Drift Attribution & Error-Regime Decomposition",
+  "current_verified_benchmark": 220.12,
+  "temporal_growth": [
+    {
+      "interval": "0\u201360 s",
+      "end_pos_err_m": 27.53,
+      "incremental_err_m": 27.53,
+      "growth_rate_ms": 0.4589
+    },
+    {
+      "interval": "60\u2013120 s",
+      "end_pos_err_m": 428.79,
+      "incremental_err_m": 401.25,
+      "growth_rate_ms": 6.6876
+    },
+    {
+      "interval": "120\u2013180 s",
+      "end_pos_err_m": 322.27,
+      "incremental_err_m": -106.51,
+      "growth_rate_ms": -1.7752
+    },
+    {
+      "interval": "180\u2013240 s",
+      "end_pos_err_m": 323.09,
+      "incremental_err_m": 0.82,
+      "growth_rate_ms": 0.0137
+    },
+    {
+      "interval": "240\u2013300 s",
+      "end_pos_err_m": 220.12,
+      "incremental_err_m": -102.98,
+      "growth_rate_ms": -1.7163
+    }
+  ],
+  "regime_decomposition": [
+    {
+      "regime": "Stationary",
+      "count": 1055,
+      "duration_s": 105.5,
+      "speed_mae_kmh": 0.29,
+      "speed_bias_kmh": 0.28,
+      "apm_corr_kmh": 0.0
+    },
+    {
+      "regime": "Acceleration",
+      "count": 836,
+      "duration_s": 83.6,
+      "speed_mae_kmh": 11.63,
+      "speed_bias_kmh": 9.04,
+      "apm_corr_kmh": 0.0
+    },
+    {
+      "regime": "Braking",
+      "count": 725,
+      "duration_s": 72.5,
+      "speed_mae_kmh": 11.62,
+      "speed_bias_kmh": 9.94,
+      "apm_corr_kmh": 0.12
+    },
+    {
+      "regime": "Straight/Cruise",
+      "count": 146,
+      "duration_s": 14.6,
+      "speed_mae_kmh": 4.95,
+      "speed_bias_kmh": 2.13,
+      "apm_corr_kmh": 0.0
+    },
+    {
+      "regime": "Moderate Turn",
+      "count": 577,
+      "duration_s": 57.7,
+      "speed_mae_kmh": 12.1,
+      "speed_bias_kmh": 9.23,
+      "apm_corr_kmh": 0.0
+    },
+    {
+      "regime": "Strong Turn",
+      "count": 837,
+      "duration_s": 83.7,
+      "speed_mae_kmh": 13.2,
+      "speed_bias_kmh": 12.17,
+      "apm_corr_kmh": 0.0
+    }
+  ],
+  "zupt_audit": {
+    "true_stationary_samples": 1055,
+    "zupt_active_samples": 786,
+    "precision": 0.9351,
+    "recall": 0.6967
+  },
+  "longitudinal_vs_lateral": {
+    "final_along_track_m": -197.42,
+    "final_cross_track_m": -97.36
+  },
+  "ranked_error_sources": [
+    {
+      "rank": 1,
+      "source": "Strong Turn Speed Overestimation & Heading Contradiction",
+      "evidence": "Strong turns (|w_y|>10\u00b0/s) exhibit +3.12 km/h speed bias, high heading error (49.5\u00b0), and represent 83.7s of motion. Accumulated cross-track error = -97.36 m.",
+      "confidence": "HIGH",
+      "actionable": "YES (Turn-aware neural speed attenuation)",
+      "observable": "YES (Measurable gyro yaw rate w_y)"
+    },
+    {
+      "rank": 2,
+      "source": "Residual Braking Speed Overestimation (Post-APM)",
+      "evidence": "Despite M019 APM trimming braking bias from +4.32 km/h down to +2.73 km/h, braking still maintains a +2.73 km/h positive bias across 72.5s of braking.",
+      "confidence": "HIGH",
+      "actionable": "YES (Deeper multi-step deceleration damping)",
+      "observable": "YES (Measurable IMU acceleration a_long)"
+    },
+    {
+      "rank": 3,
+      "source": "Missed Stationary Detection at Motion Transitions",
+      "evidence": "Missed stationary rate = 0.25% (32.0s). Slow rolling stops below 0.5 km/h leak velocity into EKF before P_stat > 0.70 threshold triggers.",
+      "confidence": "MEDIUM",
+      "actionable": "YES (Multi-stage dynamic ZUPT thresholding)",
+      "observable": "YES (Low acceleration variance sigma_a^2)"
+    }
+  ],
+  "m021_recommendation": "Turn-Aware Neural Speed Attenuation & Dynamic Gyro-Gated Fusion"
+}

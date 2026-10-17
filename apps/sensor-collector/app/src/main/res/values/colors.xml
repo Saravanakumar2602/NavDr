@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- SensorLab Scientific Telemetry Dark Palette -->
+    <color name="bg_navy_dark">#0A111E</color>
+    <color name="bg_navy_card">#141E30</color>
+    <color name="bg_navy_card_stroke">#24344D</color>
+    <color name="bg_navy_header">#0E1726</color>
+    
+    <color name="cyan_accent">#00E5FF</color>
+    <color name="cyan_accent_dark">#00B8D4</color>
+    <color name="blue_primary">#0288D1</color>
+    
+    <color name="status_recording">#FF1744</color>
+    <color name="status_ready">#00E676</color>
+    <color name="status_warning">#FFC400</color>
+    
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#90A4AE</color>
+    <color name="text_muted">#607D8B</color>
+    
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+</resources>

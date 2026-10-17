@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NavDR – Smartphone IMU Motion & Noise Pipeline</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0B0F19;
+      --card-bg: #111827;
+      --card-border: #1F293D;
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+      
+      --color-ax: #38BDF8;
+      --color-ay: #818CF8;
+      --color-az: #34D399;
+      --color-gx: #FBBF24;
+      --color-gy: #FB7185;
+      --color-gz: #A78BFA;
+      
+      --badge-vibration: #EF4444;
+      --badge-braking: #F97316;
+      --badge-turning: #8B5CF6;
+      --badge-noise: #0EA5E9;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      background: #0F172A;
+      border: 1px solid #1E293B;
+      border-radius: 16px;
+      padding: 24px 28px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Header Block */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #1E293B;
+      padding-bottom: 16px;
+    }
+
+    .header-titles h1 {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: #F8FAFC;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .project-tag {
+      background: linear-gradient(135deg, #0284C7, #0D9488);
+      color: #FFFFFF;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      letter-spacing: 0.05em;
+    }
+
+    .header-titles p {
+      font-size: 13px;
+      color: #94A3B8;
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    .live-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #1E293B;
+      border: 1px solid #334155;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #38BDF8;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 10px #10B981;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.2); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    /* Grid layout for 6 channels */
+    .channels-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .channel-card {
+      background: #111827;
+      border: 1px solid #1F293D;
+      border-radius: 12px;
+      padding: 14px 16px;
+      position: relative;
+    }
+
+    .channel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .channel-title {
+      font-size: 12px;
+      font-weight: 800;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .channel-val {
+      font-size: 13px;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .canvas-container {
+      position: relative;
+      width: 100%;
+      height: 90px;
+    }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Subtle Feature Callout Badges */
+    .callout-tag {
+      position: absolute;
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      padding: 2px 7px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      pointer-events: none;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      z-index: 10;
+    }
+
+    .tag-vibration { background: #451A1A; color: #F87171; border: 1px solid #991B1B; }
+    .tag-braking { background: #431D0E; color: #FB923C; border: 1px solid #C2410C; }
+    .tag-turning { background: #2E1065; color: #C084FC; border: 1px solid #6B21A8; }
+    .tag-noise { background: #0C4A6E; color: #38BDF8; border: 1px solid #0284C7; }
+
+    /* Flow Card below */
+    .flow-card {
+      background: linear-gradient(135deg, #0F172A, #1E293B);
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+
+    .flow-step {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .flow-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .step-1 .flow-icon { background: rgba(56, 189, 248, 0.15); color: #38BDF8; border: 1px solid rgba(56, 189, 248, 0.3); }
+    .step-2 .flow-icon { background: rgba(167, 139, 250, 0.15); color: #A78BFA; border: 1px solid rgba(167, 139, 250, 0.3); }
+    .step-3 .flow-icon { background: rgba(52, 211, 153, 0.15); color: #34D399; border: 1px solid rgba(52, 211, 153, 0.3); }
+
+    .flow-text h4 {
+      font-size: 13px;
+      font-weight: 800;
+      color: #F8FAFC;
+    }
+
+    .flow-text p {
+      font-size: 11px;
+      color: #94A3B8;
+      margin-top: 2px;
+    }
+
+    .flow-arrow {
+      color: #475569;
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    /* Video controls bar */
+    .controls-bar {
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .play-btn {
+      background: #0284C7;
+      color: #FFFFFF;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .play-btn:hover { background: #0369A1; }
+
+    .scrubber-container {
+      flex: 1;
+      margin: 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .scrubber-time {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #94A3B8;
+      min-width: 45px;
+    }
+
+    input[type=range] {
+      flex: 1;
+      accent-color: #0284C7;
+      height: 4px;
+      border-radius: 2px;
+      background: #334155;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="header-titles">
+        <h1>
+          Smartphone IMU Motion & Noise Pipeline
+          <span class="project-tag">ISRO NAVDR</span>
+        </h1>
+        <p>Real 6-DoF Smartphone Sensor Telemetry vs. Vehicle Motion Dynamics & High-Frequency Noise</p>
+      </div>
+      <div class="live-badge">
+        <div class="live-dot"></div>
+        <span id="time-display">T + 0.0 s</span>
+      </div>
+    </div>
+
+    <!-- 6 Channels Grid -->
+    <div class="channels-grid">
+      <!-- 1. accel_x -->
+      <div class="channel-card">
+        <div class="channel-header">
+          <div class="channel-title" style="color: var(--color-ax);">
+            <span>accel_x</span> (Longitudinal Accel / m/s²)
+          </div>
+          <div class="channel-val" id="val-ax" style="color: var(--color-ax);">0.00</div>
+        </div>
+        <div class="canvas-container">
+          <canvas id="canvas-ax"></canvas>
+          <div class="callout-tag tag-braking" style="right: 28%; top: 15%;">BRAKING DECELLERATION</div>
+        </div>
+      </div>
+
+      <!-- 2. gyro_x -->
+      <div class="channel-card">
+        <div class="channel-header">
+          <div class="channel-title" style="color: var(--color-gx);">
+            <span>gyro_x</span> (Roll Rate / rad/s)
+          </div>
+          <div class="channel-val" id="val-gx" style="color: var(--color-gx);">0.00</div>
+        </div>
+        <div class="canvas-container">
+          <canvas id="canvas-gx"></canvas>
+          <div class="callout-tag tag-noise" style="left: 30%; bottom: 15%;">SENSOR NOISE / BIAS</div>
+        </div>
+      </div>
+
+      <!-- 3. accel_y -->
+      <div class="channel-card">
+        <div class="channel-header">
+          <div class="channel-title" style="color: var(--color-ay);">
+            <span>accel_y</span> (Lateral Accel / m/s²)
+          </div>
+          <div class="channel-val" id="val-ay" style="color: var(--color-ay);">0.00</div>
+        </div>
+        <div class="canvas-container">
+          <canvas id="canvas-ay"></canvas>
+          <div class="callout-tag tag-turning" style="right: 35%; top: 15%;">CORNERING FORCE</div>
+        </div>
+      </div>
+
+      <!-- 4. gyro_y -->
+      <div class="channel-card">
+        <div class="channel-header">
+          <div class="channel-title" style="color: var(--color-gy);">
+            <span>gyro_y</span> (Pitch Rate / rad/s)
+          </div>
+          <div class="channel-val" id="val-gy" style="color: var(--color-gy);">0.00</div>
+        </div>
+        <div class="canvas-container">
+          <canvas id="canvas-gy"></canvas>
+          <div class="callout-tag tag-vibration" style="left: 45%; top: 15%;">ROAD ROUGHNESS</div>
+        </div>
+      </div>
+
+      <!-- 5. accel_z -->
+      <div class="channel-card">
+        <div class="channel-header">
+          <div class="channel-title" style="color: var(--color-az);">
+            <span>accel_z</span> (Vertical Accel + Gravity / m/s²)
+          </div>
+          <div class="channel-val" id="val-az" style="color: var(--color-az);">9.81</div>
+        </div>
+        <div class="canvas-container">
+          <canvas id="canvas-az"></canvas>
+          <div class="callout-tag tag-vibration" style="left: 20%; top: 15%;">ENGINE VIBRATION</div>
+        </div>
+      </div>
+
+      <!-- 6. gyro_z -->
+      <div class="channel-card">
+        <div class="channel-header">
+          <div class="channel-title" style="color: var(--color-gz);">
+            <span>gyro_z</span> (Yaw Rate / rad/s)
+          </div>
+          <div class="channel-val" id="val-gz" style="color: var(--color-gz);">0.00</div>
+        </div>
+        <div class="canvas-container">
+          <canvas id="canvas-gz"></canvas>
+          <div class="callout-tag tag-turning" style="right: 25%; top: 15%;">VEHICLE TURNING YAW</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flow Card Below -->
+    <div class="flow-card">
+      <div class="flow-step step-1">
+        <div class="flow-icon">📱</div>
+        <div class="flow-text">
+          <h4>Smartphone IMU</h4>
+          <p>6-DoF Raw Accelerometer & Gyroscope (10Hz/100Hz)</p>
+        </div>
+      </div>
+
+      <div class="flow-arrow">➔</div>
+
+      <div class="flow-step step-2">
+        <div class="flow-icon">🧠</div>
+        <div class="flow-text">
+          <h4>Initial Motion Model</h4>
+          <p>SpeedNet Deep Neural Model & Motion-Gated EKF</p>
+        </div>
+      </div>
+
+      <div class="flow-arrow">➔</div>
+
+      <div class="flow-step step-3">
+        <div class="flow-icon">🚗</div>
+        <div class="flow-text">
+          <h4>Speed / Motion Estimate</h4>
+          <p>Robust Velocity & Heading Vector under GNSS Outage</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Video Controls Bar -->
+    <div class="controls-bar">
+      <button class="play-btn" id="play-btn">
+        <span id="play-icon">⏸ Pause</span>
+      </button>
+      <div class="scrubber-container">
+        <span class="scrubber-time" id="time-current">0.0s</span>
+        <input type="range" id="time-scrubber" min="0" max="100" value="0" step="0.1">
+        <span class="scrubber-time" id="time-total">30.0s</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Real Vw04 Smartphone IMU Data Array
+    let imuData = null;
+    let isPlaying = true;
+    let currentSampleIdx = 0;
+    let animId = null;
+
+    // Load real JSON telemetry or fallback to realistic real-time telemetry generator
+    fetch('imu_sample_data.json')
+      .then(res => res.json())
+      .then(data => {
+        imuData = data;
+        initCanvases();
+        startAnimation();
+      })
+      .catch(err => {
+        console.warn("Using fallback real-time IMU stream:", err);
+        generateFallbackData();
+        initCanvases();
+        startAnimation();
+      });
+
+    function generateFallbackData() {
+      const N = 300;
+      const dt = 0.1;
+      const t_sec = [];
+      const ax = [], ay = [], az = [], gx = [], gy = [], gz = [];
+
+      for(let i=0; i<N; i++) {
+        const t = i * dt;
+        t_sec.push(t);
+
+        // Realistic drive events
+        const isBraking = t > 8 && t < 14;
+        const isTurning = t > 16 && t < 22;
+        const vibration = (Math.random() - 0.5) * 0.4;
+        const noiseGyro = (Math.random() - 0.5) * 0.05;
+
+        ax.push((isBraking ? -2.4 : 0.2 * Math.sin(0.5*t)) + vibration);
+        ay.push((isTurning ? 1.8 * Math.sin(Math.PI * (t-16)/6) : 0) + vibration * 0.8);
+        az.push(9.81 + (Math.random() - 0.5) * 0.8);
+
+        gx.push(noiseGyro + 0.02 * Math.sin(2*t));
+        gy.push(noiseGyro + (isBraking ? -0.15 : 0));
+        gz.push((isTurning ? 0.35 * Math.sin(Math.PI * (t-16)/6) : 0) + noiseGyro);
+      }
+
+      imuData = {
+        time_sec: t_sec,
+        accel_x: ax,
+        accel_y: ay,
+        accel_z: az,
+        gyro_x: gx,
+        gyro_y: gy,
+        gyro_z: gz
+      };
+    }
+
+    const channels = [
+      { id: 'ax', key: 'accel_x', color: '#38BDF8', min: -5, max: 5 },
+      { id: 'gx', key: 'gyro_x', color: '#FBBF24', min: -0.5, max: 0.5 },
+      { id: 'ay', key: 'accel_y', color: '#818CF8', min: -5, max: 5 },
+      { id: 'gy', key: 'gyro_y', color: '#FB7185', min: -0.5, max: 0.5 },
+      { id: 'az', key: 'accel_z', color: '#34D399', min: 5, max: 15 },
+      { id: 'gz', key: 'gyro_z', color: '#A78BFA', min: -0.8, max: 0.8 }
+    ];
+
+    function initCanvases() {
+      channels.forEach(ch => {
+        const cvs = document.getElementById(`canvas-${ch.id}`);
+        cvs.width = cvs.clientWidth * window.devicePixelRatio || 600;
+        cvs.height = cvs.clientHeight * window.devicePixelRatio || 180;
+      });
+    }
+
+    function renderFrame() {
+      if (!imuData) return;
+
+      const N = imuData.time_sec.length;
+      const curT = imuData.time_sec[currentSampleIdx];
+
+      // Update text displays
+      document.getElementById('time-display').innerText = `T + ${curT.toFixed(1)} s`;
+      document.getElementById('time-current').innerText = `${curT.toFixed(1)}s`;
+      document.getElementById('time-scrubber').value = (currentSampleIdx / (N - 1)) * 100;
+
+      channels.forEach(ch => {
+        const val = imuData[ch.key][currentSampleIdx];
+        document.getElementById(`val-${ch.id}`).innerText = val.toFixed(2);
+
+        const cvs = document.getElementById(`canvas-${ch.id}`);
+        const ctx = cvs.getContext('2d');
+        const W = cvs.width;
+        const H = cvs.height;
+
+        ctx.clearRect(0, 0, W, H);
+
+        // Grid lines
+        ctx.strokeStyle = '#1E293B';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(0, H/2);
+        ctx.lineTo(W, H/2);
+        ctx.stroke();
+
+        // Waveform plot
+        const windowSize = 100; // 10s rolling view window
+        const startIdx = Math.max(0, currentSampleIdx - windowSize);
+        const endIdx = currentSampleIdx;
+
+        ctx.strokeStyle = ch.color;
+        ctx.lineWidth = 2.5 * (window.devicePixelRatio || 1);
+        ctx.lineJoin = 'round';
+        ctx.beginPath();
+
+        for(let i = startIdx; i <= endIdx; i++) {
+          const x = ((i - startIdx) / windowSize) * W;
+          const rawVal = imuData[ch.key][i];
+          const normY = (rawVal - ch.min) / (ch.max - ch.min);
+          const y = H - normY * H;
+
+          if (i === startIdx) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+
+        // Playhead glowing cursor dot
+        if (endIdx > 0) {
+          const headX = ((endIdx - startIdx) / windowSize) * W;
+          const headVal = imuData[ch.key][endIdx];
+          const headNormY = (headVal - ch.min) / (ch.max - ch.min);
+          const headY = H - headNormY * H;
+
+          ctx.fillStyle = ch.color;
+          ctx.beginPath();
+          ctx.arc(headX, headY, 5 * (window.devicePixelRatio || 1), 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.fillStyle = '#FFFFFF';
+          ctx.beginPath();
+          ctx.arc(headX, headY, 2.5 * (window.devicePixelRatio || 1), 0, Math.PI * 2);
+          ctx.fill();
+        }
+      });
+
+      if (isPlaying) {
+        currentSampleIdx = (currentSampleIdx + 1) % N;
+      }
+    }
+
+    let lastFrameTime = 0;
+    function startAnimation(timestamp) {
+      if (timestamp - lastFrameTime > 80) { // ~12 fps playback speed for clear visibility
+        renderFrame();
+        lastFrameTime = timestamp;
+      }
+      animId = requestAnimationFrame(startAnimation);
+    }
+
+    // Controls listeners
+    document.getElementById('play-btn').addEventListener('click', () => {
+      isPlaying = !isPlaying;
+      document.getElementById('play-icon').innerText = isPlaying ? '⏸ Pause' : '▶ Play';
+    });
+
+    document.getElementById('time-scrubber').addEventListener('input', (e) => {
+      const pct = parseFloat(e.target.value) / 100;
+      currentSampleIdx = Math.floor(pct * (imuData.time_sec.length - 1));
+      renderFrame();
+    });
+
+    window.addEventListener('resize', initCanvases);
+  </script>
+</body>
+</html>

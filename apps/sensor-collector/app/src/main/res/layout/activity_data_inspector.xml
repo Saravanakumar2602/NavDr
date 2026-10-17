@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/bg_navy_dark">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Top Bar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/btnBackInspect"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:text="←"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:backgroundTint="@color/bg_navy_card"
+                android:padding="0dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Data Inspector"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginStart="12dp" />
+        </LinearLayout>
+
+        <!-- Accelerometer Stats Card & Chart -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="@drawable/bg_card_navy"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ACCELEROMETER ANALYSIS"
+                android:textColor="@color/cyan_accent"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/tvAccelStats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Count: -- | Measured: -- Hz\nRange: -- to -- m/s²\nMean: -- m/s² | Std Dev: -- m/s²"
+                android:textColor="@color/white"
+                android:fontFamily="monospace"
+                android:textSize="12sp"
+                android:lineSpacingExtra="3dp"
+                android:layout_marginBottom="12dp" />
+
+            <com.sih2026.sensorcollector.ui.SensorChartView
+                android:id="@+id/chartAccel"
+                android:layout_width="match_parent"
+                android:layout_height="180dp" />
+        </LinearLayout>
+
+        <!-- Gyroscope Stats Card & Chart -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="@drawable/bg_card_navy"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GYROSCOPE ANALYSIS"
+                android:textColor="@color/cyan_accent"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/tvGyroStats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Count: -- | Measured: -- Hz\nRange: -- to -- rad/s\nMean: -- rad/s | Std Dev: -- rad/s"
+                android:textColor="@color/white"
+                android:fontFamily="monospace"
+                android:textSize="12sp"
+                android:lineSpacingExtra="3dp"
+                android:layout_marginBottom="12dp" />
+
+            <com.sih2026.sensorcollector.ui.SensorChartView
+                android:id="@+id/chartGyro"
+                android:layout_width="match_parent"
+                android:layout_height="180dp" />
+        </LinearLayout>
+
+        <!-- GNSS Stats Card & Chart -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="@drawable/bg_card_navy"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GNSS SPEED TELEMETRY"
+                android:textColor="@color/cyan_accent"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/tvGnssStats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fixes: -- | Avg Accuracy: -- m\nSpeed Range: -- to -- m/s\nMean Speed: -- m/s"
+                android:textColor="@color/white"
+                android:fontFamily="monospace"
+                android:textSize="12sp"
+                android:lineSpacingExtra="3dp"
+                android:layout_marginBottom="12dp" />
+
+            <com.sih2026.sensorcollector.ui.SensorChartView
+                android:id="@+id/chartGnssSpeed"
+                android:layout_width="match_parent"
+                android:layout_height="180dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

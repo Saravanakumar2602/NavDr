@@ -1,0 +1,82 @@
+{
+  "milestone": "M046",
+  "title": "Learned Turn-Dependent Gyro Drift Correction Study",
+  "verdict": "B. REJECTED",
+  "validation_selection": {
+    "candidate": "F2_CNN_LSTM_bound_5.0deg",
+    "family": "F2_CNN_LSTM",
+    "bound_deg_s": 5.0,
+    "val_final_pe_m": 22917.99,
+    "val_fper_pct": 91.72
+  },
+  "validation_sweep": [
+    {
+      "candidate": "F0_Baseline",
+      "family": "F0",
+      "bound_deg_s": 0.0,
+      "val_final_pe_m": 27575.41,
+      "val_fper_pct": 110.36
+    },
+    {
+      "candidate": "F1_CNN_GRU_bound_1.0deg",
+      "family": "F1_CNN_GRU",
+      "bound_deg_s": 1.0,
+      "val_final_pe_m": 27461.17,
+      "val_fper_pct": 109.9
+    },
+    {
+      "candidate": "F1_CNN_GRU_bound_2.0deg",
+      "family": "F1_CNN_GRU",
+      "bound_deg_s": 2.0,
+      "val_final_pe_m": 27378.03,
+      "val_fper_pct": 109.57
+    },
+    {
+      "candidate": "F1_CNN_GRU_bound_5.0deg",
+      "family": "F1_CNN_GRU",
+      "bound_deg_s": 5.0,
+      "val_final_pe_m": 26638.98,
+      "val_fper_pct": 106.61
+    },
+    {
+      "candidate": "F2_CNN_LSTM_bound_1.0deg",
+      "family": "F2_CNN_LSTM",
+      "bound_deg_s": 1.0,
+      "val_final_pe_m": 26479.13,
+      "val_fper_pct": 105.97
+    },
+    {
+      "candidate": "F2_CNN_LSTM_bound_2.0deg",
+      "family": "F2_CNN_LSTM",
+      "bound_deg_s": 2.0,
+      "val_final_pe_m": 25500.44,
+      "val_fper_pct": 102.05
+    },
+    {
+      "candidate": "F2_CNN_LSTM_bound_5.0deg",
+      "family": "F2_CNN_LSTM",
+      "bound_deg_s": 5.0,
+      "val_final_pe_m": 22917.99,
+      "val_fper_pct": 91.72
+    }
+  ],
+  "locked_test_results": {
+    "60s_pe_m": 23.11,
+    "120s_pe_m": 469.77,
+    "300s_pe_m": 719.27,
+    "1km_pe_m": 358.63,
+    "60s_fper_pct": 5.64,
+    "120s_fper_pct": 53.65,
+    "300s_fper_pct": 51.95,
+    "1km_fper_pct": 35.86,
+    "heading_mae_raw_deg": 64.6567508989085,
+    "heading_mae_corr_deg": 69.996106942279
+  },
+  "locked_baseline_benchmark": {
+    "60": 27.88,
+    "120": 426.17,
+    "300": 218.93,
+    "1km": 307.46,
+    "1km_fper": 30.74
+  }
+}

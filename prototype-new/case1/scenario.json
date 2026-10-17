@@ -1,0 +1,60 @@
+{
+  "scenario_id": "case_01_dense_forest",
+  "title": "CASE 01 \u2014 DENSE FOREST / FORESTED HIGHWAY",
+  "subtitle": "GNSS-Denied Navigation under Dense Tree Canopy (NH766 Bandipur Forest Reserve)",
+  "environment": {
+    "type": "Dense Forest / National Park Highway",
+    "location_name": "Bandipur Forest Reserve (NH766 Highway)",
+    "lat_center": 11.678,
+    "lon_center": 76.638,
+    "canopy_density": "High (90-95% obstruction)",
+    "gnss_condition": "SIMULATED OUTAGE / DENSE CANOPY DENIAL"
+  },
+  "navigation_engine": {
+    "name": "M029 Multi-Anchor Heading Architecture",
+    "speed_model": "SpeedNet v2 (W=40, CNN+BiLSTM)",
+    "orientation": "Multi-Anchor Heading Manager (GNSS Course + Motion-Gated Zero Yaw + SpeedNet Yaw)",
+    "kinematic_constraint": "Fixed 2D NHC (R_nhc = 0.04)",
+    "filter": "7-State ENU Extended Kalman Filter",
+    "locked_benchmark": {
+      "m028_err_300s_m": 218.93,
+      "m029_err_300s_m": 48.2,
+      "comparison_label": "Benchmark: M028 218.93 m \u2192 M029 48.20 m @ 300 s"
+    }
+  },
+  "timeline": {
+    "total_duration_sec": 300.0,
+    "gnss_aided_pre_outage_sec": 30.0,
+    "gnss_outage_start_sec": 30.0,
+    "gnss_outage_end_sec": 270.0,
+    "gnss_outage_duration_sec": 240.0,
+    "gnss_aided_post_outage_sec": 30.0
+  },
+  "waypoints": {
+    "start": {
+      "lat": 11.66,
+      "lon": 76.62,
+      "name": "Forest Highway Checkpoint (GNSS Online)"
+    },
+    "forest_entry": {
+      "lat": 11.666,
+      "lon": 76.627,
+      "name": "Dense Canopy Entry (GNSS Outage Start)"
+    },
+    "deep_forest": {
+      "lat": 11.678,
+      "lon": 76.638,
+      "name": "Wildlife Crossing & S-Curve Zone (ZUPT Active)"
+    },
+    "forest_exit": {
+      "lat": 11.692,
+      "lon": 76.65,
+      "name": "Canopy Exit Boundary (GNSS Signal Restored)"
+    },
+    "destination": {
+      "lat": 11.698,
+      "lon": 76.656,
+      "name": "Open Highway Clearing"
+    }
+  }
+}

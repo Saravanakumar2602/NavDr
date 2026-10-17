@@ -1,0 +1,205 @@
+{
+  "milestone": "M038",
+  "title": "Dynamic Physical Inference Constraint Tightening (Transient APM Bounds)",
+  "active_benchmark": 218.93,
+  "selected_val_winner": "F0 (Fixed bound 0.50 m/s)",
+  "val_nav_results": [
+    {
+      "id": "F0 (Control Fixed 0.50m/s)",
+      "name": "F0 (Fixed bound 0.50 m/s)",
+      "val_300s_m": 494.83,
+      "val_mean_m": 356.99,
+      "diag": {
+        "total_apm": 46,
+        "normal_apm": 46,
+        "extreme_apm": 0,
+        "mean_corr": 0.4393,
+        "p95_corr": 0.5,
+        "max_corr": 0.5
+      }
+    },
+    {
+      "id": "F1 (j < -1.50 m/s^3)",
+      "name": "F1 (j_long < -1.50 m/s^3 -> 0.75)",
+      "val_300s_m": 496.41,
+      "val_mean_m": 357.59,
+      "diag": {
+        "total_apm": 46,
+        "normal_apm": 0,
+        "extreme_apm": 46,
+        "mean_corr": 0.6193,
+        "p95_corr": 0.75,
+        "max_corr": 0.75
+      }
+    },
+    {
+      "id": "F2 (j < -2.00 m/s^3)",
+      "name": "F2 (j_long < -2.00 m/s^3 -> 0.75)",
+      "val_300s_m": 496.41,
+      "val_mean_m": 357.59,
+      "diag": {
+        "total_apm": 46,
+        "normal_apm": 0,
+        "extreme_apm": 46,
+        "mean_corr": 0.6193,
+        "p95_corr": 0.75,
+        "max_corr": 0.75
+      }
+    },
+    {
+      "id": "F3 (j < -2.50 m/s^3)",
+      "name": "F3 (j_long < -2.50 m/s^3 -> 0.75)",
+      "val_300s_m": 496.81,
+      "val_mean_m": 357.65,
+      "diag": {
+        "total_apm": 46,
+        "normal_apm": 2,
+        "extreme_apm": 44,
+        "mean_corr": 0.6139,
+        "p95_corr": 0.75,
+        "max_corr": 0.75
+      }
+    },
+    {
+      "id": "F4 (j < -3.00 m/s^3)",
+      "name": "F4 (j_long < -3.00 m/s^3 -> 0.75)",
+      "val_300s_m": 496.81,
+      "val_mean_m": 357.65,
+      "diag": {
+        "total_apm": 46,
+        "normal_apm": 3,
+        "extreme_apm": 43,
+        "mean_corr": 0.6139,
+        "p95_corr": 0.75,
+        "max_corr": 0.75
+      }
+    }
+  ],
+  "test_results_table": [
+    {
+      "id": "F0 (Control Fixed 0.50m/s)",
+      "name": "F0 (Fixed bound 0.50 m/s)",
+      "thresh": null,
+      "speed_mae_kmh": 7.33,
+      "brk_mae_kmh": 11.57,
+      "brk_bias_kmh": 9.85,
+      "err_60s": 27.35,
+      "err_120s": 426.85,
+      "err_300s": 218.93,
+      "mean_pos_m": 269.2,
+      "final_along_m": -197.64,
+      "final_cross_m": -94.18,
+      "diag": {
+        "total_apm": 36,
+        "normal_apm": 36,
+        "extreme_apm": 0,
+        "mean_corr": 0.4888,
+        "p95_corr": 0.5,
+        "max_corr": 0.5
+      },
+      "pct_vs_263": -16.8,
+      "pct_vs_220": -0.5,
+      "pct_vs_218": 0.0
+    },
+    {
+      "id": "F1 (j < -1.50 m/s^3)",
+      "name": "F1 (j_long < -1.50 m/s^3 -> 0.75)",
+      "thresh": -1.5,
+      "speed_mae_kmh": 7.33,
+      "brk_mae_kmh": 11.55,
+      "brk_bias_kmh": 9.81,
+      "err_60s": 27.34,
+      "err_120s": 425.49,
+      "err_300s": 221.21,
+      "mean_pos_m": 267.93,
+      "final_along_m": -202.34,
+      "final_cross_m": -89.39,
+      "diag": {
+        "total_apm": 36,
+        "normal_apm": 1,
+        "extreme_apm": 35,
+        "mean_corr": 0.686,
+        "p95_corr": 0.75,
+        "max_corr": 0.75
+      },
+      "pct_vs_263": -15.9,
+      "pct_vs_220": 0.5,
+      "pct_vs_218": 1.0
+    },
+    {
+      "id": "F2 (j < -2.00 m/s^3)",
+      "name": "F2 (j_long < -2.00 m/s^3 -> 0.75)",
+      "thresh": -2.0,
+      "speed_mae_kmh": 7.33,
+      "brk_mae_kmh": 11.55,
+      "brk_bias_kmh": 9.82,
+      "err_60s": 27.34,
+      "err_120s": 423.88,
+      "err_300s": 219.46,
+      "mean_pos_m": 266.57,
+      "final_along_m": -201.11,
+      "final_cross_m": -87.84,
+      "diag": {
+        "total_apm": 36,
+        "normal_apm": 2,
+        "extreme_apm": 34,
+        "mean_corr": 0.6791,
+        "p95_corr": 0.75,
+        "max_corr": 0.75
+      },
+      "pct_vs_263": -16.6,
+      "pct_vs_220": -0.3,
+      "pct_vs_218": 0.2
+    },
+    {
+      "id": "F3 (j < -2.50 m/s^3)",
+      "name": "F3 (j_long < -2.50 m/s^3 -> 0.75)",
+      "thresh": -2.5,
+      "speed_mae_kmh": 7.33,
+      "brk_mae_kmh": 11.55,
+      "brk_bias_kmh": 9.82,
+      "err_60s": 27.34,
+      "err_120s": 423.88,
+      "err_300s": 219.46,
+      "mean_pos_m": 266.57,
+      "final_along_m": -201.11,
+      "final_cross_m": -87.84,
+      "diag": {
+        "total_apm": 36,
+        "normal_apm": 2,
+        "extreme_apm": 34,
+        "mean_corr": 0.6791,
+        "p95_corr": 0.75,
+        "max_corr": 0.75
+      },
+      "pct_vs_263": -16.6,
+      "pct_vs_220": -0.3,
+      "pct_vs_218": 0.2
+    },
+    {
+      "id": "F4 (j < -3.00 m/s^3)",
+      "name": "F4 (j_long < -3.00 m/s^3 -> 0.75)",
+      "thresh": -3.0,
+      "speed_mae_kmh": 7.33,
+      "brk_mae_kmh": 11.55,
+      "brk_bias_kmh": 9.82,
+      "err_60s": 27.34,
+      "err_120s": 423.88,
+      "err_300s": 219.37,
+      "mean_pos_m": 266.56,
+      "final_along_m": -201.0,
+      "final_cross_m": -87.88,
+      "diag": {
+        "total_apm": 36,
+        "normal_apm": 3,
+        "extreme_apm": 33,
+        "mean_corr": 0.6735,
+        "p95_corr": 0.75,
+        "max_corr": 0.75
+      },
+      "pct_vs_263": -16.6,
+      "pct_vs_220": -0.3,
+      "pct_vs_218": 0.2
+    }
+  ]
+}

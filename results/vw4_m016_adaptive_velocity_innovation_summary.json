@@ -1,0 +1,82 @@
+{
+  "milestone": "M016",
+  "title": "Adaptive EKF Innovation Gating & Velocity Bias Tracking",
+  "historical_benchmark": 263.11,
+  "m013_control": 254.11,
+  "m014_control": 233.18,
+  "observability_audit": "POOR OBSERVABILITY. Accelerometer bias b_a lacks direct acceleration measurement during outage. Unconstrained b_a tracking destabilizes velocity propagation.",
+  "results_table": [
+    {
+      "name": "F0 (Control)",
+      "desc": "M014 Benchmark (Exact Reproduction)",
+      "speed_mae_kmh": 7.36,
+      "speed_bias_kmh": 5.92,
+      "err_60s": 27.36,
+      "err_120s": 428.45,
+      "err_300s": 233.18,
+      "pct_vs_263": -11.4,
+      "pct_vs_254": -8.2,
+      "pct_vs_233": 0.0
+    },
+    {
+      "name": "F1 (Innovation Diag)",
+      "desc": "Velocity Innovation & NIS Diagnostic Only",
+      "speed_mae_kmh": 7.36,
+      "speed_bias_kmh": 5.92,
+      "err_60s": 27.36,
+      "err_120s": 428.45,
+      "err_300s": 233.18,
+      "pct_vs_263": -11.4,
+      "pct_vs_254": -8.2,
+      "pct_vs_233": 0.0
+    },
+    {
+      "name": "F2 (NIS Gating)",
+      "desc": "NIS Measurement Gating (nis_thresh=3.84, alpha=2.0)",
+      "speed_mae_kmh": 7.36,
+      "speed_bias_kmh": 5.92,
+      "err_60s": 305.94,
+      "err_120s": 915.89,
+      "err_300s": 880.91,
+      "pct_vs_263": 234.8,
+      "pct_vs_254": 246.7,
+      "pct_vs_233": 277.8
+    },
+    {
+      "name": "F3 (Adaptive R_v)",
+      "desc": "Transient-Aware R_v Covariance Scaling (beta=2, gamma=2)",
+      "speed_mae_kmh": 7.36,
+      "speed_bias_kmh": 5.92,
+      "err_60s": 107.0,
+      "err_120s": 629.2,
+      "err_300s": 596.41,
+      "pct_vs_263": 126.7,
+      "pct_vs_254": 134.7,
+      "pct_vs_233": 155.8
+    },
+    {
+      "name": "F4 (Accel Bias Tracking)",
+      "desc": "Accelerometer Bias State Tracking (q_bias=1e-5)",
+      "speed_mae_kmh": 7.36,
+      "speed_bias_kmh": 5.92,
+      "err_60s": 27.36,
+      "err_120s": 428.45,
+      "err_300s": 233.18,
+      "pct_vs_263": -11.4,
+      "pct_vs_254": -8.2,
+      "pct_vs_233": 0.0
+    },
+    {
+      "name": "F5 (Best Single + M014)",
+      "desc": "Selected Best Method (F3 Adaptive R_v)",
+      "speed_mae_kmh": 7.36,
+      "speed_bias_kmh": 5.92,
+      "err_60s": 107.0,
+      "err_120s": 629.2,
+      "err_300s": 596.41,
+      "pct_vs_263": 126.7,
+      "pct_vs_254": 134.7,
+      "pct_vs_233": 155.8
+    }
+  ]
+}

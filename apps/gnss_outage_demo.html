@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NavDR – GNSS Outage Navigation Demo</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+    body { background-color: #0B132B; color: #F8FAFC; overflow-x: hidden; display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 20px; }
+    
+    header { width: 100%; max-width: 1400px; display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; background: #0F172A; border: 1px solid #1E293B; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+    .title-block h1 { font-size: 22px; font-weight: 700; color: #38BDF8; letter-spacing: 0.5px; }
+    .title-block p { font-size: 13px; color: #94A3B8; font-weight: 500; margin-top: 3px; }
+    
+    /* Timeline Status Bar */
+    .timeline-container { display: flex; align-items: center; background: #1E293B; border: 1px solid #334155; border-radius: 30px; padding: 6px 12px; gap: 8px; }
+    .step-badge { font-size: 11px; font-weight: 700; padding: 6px 14px; border-radius: 20px; color: #64748B; background: transparent; transition: all 0.3s ease; text-transform: uppercase; }
+    .step-badge.active { color: #0F172A; background: #38BDF8; box-shadow: 0 0 12px rgba(56, 189, 248, 0.6); }
+    .step-arrow { color: #475569; font-size: 12px; font-weight: bold; }
+    
+    /* Main Dashboard Layout */
+    .dashboard-grid { width: 100%; max-width: 1400px; display: grid; grid-template-columns: 1fr 340px; gap: 20px; }
+    
+    .canvas-card { position: relative; background: #0A0F1D; border: 1px solid #1E293B; border-radius: 16px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.6); aspect-ratio: 16/9; }
+    canvas { width: 100%; height: 100%; display: block; }
+    
+    /* UI Overlay Elements on Canvas */
+    .overlay-controls { position: absolute; bottom: 20px; left: 20px; display: flex; gap: 10px; z-index: 10; }
+    .btn { background: #1E293B; border: 1px solid #3B82F6; color: #F8FAFC; font-weight: 600; padding: 10px 18px; border-radius: 8px; cursor: pointer; transition: all 0.2s; font-size: 13px; }
+    .btn:hover { background: #2563EB; color: #FFF; box-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
+    .btn-danger { border-color: #EF4444; }
+    .btn-danger:hover { background: #DC2626; box-shadow: 0 0 10px rgba(239, 68, 68, 0.5); }
+    
+    .tech-badges { position: absolute; top: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 10; }
+    .tech-pill { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(8px); border: 1px solid #334155; padding: 8px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 220px; }
+    .tech-pill.active { border-color: #38BDF8; box-shadow: 0 0 10px rgba(56, 189, 248, 0.2); }
+    .tech-name { color: #38BDF8; }
+    .tech-status { font-size: 10px; color: #10B981; text-transform: uppercase; }
+
+    /* Side Telemetry Panel */
+    .telemetry-card { background: #0F172A; border: 1px solid #1E293B; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 18px; box-shadow: 0 15px 35px rgba(0,0,0,0.4); }
+    .panel-header { font-size: 15px; font-weight: 700; color: #E2E8F0; text-transform: uppercase; border-bottom: 1px solid #1E293B; padding-bottom: 10px; }
+    
+    .metric-box { background: #162032; border: 1px solid #233248; border-radius: 10px; padding: 12px 16px; }
+    .metric-label { font-size: 11px; color: #64748B; font-weight: 600; text-transform: uppercase; }
+    .metric-value { font-size: 20px; font-weight: 700; color: #38BDF8; margin-top: 4px; font-mono: monospace; }
+    .metric-sub { font-size: 11px; color: #10B981; margin-top: 2px; }
+    
+    .status-badge-live { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; }
+    .status-gnss-ok { background: rgba(16, 185, 129, 0.15); color: #10B981; border: 1px solid #10B981; }
+    .status-gnss-denied { background: rgba(239, 68, 68, 0.15); color: #EF4444; border: 1px solid #EF4444; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="title-block">
+      <h1>NavDR – GNSS Outage Navigation Demo</h1>
+      <p>AI-ML Based Intelligent Dead Reckoning Smartphone Demonstration</p>
+    </div>
+    
+    <div class="timeline-container">
+      <div id="step-1" class="step-badge active">GNSS Available</div>
+      <div class="step-arrow">➔</div>
+      <div id="step-2" class="step-badge">GNSS Denied</div>
+      <div class="step-arrow">➔</div>
+      <div id="step-3" class="step-badge">AI + IMU Dead Reckoning</div>
+      <div class="step-arrow">➔</div>
+      <div id="step-4" class="step-badge">GNSS Recovered</div>
+    </div>
+  </header>
+
+  <div class="dashboard-grid">
+    <div class="canvas-card">
+      <canvas id="navCanvas" width="1280" height="720"></canvas>
+      
+      <div class="tech-badges">
+        <div class="tech-pill active">
+          <span class="tech-name">[SpeedNet]</span>
+          <span class="tech-status" id="status-speednet">Active Inference</span>
+        </div>
+        <div class="tech-pill active">
+          <span class="tech-name">[IMU]</span>
+          <span class="tech-status">6-DoF 100Hz</span>
+        </div>
+        <div class="tech-pill active">
+          <span class="tech-name">[EKF]</span>
+          <span class="tech-status" id="status-ekf">7-State Fusion</span>
+        </div>
+        <div class="tech-pill active">
+          <span class="tech-name">[Map Matching]</span>
+          <span class="tech-status">Road Snap OK</span>
+        </div>
+      </div>
+
+      <div class="overlay-controls">
+        <button class="btn" id="btnPlay">Pause / Resume</button>
+        <button class="btn btn-danger" id="btnToggleGNSS">Simulate GNSS Loss</button>
+        <button class="btn" id="btnReset">Reset Simulation</button>
+      </div>
+    </div>
+
+    <div class="telemetry-card">
+      <div class="panel-header">System Telemetry & Status</div>
+
+      <div class="metric-box">
+        <div class="metric-label">Navigation State</div>
+        <div style="margin-top: 8px;">
+          <span id="navStateBadge" class="status-badge-live status-gnss-ok">GNSS + IMU FUSION</span>
+        </div>
+      </div>
+
+      <div class="metric-box">
+        <div class="metric-label">Outage Duration</div>
+        <div class="metric-value" id="valOutageTime">0.0 s</div>
+        <div class="metric-sub" id="valOutageStatus">GNSS Signal Nominal</div>
+      </div>
+
+      <div class="metric-box">
+        <div class="metric-label">Vehicle Speed (SpeedNet)</div>
+        <div class="metric-value" id="valSpeed">45.2 km/h</div>
+      </div>
+
+      <div class="metric-box">
+        <div class="metric-label">Estimated Heading</div>
+        <div class="metric-value" id="valHeading">274.5°</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('navCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Simulation Parameters
+    let isPlaying = true;
+    let progress = 0; // 0.0 to 1.0
+    const speed = 0.0008;
+    
+    // Outage bounds: 0.30 to 0.70
+    const outageStart = 0.30;
+    const outageEnd = 0.70;
+
+    // Road curve points
+    function getRoadPoint(t) {
+      const x = 120 + 1040 * t + 60 * Math.sin(3 * Math.PI * t);
+      const y = 180 + 440 * t + 100 * Math.cos(2 * Math.PI * t) + 60 * Math.sin(5 * Math.PI * t);
+      return { x, y };
+    }
+
+    function drawMap() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Background subtle grid
+      ctx.strokeStyle = 'rgba(30, 41, 59, 0.4)';
+      ctx.lineWidth = 1;
+      for (let x = 0; x < canvas.width; x += 60) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+      }
+      for (let y = 0; y < canvas.height; y += 60) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+      }
+
+      // Draw Road Corridor
+      ctx.beginPath();
+      for (let t = 0; t <= 1; t += 0.005) {
+        const pt = getRoadPoint(t);
+        if (t === 0) ctx.moveTo(pt.x, pt.y);
+        else ctx.lineTo(pt.x, pt.y);
+      }
+      ctx.strokeStyle = '#1E293B';
+      ctx.lineWidth = 36;
+      ctx.lineCap = 'round';
+      ctx.stroke();
+
+      ctx.strokeStyle = '#38BDF8';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([8, 8]);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Draw Ground Truth Path (Thin dotted reference)
+      ctx.beginPath();
+      for (let t = 0; t <= 1; t += 0.005) {
+        const pt = getRoadPoint(t);
+        if (t === 0) ctx.moveTo(pt.x, pt.y);
+        else ctx.lineTo(pt.x, pt.y);
+      }
+      ctx.strokeStyle = '#64748B';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([4, 4]);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Draw NavDR Trajectory
+      // Segment 1: GNSS Available
+      const maxT = Math.min(progress, outageStart);
+      if (maxT > 0) {
+        ctx.beginPath();
+        for (let t = 0; t <= maxT; t += 0.002) {
+          const pt = getRoadPoint(t);
+          if (t === 0) ctx.moveTo(pt.x, pt.y);
+          else ctx.lineTo(pt.x, pt.y);
+        }
+        ctx.strokeStyle = '#38BDF8';
+        ctx.lineWidth = 4;
+        ctx.stroke();
+      }
+
+      // Segment 2: GNSS Outage / AI-IMU DR
+      if (progress > outageStart) {
+        const drEnd = Math.min(progress, outageEnd);
+        ctx.beginPath();
+        for (let t = outageStart; t <= drEnd; t += 0.002) {
+          const pt = getRoadPoint(t);
+          // Add small bounded drift
+          const driftX = 5 * Math.sin((t - outageStart) * 10);
+          const driftY = 7 * Math.pow((t - outageStart)/0.4, 1.5);
+          if (t === outageStart) ctx.moveTo(pt.x, pt.y);
+          else ctx.lineTo(pt.x + driftX, pt.y + driftY);
+        }
+        ctx.strokeStyle = '#22D3EE';
+        ctx.lineWidth = 4.5;
+        ctx.shadowColor = '#06B6D4';
+        ctx.shadowBlur = 12;
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+      }
+
+      // Segment 3: GNSS Recovered
+      if (progress > outageEnd) {
+        ctx.beginPath();
+        for (let t = outageEnd; t <= progress; t += 0.002) {
+          const pt = getRoadPoint(t);
+          if (t === outageEnd) ctx.moveTo(pt.x, pt.y);
+          else ctx.lineTo(pt.x, pt.y);
+        }
+        ctx.strokeStyle = '#10B981';
+        ctx.lineWidth = 4;
+        ctx.stroke();
+      }
+
+      // Outage Point Marker (GNSS SIGNAL LOST)
+      const ptLoss = getRoadPoint(outageStart);
+      ctx.beginPath();
+      ctx.arc(ptLoss.x, ptLoss.y, 8, 0, 2*Math.PI);
+      ctx.fillStyle = '#EF4444'; ctx.fill();
+      ctx.strokeStyle = '#FFF'; ctx.lineWidth = 2; ctx.stroke();
+
+      ctx.fillStyle = '#EF4444';
+      ctx.font = 'bold 12px Segoe UI';
+      ctx.fillText('GNSS SIGNAL LOST', ptLoss.x - 60, ptLoss.y - 18);
+
+      // Recovery Point Marker (GNSS RECOVERED)
+      const ptRec = getRoadPoint(outageEnd);
+      ctx.beginPath();
+      ctx.arc(ptRec.x, ptRec.y, 8, 0, 2*Math.PI);
+      ctx.fillStyle = '#10B981'; ctx.fill();
+      ctx.strokeStyle = '#FFF'; ctx.lineWidth = 2; ctx.stroke();
+
+      ctx.fillStyle = '#10B981';
+      ctx.font = 'bold 12px Segoe UI';
+      ctx.fillText('GNSS RECOVERED', ptRec.x + 15, ptRec.y + 20);
+
+      // Vehicle Location Marker
+      let currPt = getRoadPoint(progress);
+      if (progress > outageStart && progress <= outageEnd) {
+        currPt.x += 5 * Math.sin((progress - outageStart) * 10);
+        currPt.y += 7 * Math.pow((progress - outageStart)/0.4, 1.5);
+      }
+
+      // Vehicle Marker Pulse
+      ctx.beginPath();
+      ctx.arc(currPt.x, currPt.y, 16, 0, 2*Math.PI);
+      ctx.fillStyle = 'rgba(56, 189, 248, 0.25)'; ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(currPt.x, currPt.y, 8, 0, 2*Math.PI);
+      ctx.fillStyle = '#FFFFFF'; ctx.fill();
+      ctx.strokeStyle = '#0284C7'; ctx.lineWidth = 3; ctx.stroke();
+    }
+
+    function updateUI() {
+      const step1 = document.getElementById('step-1');
+      const step2 = document.getElementById('step-2');
+      const step3 = document.getElementById('step-3');
+      const step4 = document.getElementById('step-4');
+
+      [step1, step2, step3, step4].forEach(s => s.classList.remove('active'));
+
+      const navStateBadge = document.getElementById('navStateBadge');
+      const valOutageTime = document.getElementById('valOutageTime');
+      const valOutageStatus = document.getElementById('valOutageStatus');
+
+      if (progress < outageStart) {
+        step1.classList.add('active');
+        navStateBadge.className = 'status-badge-live status-gnss-ok';
+        navStateBadge.innerText = 'GNSS + IMU FUSION';
+        valOutageTime.innerText = '0.0 s';
+        valOutageStatus.innerText = 'GNSS Nominal';
+      } else if (progress <= outageEnd) {
+        step2.classList.add('active');
+        step3.classList.add('active');
+        navStateBadge.className = 'status-badge-live status-gnss-denied';
+        navStateBadge.innerText = 'AI + IMU DEAD RECKONING';
+        
+        const outageSecs = ((progress - outageStart) * 300).toFixed(1);
+        valOutageTime.innerText = `${outageSecs} s`;
+        valOutageStatus.innerText = 'NavDR Active (Continuous Motion)';
+      } else {
+        step4.classList.add('active');
+        navStateBadge.className = 'status-badge-live status-gnss-ok';
+        navStateBadge.innerText = 'GNSS RE-ALIGNMENT';
+        valOutageTime.innerText = '120.0 s (Completed)';
+        valOutageStatus.innerText = 'GNSS Re-acquired';
+      }
+    }
+
+    function animate() {
+      if (isPlaying) {
+        progress += speed;
+        if (progress > 1.0) progress = 0;
+      }
+      drawMap();
+      updateUI();
+      requestAnimationFrame(animate);
+    }
+
+    document.getElementById('btnPlay').onclick = () => { isPlaying = !isPlaying; };
+    document.getElementById('btnReset').onclick = () => { progress = 0; };
+    document.getElementById('btnToggleGNSS').onclick = () => { progress = outageStart; };
+
+    animate();
+  </script>
+</body>
+</html>

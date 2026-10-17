@@ -1,0 +1,86 @@
+{
+  "milestone": "M021",
+  "title": "Conservative Turn-Aware Speed Attenuation Ablation",
+  "m019_benchmark": 220.12,
+  "selected_val_candidate": "F4 (Linear 10-20 deg/s)",
+  "results_table": [
+    {
+      "name": "F0 (Control M019)",
+      "desc": "SpeedNet v2 W=40 Baseline Control (No Turn Attenuation)",
+      "speed_mae_kmh": 7.33,
+      "sturn_mae_kmh": 13.2,
+      "sturn_bias_kmh": 12.17,
+      "err_60s": 27.53,
+      "err_120s": 428.79,
+      "err_300s": 220.12,
+      "pct_vs_263": -16.3,
+      "pct_vs_254": -13.4,
+      "pct_vs_220": 0.0
+    },
+    {
+      "name": "F1 (5% Turn Atten)",
+      "desc": "5% Attenuation when |w_y| > 10 deg/s",
+      "speed_mae_kmh": 6.81,
+      "sturn_mae_kmh": 11.34,
+      "sturn_bias_kmh": 10.03,
+      "err_60s": 29.88,
+      "err_120s": 376.46,
+      "err_300s": 286.86,
+      "pct_vs_263": 9.0,
+      "pct_vs_254": 12.9,
+      "pct_vs_220": 30.3
+    },
+    {
+      "name": "F2 (10% Turn Atten)",
+      "desc": "10% Attenuation when |w_y| > 10 deg/s",
+      "speed_mae_kmh": 6.33,
+      "sturn_mae_kmh": 9.63,
+      "sturn_bias_kmh": 7.89,
+      "err_60s": 33.3,
+      "err_120s": 339.69,
+      "err_300s": 349.37,
+      "pct_vs_263": 32.8,
+      "pct_vs_254": 37.5,
+      "pct_vs_220": 58.7
+    },
+    {
+      "name": "F3 (15% Turn Atten)",
+      "desc": "15% Attenuation when |w_y| > 10 deg/s",
+      "speed_mae_kmh": 5.93,
+      "sturn_mae_kmh": 8.21,
+      "sturn_bias_kmh": 5.74,
+      "err_60s": 37.35,
+      "err_120s": 305.42,
+      "err_300s": 224.36,
+      "pct_vs_263": -14.7,
+      "pct_vs_254": -11.7,
+      "pct_vs_220": 1.9
+    },
+    {
+      "name": "F4 (Linear 10-20 deg/s)",
+      "desc": "Bounded Linear Attenuation (0-15% for 10-20 deg/s)",
+      "speed_mae_kmh": 6.25,
+      "sturn_mae_kmh": 9.34,
+      "sturn_bias_kmh": 7.59,
+      "err_60s": 35.48,
+      "err_120s": 116.89,
+      "err_300s": 355.23,
+      "pct_vs_263": 35.0,
+      "pct_vs_254": 39.8,
+      "pct_vs_220": 61.4
+    },
+    {
+      "name": "F5 (Best Validated + M019)",
+      "desc": "Best Validated Candidate (F4 (Linear 10-20 deg/s))",
+      "speed_mae_kmh": 6.25,
+      "sturn_mae_kmh": 9.34,
+      "sturn_bias_kmh": 7.59,
+      "err_60s": 35.48,
+      "err_120s": 116.89,
+      "err_300s": 355.23,
+      "pct_vs_263": 35.0,
+      "pct_vs_254": 39.8,
+      "pct_vs_220": 61.4
+    }
+  ]
+}

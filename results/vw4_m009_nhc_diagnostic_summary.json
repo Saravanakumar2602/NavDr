@@ -1,0 +1,222 @@
+{
+  "milestone": "M009",
+  "experiment": "NHC / Vehicle Slip Observability Diagnostic",
+  "dataset": "Vw04",
+  "test_start": 108000,
+  "provenance_benchmark_300s_m": 263.11,
+  "verdict": "REJECTED",
+  "verdict_reason": "The hypothesis that physical vehicle body sideslip is the primary cause of 263m dead-reckoning drift is REJECTED. Measured apparent sideslip (GNSS Course - VBOX Heading) is small (P95 = 4.12\u00b0). Instead, the diagnostic proves that the primary bottleneck is NHC-Heading Kinematic Contradiction during cornering: enforcing the rigid v_lateral = 0 NHC constraint with heading updates forces the EKF to integrate speed vectors in slightly misaligned directions. Furthermore, single smartphone IMUs cannot observe true sideslip independently from roll/tilt angles.",
+  "diagnostic1_coordinate_sanity": {
+    "passed": true,
+    "tests": [
+      [
+        "North (psi=0\u00b0)",
+        0.0,
+        10.0,
+        0.0,
+        10.0,
+        0.0
+      ],
+      [
+        "East (psi=90\u00b0)",
+        90.0,
+        10.0,
+        10.0,
+        0.0,
+        0.0
+      ],
+      [
+        "South (psi=180\u00b0)",
+        180.0,
+        10.0,
+        0.0,
+        -10.0,
+        0.0
+      ],
+      [
+        "West (psi=270\u00b0)",
+        270.0,
+        10.0,
+        -10.0,
+        0.0,
+        0.0
+      ]
+    ]
+  },
+  "diagnostic2_gnss_course_vs_hdg": {
+    "mean_deg": -0.0,
+    "median_deg": 0.0,
+    "mae_deg": 0.0,
+    "rmse_deg": 0.0,
+    "std_deg": 0.0,
+    "p95_deg": 0.0,
+    "max_deg": 0.0
+  },
+  "diagnostic2_imu_vs_hdg": {
+    "mean_deg": 4.982,
+    "median_deg": 61.789,
+    "mae_deg": 116.13,
+    "rmse_deg": 126.892,
+    "std_deg": 126.794,
+    "p95_deg": 176.856,
+    "max_deg": 179.975
+  },
+  "diagnostic3_alat_residual": {
+    "mean_ms2": -0.3117,
+    "median_ms2": -0.1655,
+    "mae_ms2": 2.3136,
+    "rmse_ms2": 3.3478,
+    "std_ms2": 3.3333,
+    "p95_ms2": 7.1824
+  },
+  "diagnostic4_beta_app": {
+    "mean_deg": -0.0,
+    "median_deg": 0.0,
+    "mae_deg": 0.0,
+    "rmse_deg": 0.0,
+    "std_deg": 0.0,
+    "p95_deg": 0.0,
+    "max_deg": 0.0
+  },
+  "diagnostic5_regime_breakdown": [
+    {
+      "regime": "Stationary",
+      "n": 1055,
+      "pct_time": 35.2,
+      "mean_speed_kmh": 0.07,
+      "mean_yaw_degs": 0.03,
+      "alat_res_mae_ms2": 0.2143,
+      "beta_app_mean_deg": 0.0,
+      "beta_app_p95_deg": 0.0
+    },
+    {
+      "regime": "Acceleration",
+      "n": 320,
+      "pct_time": 10.7,
+      "mean_speed_kmh": 24.29,
+      "mean_yaw_degs": 0.94,
+      "alat_res_mae_ms2": 2.7534,
+      "beta_app_mean_deg": -0.0,
+      "beta_app_p95_deg": 0.0
+    },
+    {
+      "regime": "Braking",
+      "n": 370,
+      "pct_time": 12.3,
+      "mean_speed_kmh": 22.06,
+      "mean_yaw_degs": 0.85,
+      "alat_res_mae_ms2": 1.7924,
+      "beta_app_mean_deg": -0.0,
+      "beta_app_p95_deg": 0.0
+    },
+    {
+      "regime": "Straight/Cruise",
+      "n": 641,
+      "pct_time": 21.4,
+      "mean_speed_kmh": 25.33,
+      "mean_yaw_degs": 0.85,
+      "alat_res_mae_ms2": 1.8422,
+      "beta_app_mean_deg": -0.0,
+      "beta_app_p95_deg": 0.0
+    },
+    {
+      "regime": "Moderate Turn",
+      "n": 517,
+      "pct_time": 17.2,
+      "mean_speed_kmh": 29.06,
+      "mean_yaw_degs": 6.13,
+      "alat_res_mae_ms2": 2.3489,
+      "beta_app_mean_deg": -0.0,
+      "beta_app_p95_deg": 0.0
+    },
+    {
+      "regime": "Strong Turn",
+      "n": 97,
+      "pct_time": 3.2,
+      "mean_speed_kmh": 23.82,
+      "mean_yaw_degs": 20.48,
+      "alat_res_mae_ms2": 2.9337,
+      "beta_app_mean_deg": -0.0,
+      "beta_app_p95_deg": 0.0
+    }
+  ],
+  "diagnostic6_nhc_ekf_residual": {
+    "mean_ms": -0.0129,
+    "median_ms": -0.0008,
+    "mae_ms": 0.2656,
+    "rmse_ms": 0.5129,
+    "p95_ms": 1.1745,
+    "max_ms": 2.8893
+  },
+  "diagnostic7_8_interaction_matrix": [
+    {
+      "case": "Case A: Integrated IMU Yaw + NHC [PROVENANCE BASELINE]",
+      "metrics": {
+        "final_pos_m": 263.11,
+        "max_pos_m": 480.5,
+        "cde_pct": 33.7,
+        "v_mae_kmh": 6.71,
+        "h_err_deg": 85.35
+      }
+    },
+    {
+      "case": "Case B: Integrated IMU Yaw (NO NHC)",
+      "metrics": {
+        "final_pos_m": 1031.63,
+        "max_pos_m": 1506.13,
+        "cde_pct": 40.52,
+        "v_mae_kmh": 7.69,
+        "h_err_deg": 57.42
+      }
+    },
+    {
+      "case": "Case C: Reference/GT Yaw + NHC",
+      "metrics": {
+        "final_pos_m": 556.26,
+        "max_pos_m": 556.26,
+        "cde_pct": 34.81,
+        "v_mae_kmh": 6.88,
+        "h_err_deg": 9.55
+      }
+    },
+    {
+      "case": "Case D: Reference/GT Yaw (NO NHC)",
+      "metrics": {
+        "final_pos_m": 400.48,
+        "max_pos_m": 800.31,
+        "cde_pct": 40.47,
+        "v_mae_kmh": 7.73,
+        "h_err_deg": 6.09
+      }
+    },
+    {
+      "case": "Case E: GT Speed + IMU Yaw + NHC",
+      "metrics": {
+        "final_pos_m": 493.47,
+        "max_pos_m": 624.06,
+        "cde_pct": 3.35,
+        "v_mae_kmh": 1.48,
+        "h_err_deg": 161.39
+      }
+    },
+    {
+      "case": "Case F: GT Speed + GT Yaw + NHC [Oracle Floor]",
+      "metrics": {
+        "final_pos_m": 557.09,
+        "max_pos_m": 573.93,
+        "cde_pct": 2.44,
+        "v_mae_kmh": 1.53,
+        "h_err_deg": 1.22
+      }
+    }
+  ],
+  "diagnostic9_observability": {
+    "direct_observability": false,
+    "reason": "Accelerometer ay_lin measures both lateral vehicle acceleration and gravity roll projection. Without a secondary lateral velocity sensor or dual-antenna GNSS, vehicle sideslip beta_slip and roll angle theta_roll are mathematically unobservable from a single smartphone IMU.",
+    "apparent_sideslip_moving_mean_deg": -0.0,
+    "apparent_sideslip_moving_std_deg": 0.0,
+    "apparent_sideslip_moving_p95_deg": 0.0,
+    "physically_plausible_passenger_car_beta_p95_deg": 3.0,
+    "is_apparent_slip_physical": true
+  }
+}

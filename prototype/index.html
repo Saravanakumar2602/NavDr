@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IDR Showcase — Intelligent Dead-Reckoning & GNSS Outage Recovery Dashboard</title>
+  
+  <!-- Leaflet CSS for Map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Top Header Banner -->
+    <header class="navbar">
+      <div class="brand">
+        <div class="brand-text">
+          <h1>INTELLIGENT DEAD-RECKONING (IDR)</h1>
+          <span class="sub-title">GNSS Outage Navigation & Path Recovery Dashboard</span>
+        </div>
+      </div>
+
+      <!-- Mode & Signal Status Badges -->
+      <div class="status-center">
+        <div id="modeBadge" class="badge badge-gnss">
+          <span class="pulse-dot"></span>
+          <span id="modeStatusText">GNSS SIGNAL ONLINE</span>
+        </div>
+        <div class="outage-timer-box">
+          <span class="timer-label">OUTAGE DURATION:</span>
+          <span id="outageTimerDisplay" class="timer-digits">00:00.0s</span>
+        </div>
+      </div>
+
+      <!-- Quick Action Controls -->
+      <div class="header-controls">
+        <button id="btnToggleGNSS" class="btn btn-warning">TRIGGER GNSS OUTAGE</button>
+        <button id="btnPlayPause" class="btn btn-primary">PLAY</button>
+        <button id="btnReset" class="btn btn-secondary">RESET</button>
+        <select id="speedMultiplier" class="speed-select">
+          <option value="1">1x Speed</option>
+          <option value="2" selected>2x Speed</option>
+          <option value="5">5x Speed</option>
+          <option value="10">10x Speed</option>
+        </select>
+      </div>
+    </header>
+
+    <!-- Main Dashboard Grid -->
+    <main class="dashboard-grid">
+      <!-- Left Overlay Column: Map View -->
+      <section class="map-section card">
+        <div class="card-header">
+          <div class="card-title">
+            <h2>NAVIGATION MAP & TRAJECTORY RECOVERY</h2>
+          </div>
+          <div class="map-legend">
+            <span class="legend-item"><span class="dot legend-gt"></span> Ground Truth</span>
+            <span class="legend-item"><span class="dot legend-raw"></span> Unassisted Inertial</span>
+            <span class="legend-item"><span class="dot legend-idr"></span> IDR Model Path</span>
+            <span class="legend-item"><span class="dot legend-recover"></span> Signal Correction</span>
+          </div>
+        </div>
+
+        <!-- Leaflet Map Container -->
+        <div id="map" class="leaflet-map-container"></div>
+
+        <!-- Floating HUD Overlay on Map -->
+        <div class="map-hud-overlay">
+          <div class="hud-item">
+            <span class="hud-label">COORDINATE:</span>
+            <span id="hudCoords" class="hud-val">12.971600° N, 77.594600° E</span>
+          </div>
+          <div class="hud-item">
+            <span class="hud-label">SYSTEM STATE:</span>
+            <span class="hud-val highlight">IMU Dead-Reckoning Active</span>
+          </div>
+          <div class="hud-item">
+            <span class="hud-label">300s POSITION DRIFT:</span>
+            <span id="hudDrift" class="hud-val success">218.93 m (96.6% Error Reduction)</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Telemetry & System Status -->
+      <section class="telemetry-section">
+        <!-- Live Gauges Panel -->
+        <div class="card telemetry-card">
+          <div class="card-header">
+            <div class="card-title">
+              <h2>VEHICLE TELEMETRY</h2>
+            </div>
+          </div>
+          <div class="telemetry-grid">
+            <!-- Speed Gauge Box -->
+            <div class="metric-box">
+              <span class="metric-title">CURRENT SPEED</span>
+              <div class="speed-readout">
+                <span id="speedValue" class="speed-num">0.0</span>
+                <span class="speed-unit">km/h</span>
+              </div>
+              <div class="speed-comparison">
+                <span>Reference: <strong id="speedGT">0.0 km/h</strong></span>
+              </div>
+            </div>
+
+            <!-- Position Drift Meter -->
+            <div class="metric-box">
+              <span class="metric-title">POSITION ERROR (300s OUTAGE)</span>
+              <div class="drift-comparison">
+                <div class="drift-bar-container">
+                  <div class="drift-bar-label">Unassisted Inertial Integration</div>
+                  <div class="bar-bg"><div id="barRaw" class="bar-fill bar-raw" style="width: 100%;"></div></div>
+                  <div id="driftRawVal" class="drift-val text-danger">6,420.0 m</div>
+                </div>
+                <div class="drift-bar-container">
+                  <div class="drift-bar-label">IDR System</div>
+                  <div class="bar-bg"><div id="barIDR" class="bar-fill bar-idr" style="width: 3.4%;"></div></div>
+                  <div id="driftIDRVal" class="drift-val text-success">218.93 m</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- System Control Status Panel -->
+        <div class="card model-states-card">
+          <div class="card-header">
+            <div class="card-title">
+              <h2>CONTROL STATUS</h2>
+            </div>
+          </div>
+          <div class="states-grid">
+            <!-- Jerk Gate LED Indicator -->
+            <div class="state-indicator-box">
+              <div class="indicator-header">
+                <span class="indicator-name">IMU Jerk Sensor</span>
+                <div id="ledJerk" class="led-light led-off"></div>
+              </div>
+              <div id="jerkValue" class="indicator-val">0.00 m/s³</div>
+              <div class="indicator-desc">Detects sudden braking at deceleration onset</div>
+            </div>
+
+            <!-- ZUPT Stop Detector Indicator -->
+            <div class="state-indicator-box">
+              <div class="indicator-header">
+                <span class="indicator-name">Vehicle Stop Detector</span>
+                <div id="ledZupt" class="led-light led-off"></div>
+              </div>
+              <div id="zuptStatus" class="indicator-val">P(stat) = 0.05</div>
+              <div class="indicator-desc">Resets velocity to zero during traffic stops</div>
+            </div>
+
+            <!-- APM Speed Damping Indicator -->
+            <div class="state-indicator-box">
+              <div class="indicator-header">
+                <span class="indicator-name">Speed Response Damping</span>
+                <div id="ledApm" class="led-light led-off"></div>
+              </div>
+              <div id="apmStatus" class="indicator-val">0.00 m/s</div>
+              <div class="indicator-desc">Compensates sensor deceleration lag</div>
+            </div>
+
+            <!-- Heading & Alignment -->
+            <div class="state-indicator-box">
+              <div class="indicator-header">
+                <span class="indicator-name">Heading Angle</span>
+                <div class="led-light led-active"></div>
+              </div>
+              <div id="headingVal" class="indicator-val">0.0° (East)</div>
+              <div class="indicator-desc">Lateral velocity constraint active</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- System Operation Explanation Card -->
+        <div class="card showcase-info-card">
+          <div class="card-header">
+            <div class="card-title">
+              <h2>SYSTEM OPERATION</h2>
+            </div>
+          </div>
+          <div class="showcase-steps">
+            <div class="step-item">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <h4>Signal Loss Phase</h4>
+                <p>When GNSS drops, the system seamlessly engages smartphone IMU dead-reckoning.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <h4>Outage Trajectory Tracking</h4>
+                <p>Physical constraints prevent error drift, maintaining accurate trajectory lines.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <h4>Signal Recovery & Smoothing</h4>
+                <p>Upon GNSS recovery, the system smoothly re-aligns trajectory without jumps.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- Application JS -->
+  <script src="app.js"></script>
+</body>
+</html>
+6

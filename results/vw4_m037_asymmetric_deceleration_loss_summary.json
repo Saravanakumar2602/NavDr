@@ -1,0 +1,125 @@
+{
+  "milestone": "M037",
+  "title": "Asymmetric Deceleration Loss Ablation",
+  "active_benchmark": 218.93,
+  "selected_val_winner": "M037 F2 (lambda=0.003)",
+  "val_nav_results": [
+    [
+      "F0 (Control Baseline)",
+      "M037 F0 (Control Baseline)",
+      494.83,
+      356.99
+    ],
+    [
+      "F1 (lambda=0.001)",
+      "M037 F1 (lambda=0.001)",
+      1050.28,
+      438.63
+    ],
+    [
+      "F2 (lambda=0.003)",
+      "M037 F2 (lambda=0.003)",
+      316.98,
+      259.27
+    ],
+    [
+      "F3 (lambda=0.010)",
+      "M037 F3 (lambda=0.010)",
+      1146.17,
+      332.48
+    ],
+    [
+      "F4 (lambda=0.030)",
+      "M037 F4 (lambda=0.030)",
+      777.32,
+      413.05
+    ]
+  ],
+  "test_results_table": [
+    {
+      "id": "F0 (Control Baseline)",
+      "name": "M037 F0 (Control Baseline)",
+      "lambda": 0.0,
+      "speed_mae_kmh": 7.33,
+      "brk_mae_kmh": 11.57,
+      "brk_bias_kmh": 9.85,
+      "err_60s": 27.35,
+      "err_120s": 426.85,
+      "err_300s": 218.93,
+      "mean_pos_m": 269.2,
+      "final_along_m": -197.64,
+      "final_cross_m": -94.18,
+      "pct_vs_263": -16.8,
+      "pct_vs_220": -0.5,
+      "pct_vs_218": 0.0
+    },
+    {
+      "id": "F1 (lambda=0.001)",
+      "name": "M037 F1 (lambda=0.001)",
+      "lambda": 0.001,
+      "speed_mae_kmh": 8.77,
+      "brk_mae_kmh": 13.8,
+      "brk_bias_kmh": 12.2,
+      "err_60s": 123.97,
+      "err_120s": 735.75,
+      "err_300s": 519.24,
+      "mean_pos_m": 718.63,
+      "final_along_m": 508.37,
+      "final_cross_m": 105.65,
+      "pct_vs_263": 97.3,
+      "pct_vs_220": 135.9,
+      "pct_vs_218": 137.2
+    },
+    {
+      "id": "F2 (lambda=0.003)",
+      "name": "M037 F2 (lambda=0.003)",
+      "lambda": 0.003,
+      "speed_mae_kmh": 16.53,
+      "brk_mae_kmh": 26.81,
+      "brk_bias_kmh": -26.81,
+      "err_60s": 383.52,
+      "err_120s": 809.63,
+      "err_300s": 818.48,
+      "mean_pos_m": 747.32,
+      "final_along_m": 513.02,
+      "final_cross_m": -637.75,
+      "pct_vs_263": 211.1,
+      "pct_vs_220": 271.8,
+      "pct_vs_218": 273.9
+    },
+    {
+      "id": "F3 (lambda=0.010)",
+      "name": "M037 F3 (lambda=0.010)",
+      "lambda": 0.01,
+      "speed_mae_kmh": 7.36,
+      "brk_mae_kmh": 11.9,
+      "brk_bias_kmh": 8.91,
+      "err_60s": 14.31,
+      "err_120s": 880.4,
+      "err_300s": 1289.82,
+      "mean_pos_m": 717.86,
+      "final_along_m": -341.24,
+      "final_cross_m": -1243.86,
+      "pct_vs_263": 390.2,
+      "pct_vs_220": 486.0,
+      "pct_vs_218": 489.1
+    },
+    {
+      "id": "F4 (lambda=0.030)",
+      "name": "M037 F4 (lambda=0.030)",
+      "lambda": 0.03,
+      "speed_mae_kmh": 10.26,
+      "brk_mae_kmh": 16.21,
+      "brk_bias_kmh": 14.83,
+      "err_60s": 100.91,
+      "err_120s": 909.2,
+      "err_300s": 976.05,
+      "mean_pos_m": 642.51,
+      "final_along_m": -743.29,
+      "final_cross_m": -632.61,
+      "pct_vs_263": 271.0,
+      "pct_vs_220": 343.4,
+      "pct_vs_218": 345.8
+    }
+  ]
+}

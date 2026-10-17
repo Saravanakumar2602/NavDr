@@ -1,0 +1,58 @@
+{
+  "scenario_id": "case_02_underground_tunnel",
+  "title": "CASE 02 \u2014 LONG UNDERGROUND TUNNEL / UNDERPASS",
+  "subtitle": "GNSS-Denied Navigation inside Subterranean Mountain Highway Tunnel (NH44 Chenani-Nashri Tunnel)",
+  "environment": {
+    "type": "Underground Tunnel / Subterranean Highway",
+    "location_name": "Chenani-Nashri Tunnel (NH44 Jammu-Srinagar Highway)",
+    "lat_center": 32.925,
+    "lon_center": 75.195,
+    "tunnel_length_km": 9.2,
+    "gnss_condition": "SIMULATED TUNNEL BLACKOUT / TOTAL SIGNAL DENIAL"
+  },
+  "navigation_engine": {
+    "name": "M029 Multi-Anchor Heading Architecture",
+    "speed_model": "SpeedNet v2 (W=40, CNN+BiLSTM)",
+    "orientation": "Multi-Anchor Heading Manager",
+    "locked_benchmark": {
+      "m028_err_300s_m": 218.93,
+      "m029_err_300s_m": 48.2,
+      "comparison_label": "Benchmark: M028 218.93 m \u2192 M029 48.20 m @ 300 s"
+    }
+  },
+  "timeline": {
+    "total_duration_sec": 300.0,
+    "gnss_aided_pre_outage_sec": 30.0,
+    "gnss_outage_start_sec": 30.0,
+    "gnss_outage_end_sec": 270.0,
+    "gnss_outage_duration_sec": 240.0,
+    "gnss_aided_post_outage_sec": 30.0
+  },
+  "waypoints": {
+    "start": {
+      "lat": 32.88,
+      "lon": 75.184,
+      "name": "Open Highway Approach (GNSS Online)"
+    },
+    "tunnel_entry": {
+      "lat": 32.889,
+      "lon": 75.189,
+      "name": "South Portal Tunnel Entrance"
+    },
+    "mid_tunnel": {
+      "lat": 32.925,
+      "lon": 75.195,
+      "name": "Mid-Tunnel Segment (Traffic Queue / ZUPT Active)"
+    },
+    "tunnel_exit": {
+      "lat": 32.96,
+      "lon": 75.2,
+      "name": "North Portal Tunnel Exit"
+    },
+    "destination": {
+      "lat": 32.969,
+      "lon": 75.204,
+      "name": "Open North Portal Highway"
+    }
+  }
+}

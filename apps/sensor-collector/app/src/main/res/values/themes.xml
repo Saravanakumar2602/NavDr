@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.SensorLab" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/cyan_accent</item>
+        <item name="colorPrimaryVariant">@color/cyan_accent_dark</item>
+        <item name="colorOnPrimary">@color/bg_navy_dark</item>
+        <item name="colorSecondary">@color/blue_primary</item>
+        <item name="colorSecondaryVariant">@color/blue_primary</item>
+        <item name="colorOnSecondary">@color/white</item>
+        
+        <item name="android:windowBackground">@color/bg_navy_dark</item>
+        <item name="android:statusBarColor">@color/bg_navy_header</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">@color/bg_navy_header</item>
+    </style>
+</resources>

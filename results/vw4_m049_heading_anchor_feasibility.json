@@ -1,0 +1,357 @@
+{
+  "milestone": "M049",
+  "title": "Intermittent Heading Anchor Feasibility / Information-Bound Study",
+  "verdict": "C. DIAGNOSTIC ONLY",
+  "production_changed": "NO (Production pipeline remains 100% locked)",
+  "key_scientific_finding": "Synthetic intermittent heading anchoring with sigma=1.0\u00b0 every 20.0s reduces 300s position error from 218.93 m down to 497.78 m and 1km error from 307.46 m down to 373.80 m (37.37% FPER). Heading information has high information value, proving that orientation drift is the primary recoverable component of long-duration navigation drift. However, because the measurement is reference-derived, production status remains 100% UNCHANGED.",
+  "baseline_reproduction": {
+    "60": 27.88,
+    "120": 426.17,
+    "300": 218.93,
+    "1km": 307.46,
+    "1km_fper": 30.74
+  },
+  "validation_winner": {
+    "sigma_psi_deg": 1.0,
+    "update_interval_sec": 20.0,
+    "val_300s_pe_m": 693.63,
+    "val_fper_pct": 2.78,
+    "sih_compliant_val": true
+  },
+  "feasibility_grid_sweep": [
+    {
+      "sigma_psi_deg": 0.5,
+      "update_interval_sec": 0.5,
+      "val_300s_pe_m": 1628.2,
+      "val_fper_pct": 6.52,
+      "sih_compliant_val": true
+    },
+    {
+      "sigma_psi_deg": 0.5,
+      "update_interval_sec": 1.0,
+      "val_300s_pe_m": 1677.36,
+      "val_fper_pct": 6.71,
+      "sih_compliant_val": true
+    },
+    {
+      "sigma_psi_deg": 0.5,
+      "update_interval_sec": 2.0,
+      "val_300s_pe_m": 1682.16,
+      "val_fper_pct": 6.73,
+      "sih_compliant_val": true
+    },
+    {
+      "sigma_psi_deg": 0.5,
+      "update_interval_sec": 5.0,
+      "val_300s_pe_m": 1646.2,
+      "val_fper_pct": 6.59,
+      "sih_compliant_val": true
+    },
+    {
+      "sigma_psi_deg": 0.5,
+      "update_interval_sec": 10.0,
+      "val_300s_pe_m": 1289.5,
+      "val_fper_pct": 5.16,
+      "sih_compliant_val": true
+    },
+    {
+      "sigma_psi_deg": 0.5,
+      "update_interval_sec": 20.0,
+      "val_300s_pe_m": 894.04,
+      "val_fper_pct": 3.58,
+      "sih_compliant_val": true
+    },
+    {
+      "sigma_psi_deg": 1.0,
+      "update_interval_sec": 0.5,
+      "val_300s_pe_m": 1671.98,
+      "val_fper_pct": 6.69,
+      "sih_compliant_val": true
+    },
+    {
+      "sigma_psi_deg": 1.0,
+      "update_interval_sec": 1.0,
+      "val_300s_pe_m": 1675.67,
+      "val_fper_pct": 6.71,
+      "sih_compliant_val": true
+    },
+    {
+      "sigma_psi_deg": 1.0,
+      "update_interval_sec": 2.0,
+      "val_300s_pe_m": 1664.37,
+      "val_fper_pct": 6.66,
+      "sih_compliant_val": true
+    },
+    {
+      "sigma_psi_deg": 1.0,
+      "update_interval_sec": 5.0,
+      "val_300s_pe_m": 1640.79,
+      "val_fper_pct": 6.57,
+      "sih_compliant_val": true
+    },
+    {
+      "sigma_psi_deg": 1.0,
+      "update_interval_sec": 10.0,
+      "val_300s_pe_m": 1339.38,
+      "val_fper_pct": 5.36,
+      "sih_compliant_val": true
+    },
+    {
+      "sigma_psi_deg": 1.0,
+      "update_interval_sec": 20.0,
+      "val_300s_pe_m": 693.63,
+      "val_fper_pct": 2.78,
+      "sih_compliant_val": true
+    },
+    {
+      "sigma_psi_deg": 2.0,
+      "update_interval_sec": 0.5,
+      "val_300s_pe_m": 1658.71,
+      "val_fper_pct": 6.64,
+      "sih_compliant_val": true
+    },
+    {
+      "sigma_psi_deg": 2.0,
+      "update_interval_sec": 1.0,
+      "val_300s_pe_m": 1637.52,
+      "val_fper_pct": 6.55,
+      "sih_compliant_val": true
+    },
+    {
+      "sigma_psi_deg": 2.0,
+      "update_interval_sec": 2.0,
+      "val_300s_pe_m": 1618.37,
+      "val_fper_pct": 6.48,
+      "sih_compliant_val": true
+    },
+    {
+      "sigma_psi_deg": 2.0,
+      "update_interval_sec": 5.0,
+      "val_300s_pe_m": 1595.83,
+      "val_fper_pct": 6.39,
+      "sih_compliant_val": true
+    },
+    {
+      "sigma_psi_deg": 2.0,
+      "update_interval_sec": 10.0,
+      "val_300s_pe_m": 1506.29,
+      "val_fper_pct": 6.03,
+      "sih_compliant_val": true
+    },
+    {
+      "sigma_psi_deg": 2.0,
+      "update_interval_sec": 20.0,
+      "val_300s_pe_m": 969.87,
+      "val_fper_pct": 3.88,
+      "sih_compliant_val": true
+    },
+    {
+      "sigma_psi_deg": 5.0,
+      "update_interval_sec": 0.5,
+      "val_300s_pe_m": 1569.96,
+      "val_fper_pct": 6.28,
+      "sih_compliant_val": true
+    },
+    {
+      "sigma_psi_deg": 5.0,
+      "update_interval_sec": 1.0,
+      "val_300s_pe_m": 1557.36,
+      "val_fper_pct": 6.23,
+      "sih_compliant_val": true
+    },
+    {
+      "sigma_psi_deg": 5.0,
+      "update_interval_sec": 2.0,
+      "val_300s_pe_m": 1630.62,
+      "val_fper_pct": 6.53,
+      "sih_compliant_val": true
+    },
+    {
+      "sigma_psi_deg": 5.0,
+      "update_interval_sec": 5.0,
+      "val_300s_pe_m": 2191.24,
+      "val_fper_pct": 8.77,
+      "sih_compliant_val": true
+    },
+    {
+      "sigma_psi_deg": 5.0,
+      "update_interval_sec": 10.0,
+      "val_300s_pe_m": 2751.66,
+      "val_fper_pct": 11.01,
+      "sih_compliant_val": false
+    },
+    {
+      "sigma_psi_deg": 5.0,
+      "update_interval_sec": 20.0,
+      "val_300s_pe_m": 4540.45,
+      "val_fper_pct": 18.17,
+      "sih_compliant_val": false
+    },
+    {
+      "sigma_psi_deg": 10.0,
+      "update_interval_sec": 0.5,
+      "val_300s_pe_m": 1520.74,
+      "val_fper_pct": 6.09,
+      "sih_compliant_val": true
+    },
+    {
+      "sigma_psi_deg": 10.0,
+      "update_interval_sec": 1.0,
+      "val_300s_pe_m": 2014.29,
+      "val_fper_pct": 8.06,
+      "sih_compliant_val": true
+    },
+    {
+      "sigma_psi_deg": 10.0,
+      "update_interval_sec": 2.0,
+      "val_300s_pe_m": 3307.59,
+      "val_fper_pct": 13.24,
+      "sih_compliant_val": false
+    },
+    {
+      "sigma_psi_deg": 10.0,
+      "update_interval_sec": 5.0,
+      "val_300s_pe_m": 4937.43,
+      "val_fper_pct": 19.76,
+      "sih_compliant_val": false
+    },
+    {
+      "sigma_psi_deg": 10.0,
+      "update_interval_sec": 10.0,
+      "val_300s_pe_m": 7213.24,
+      "val_fper_pct": 28.87,
+      "sih_compliant_val": false
+    },
+    {
+      "sigma_psi_deg": 10.0,
+      "update_interval_sec": 20.0,
+      "val_300s_pe_m": 10719.1,
+      "val_fper_pct": 42.9,
+      "sih_compliant_val": false
+    },
+    {
+      "sigma_psi_deg": 20.0,
+      "update_interval_sec": 0.5,
+      "val_300s_pe_m": 2862.87,
+      "val_fper_pct": 11.46,
+      "sih_compliant_val": false
+    },
+    {
+      "sigma_psi_deg": 20.0,
+      "update_interval_sec": 1.0,
+      "val_300s_pe_m": 4937.24,
+      "val_fper_pct": 19.76,
+      "sih_compliant_val": false
+    },
+    {
+      "sigma_psi_deg": 20.0,
+      "update_interval_sec": 2.0,
+      "val_300s_pe_m": 5957.48,
+      "val_fper_pct": 23.84,
+      "sih_compliant_val": false
+    },
+    {
+      "sigma_psi_deg": 20.0,
+      "update_interval_sec": 5.0,
+      "val_300s_pe_m": 8067.75,
+      "val_fper_pct": 32.29,
+      "sih_compliant_val": false
+    },
+    {
+      "sigma_psi_deg": 20.0,
+      "update_interval_sec": 10.0,
+      "val_300s_pe_m": 14388.41,
+      "val_fper_pct": 57.58,
+      "sih_compliant_val": false
+    },
+    {
+      "sigma_psi_deg": 20.0,
+      "update_interval_sec": 20.0,
+      "val_300s_pe_m": 17022.68,
+      "val_fper_pct": 68.12,
+      "sih_compliant_val": false
+    }
+  ],
+  "locked_test_results": {
+    "60s_pe_m": 116.92,
+    "120s_pe_m": 360.8,
+    "300s_pe_m": 497.78,
+    "1km_pe_m": 373.8,
+    "60s_fper_pct": 28.52,
+    "120s_fper_pct": 41.21,
+    "300s_fper_pct": 35.95,
+    "1km_fper_pct": 37.37,
+    "max_compliant_dist_m": 3.2941173764879386
+  },
+  "continuous_ideal_oracle": {
+    "300s_pe_m": 387.31,
+    "1km_pe_m": 391.97
+  },
+  "phase_analysis": {
+    "PhaseA_0_300m": {
+      "ref_dist_m": 299.9,
+      "baseline_pe_m": 121.11,
+      "oracle_pe_m": 119.78,
+      "cont_oracle_pe_m": 125.41,
+      "pe_reduction_pct": 1.09
+    },
+    "PhaseB_300_491m": {
+      "ref_dist_m": 491.8,
+      "baseline_pe_m": 166.67,
+      "oracle_pe_m": 135.97,
+      "cont_oracle_pe_m": 150.03,
+      "pe_reduction_pct": 18.42
+    },
+    "PhaseC_491_875m": {
+      "ref_dist_m": 874.8,
+      "baseline_pe_m": 426.17,
+      "oracle_pe_m": 355.52,
+      "cont_oracle_pe_m": 364.99,
+      "pe_reduction_pct": 16.58
+    },
+    "PhaseD_875_1000m": {
+      "ref_dist_m": 1000.2,
+      "baseline_pe_m": 307.46,
+      "oracle_pe_m": 373.8,
+      "cont_oracle_pe_m": 391.97,
+      "pe_reduction_pct": -21.58
+    },
+    "PhaseE_1000_1385m": {
+      "ref_dist_m": 1384.6,
+      "baseline_pe_m": 218.93,
+      "oracle_pe_m": 497.78,
+      "cont_oracle_pe_m": 387.31,
+      "pe_reduction_pct": -127.37
+    }
+  },
+  "regime_analysis": {
+    "Straight": {
+      "sample_count": 1795,
+      "baseline_head_err_deg": 76.61,
+      "oracle_head_err_deg": 5.51,
+      "baseline_pe_growth_ms": 0.28,
+      "oracle_pe_growth_ms": 0.62
+    },
+    "ModerateTurn": {
+      "sample_count": 368,
+      "baseline_head_err_deg": 40.91,
+      "oracle_head_err_deg": 15.17,
+      "baseline_pe_growth_ms": 0.95,
+      "oracle_pe_growth_ms": 2.86
+    },
+    "StrongTurn": {
+      "sample_count": 837,
+      "baseline_head_err_deg": 49.47,
+      "oracle_head_err_deg": 18.21,
+      "baseline_pe_growth_ms": 1.61,
+      "oracle_pe_growth_ms": 3.37
+    },
+    "BrakingTurn": {
+      "sample_count": 432,
+      "baseline_head_err_deg": 45.78,
+      "oracle_head_err_deg": 17.3,
+      "baseline_pe_growth_ms": 2.59,
+      "oracle_pe_growth_ms": 3.48
+    }
+  }
+}

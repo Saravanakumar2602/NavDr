@@ -1,0 +1,125 @@
+{
+  "milestone": "M014",
+  "title": "ZUPT Velocity Update & Stationary Fusion",
+  "historical_benchmark": 263.11,
+  "m013_control": 254.11,
+  "selected_val_sigma_zupt": 0.2,
+  "results_table": [
+    {
+      "name": "F0 (Control)",
+      "desc": "M013 F4 Control (No ZUPT)",
+      "speed_mae_kmh": 7.36,
+      "speed_bias_kmh": 5.92,
+      "err_60s": 26.73,
+      "err_120s": 464.0,
+      "err_300s": 254.11,
+      "pct_vs_263": -3.4,
+      "pct_vs_254": 0.0
+    },
+    {
+      "name": "F1 (Stationary Detector)",
+      "desc": "Stationary Detector Causal Evaluation Only",
+      "speed_mae_kmh": 7.36,
+      "speed_bias_kmh": 5.92,
+      "err_60s": 26.73,
+      "err_120s": 464.0,
+      "err_300s": 254.11,
+      "pct_vs_263": -3.4,
+      "pct_vs_254": 0.0
+    },
+    {
+      "name": "F2 (Conservative ZUPT)",
+      "desc": "ZUPT with SpeedNet v2 Raw + Fixed NHC",
+      "speed_mae_kmh": 7.59,
+      "speed_bias_kmh": 6.39,
+      "err_60s": 23.61,
+      "err_120s": 403.54,
+      "err_300s": 266.46,
+      "pct_vs_263": 1.3,
+      "pct_vs_254": 4.9
+    },
+    {
+      "name": "F3 (ZUPT + M013 F4)",
+      "desc": "ZUPT + M013 F4 Confidence-Gated Speed",
+      "speed_mae_kmh": 7.36,
+      "speed_bias_kmh": 5.92,
+      "err_60s": 27.36,
+      "err_120s": 428.45,
+      "err_300s": 233.18,
+      "pct_vs_263": -11.4,
+      "pct_vs_254": -8.2
+    },
+    {
+      "name": "F4 (Adaptive ZUPT Covariance)",
+      "desc": "Confidence-Gated Adaptive ZUPT Covariance",
+      "speed_mae_kmh": 7.36,
+      "speed_bias_kmh": 5.92,
+      "err_60s": 27.12,
+      "err_120s": 431.15,
+      "err_300s": 234.75,
+      "pct_vs_263": -10.8,
+      "pct_vs_254": -7.6
+    },
+    {
+      "name": "F5 (ZUPT Full Operation)",
+      "desc": "ZUPT Active Pre-Outage + Outage",
+      "speed_mae_kmh": 7.36,
+      "speed_bias_kmh": 5.92,
+      "err_60s": 27.36,
+      "err_120s": 428.45,
+      "err_300s": 233.18,
+      "pct_vs_263": -11.4,
+      "pct_vs_254": -8.2
+    }
+  ],
+  "zupt_diagnostics": {
+    "F0 (Control)": {
+      "num_detected_stat": 786,
+      "num_zupt_updates": 0,
+      "false_stat_cnt": 51,
+      "missed_stat_cnt": 320,
+      "avg_vel_corr_ms": 0.0,
+      "max_vel_corr_ms": 0.0
+    },
+    "F1 (Stationary Detector)": {
+      "num_detected_stat": 786,
+      "num_zupt_updates": 0,
+      "false_stat_cnt": 51,
+      "missed_stat_cnt": 320,
+      "avg_vel_corr_ms": 0.0,
+      "max_vel_corr_ms": 0.0
+    },
+    "F2 (Conservative ZUPT)": {
+      "num_detected_stat": 786,
+      "num_zupt_updates": 786,
+      "false_stat_cnt": 51,
+      "missed_stat_cnt": 320,
+      "avg_vel_corr_ms": 0.0248,
+      "max_vel_corr_ms": 0.8456
+    },
+    "F3 (ZUPT + M013 F4)": {
+      "num_detected_stat": 786,
+      "num_zupt_updates": 786,
+      "false_stat_cnt": 51,
+      "missed_stat_cnt": 320,
+      "avg_vel_corr_ms": 0.02,
+      "max_vel_corr_ms": 0.5827
+    },
+    "F4 (Adaptive ZUPT Covariance)": {
+      "num_detected_stat": 786,
+      "num_zupt_updates": 786,
+      "false_stat_cnt": 51,
+      "missed_stat_cnt": 320,
+      "avg_vel_corr_ms": 0.0188,
+      "max_vel_corr_ms": 0.4488
+    },
+    "F5 (ZUPT Full Operation)": {
+      "num_detected_stat": 786,
+      "num_zupt_updates": 786,
+      "false_stat_cnt": 51,
+      "missed_stat_cnt": 320,
+      "avg_vel_corr_ms": 0.02,
+      "max_vel_corr_ms": 0.5827
+    }
+  }
+}

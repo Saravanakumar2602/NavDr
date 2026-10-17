@@ -1,0 +1,86 @@
+{
+  "milestone": "M022",
+  "title": "Causal Deceleration-Integrated Speed Damping Window Ablation",
+  "m019_benchmark": 220.12,
+  "selected_val_window_samples": 7,
+  "results_table": [
+    {
+      "name": "F0 (Control 0.5s / 5samp)",
+      "desc": "M019 Control (0.5s / 5 causal samples)",
+      "speed_mae_kmh": 7.33,
+      "brk_mae_kmh": 11.54,
+      "brk_bias_kmh": 9.82,
+      "err_60s": 27.53,
+      "err_120s": 428.79,
+      "err_300s": 220.12,
+      "pct_vs_263": -16.3,
+      "pct_vs_254": -13.4,
+      "pct_vs_220": 0.0
+    },
+    {
+      "name": "F1 (0.6s / 6 samples)",
+      "desc": "0.6s Integration Window (6 causal samples)",
+      "speed_mae_kmh": 7.33,
+      "brk_mae_kmh": 11.54,
+      "brk_bias_kmh": 9.82,
+      "err_60s": 27.6,
+      "err_120s": 429.45,
+      "err_300s": 227.54,
+      "pct_vs_263": -13.5,
+      "pct_vs_254": -10.5,
+      "pct_vs_220": 3.4
+    },
+    {
+      "name": "F2 (0.7s / 7 samples)",
+      "desc": "0.7s Integration Window (7 causal samples)",
+      "speed_mae_kmh": 7.33,
+      "brk_mae_kmh": 11.55,
+      "brk_bias_kmh": 9.82,
+      "err_60s": 27.67,
+      "err_120s": 430.16,
+      "err_300s": 238.59,
+      "pct_vs_263": -9.3,
+      "pct_vs_254": -6.1,
+      "pct_vs_220": 8.4
+    },
+    {
+      "name": "F3 (0.8s / 8 samples)",
+      "desc": "0.8s Integration Window (8 causal samples)",
+      "speed_mae_kmh": 7.33,
+      "brk_mae_kmh": 11.55,
+      "brk_bias_kmh": 9.82,
+      "err_60s": 27.77,
+      "err_120s": 431.18,
+      "err_300s": 243.31,
+      "pct_vs_263": -7.5,
+      "pct_vs_254": -4.3,
+      "pct_vs_220": 10.5
+    },
+    {
+      "name": "F4 (1.0s / 10 samples)",
+      "desc": "1.0s Integration Window Stress Test (10 causal samples)",
+      "speed_mae_kmh": 7.33,
+      "brk_mae_kmh": 11.54,
+      "brk_bias_kmh": 9.82,
+      "err_60s": 27.87,
+      "err_120s": 433.76,
+      "err_300s": 248.04,
+      "pct_vs_263": -5.7,
+      "pct_vs_254": -2.4,
+      "pct_vs_220": 12.7
+    },
+    {
+      "name": "F5 (Best Validated + M019)",
+      "desc": "Best Validated Window (N=7)",
+      "speed_mae_kmh": 7.33,
+      "brk_mae_kmh": 11.55,
+      "brk_bias_kmh": 9.82,
+      "err_60s": 27.67,
+      "err_120s": 430.16,
+      "err_300s": 238.59,
+      "pct_vs_263": -9.3,
+      "pct_vs_254": -6.1,
+      "pct_vs_220": 8.4
+    }
+  ]
+}

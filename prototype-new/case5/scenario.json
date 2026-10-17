@@ -1,0 +1,55 @@
+{
+  "scenario_id": "case_05_gnss_jamming",
+  "title": "CASE 05 \u2014 GNSS INTERFERENCE / JAMMING",
+  "subtitle": "Software-Simulated RF Interference & Measurement Suppression (Yamuna Expressway)",
+  "environment": {
+    "type": "Expressway Corridor",
+    "location_name": "Yamuna Expressway Corridor",
+    "lat_center": 27.89,
+    "lon_center": 77.54,
+    "gnss_condition": "RF JAMMING INTERFERENCE / MEASUREMENT REJECTION"
+  },
+  "navigation_engine": {
+    "name": "M029 Multi-Anchor Heading Architecture",
+    "locked_benchmark": {
+      "m028_err_300s_m": 218.93,
+      "m029_err_300s_m": 48.2,
+      "comparison_label": "Benchmark: M028 218.93 m \u2192 M029 48.20 m @ 300 s"
+    }
+  },
+  "timeline": {
+    "total_duration_sec": 300.0,
+    "gnss_aided_pre_outage_sec": 30.0,
+    "gnss_outage_start_sec": 30.0,
+    "gnss_outage_end_sec": 270.0,
+    "gnss_outage_duration_sec": 240.0,
+    "gnss_aided_post_outage_sec": 30.0
+  },
+  "waypoints": {
+    "start": {
+      "lat": 27.86,
+      "lon": 77.51,
+      "name": "Expressway Toll Gate"
+    },
+    "jamming_start": {
+      "lat": 27.875,
+      "lon": 77.525,
+      "name": "RF Interference Sector Entry"
+    },
+    "jamming_core": {
+      "lat": 27.89,
+      "lon": 77.54,
+      "name": "Peak Jamming Denial Zone"
+    },
+    "jamming_exit": {
+      "lat": 27.905,
+      "lon": 77.555,
+      "name": "Interference Zone Exit"
+    },
+    "destination": {
+      "lat": 27.92,
+      "lon": 77.57,
+      "name": "Open Expressway Plaza"
+    }
+  }
+}

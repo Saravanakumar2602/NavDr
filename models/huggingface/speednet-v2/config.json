@@ -1,0 +1,53 @@
+{
+  "model_type": "speednet_v2",
+  "task": "inertial_dead_reckoning_speed_estimation",
+  "input_contract": {
+    "tensor_name": "imu_window",
+    "shape": [
+      1,
+      40,
+      6
+    ],
+    "dtype": "float32",
+    "sampling_rate_hz": 10.0,
+    "window_duration_seconds": 4.0,
+    "channels": [
+      "accel_x",
+      "accel_y",
+      "accel_z",
+      "gyro_x",
+      "gyro_y",
+      "gyro_z"
+    ]
+  },
+  "output_contract": {
+    "v_fwd": {
+      "shape": [
+        1
+      ],
+      "dtype": "float32",
+      "description": "Forward vehicle speed in meters per second (m/s)"
+    },
+    "w_yaw": {
+      "shape": [
+        1
+      ],
+      "dtype": "float32",
+      "description": "Vehicle yaw rate in radians per second (rad/s)"
+    },
+    "logit_stat": {
+      "shape": [
+        1
+      ],
+      "dtype": "float32",
+      "description": "Stationary probability logit (apply sigmoid for probability)"
+    },
+    "delta_v": {
+      "shape": [
+        1
+      ],
+      "dtype": "float32",
+      "description": "Auxiliary longitudinal velocity change in meters per second (m/s)"
+    }
+  }
+}

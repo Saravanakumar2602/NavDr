@@ -1,0 +1,157 @@
+{
+  "milestone": "M051",
+  "title": "Zero-Velocity / Kinematic Heading Constraint Study",
+  "baseline_reproduction": {
+    "target_60s": 27.35,
+    "measured_60s": 27.88,
+    "target_120s": 426.85,
+    "measured_120s": 426.17,
+    "target_300s": 218.93,
+    "measured_300s": 218.93,
+    "target_1km": 307.46,
+    "status": "EXACT_MATCH"
+  },
+  "stationary_gyro_diagnostic": {
+    "episodes_detected": 123,
+    "mean_duration_sec": 2.93,
+    "gyro_yaw_inter_episode_std_degs": 0.3285
+  },
+  "validation_sweep": [
+    {
+      "cid": "F0",
+      "desc": "M028 Control Baseline",
+      "val_300s_m": 492.74,
+      "val_mean_m": 357.47,
+      "val_heading_mae_deg": 109.37
+    },
+    {
+      "cid": "F1",
+      "desc": "Existing ZUPT Only Control",
+      "val_300s_m": 493.97,
+      "val_mean_m": 357.65,
+      "val_heading_mae_deg": 109.51
+    },
+    {
+      "cid": "F2",
+      "desc": "Zero-Velocity Yaw Stability Constraint",
+      "val_300s_m": 1211.55,
+      "val_mean_m": 383.59,
+      "val_heading_mae_deg": 82.36
+    },
+    {
+      "cid": "F3",
+      "desc": "Stationary Gyro Bias Stabilization",
+      "val_300s_m": 668.39,
+      "val_mean_m": 420.91,
+      "val_heading_mae_deg": 111.88
+    },
+    {
+      "cid": "F4",
+      "desc": "Stationary Bias + Motion Kinematic Constraint",
+      "val_300s_m": 1193.33,
+      "val_mean_m": 465.51,
+      "val_heading_mae_deg": 97.48
+    },
+    {
+      "cid": "F5",
+      "desc": "Zero-Velocity Heading-Drift Bound",
+      "val_300s_m": 452.99,
+      "val_mean_m": 344.0,
+      "val_heading_mae_deg": 108.84
+    }
+  ],
+  "selected_candidate": {
+    "cid": "F5",
+    "desc": "Zero-Velocity Heading-Drift Bound",
+    "val_300s_err": 452.99
+  },
+  "locked_test_results": [
+    {
+      "cid": "F0",
+      "desc": "M028 Control Baseline",
+      "err_60s": 27.88,
+      "err_120s": 426.17,
+      "err_300s": 218.93,
+      "delta_300s_m": 0.0,
+      "pct_300s": 0.0,
+      "heading_mae_deg": 64.66,
+      "final_heading_err_deg": 131.12,
+      "fper_pct": 15.9,
+      "zupt_count": 786,
+      "max_yaw_corr_deg": 0.1123
+    },
+    {
+      "cid": "F1",
+      "desc": "Existing ZUPT Only Control",
+      "err_60s": 27.89,
+      "err_120s": 427.76,
+      "err_300s": 233.18,
+      "delta_300s_m": 14.25,
+      "pct_300s": 6.51,
+      "heading_mae_deg": 64.62,
+      "final_heading_err_deg": 133.36,
+      "fper_pct": 16.93,
+      "zupt_count": 786,
+      "max_yaw_corr_deg": 0.1105
+    },
+    {
+      "cid": "F2",
+      "desc": "Zero-Velocity Yaw Stability Constraint",
+      "err_60s": 20.37,
+      "err_120s": 697.85,
+      "err_300s": 584.0,
+      "delta_300s_m": 365.07,
+      "pct_300s": 166.75,
+      "heading_mae_deg": 73.42,
+      "final_heading_err_deg": 166.76,
+      "fper_pct": 42.41,
+      "zupt_count": 786,
+      "max_yaw_corr_deg": 0.0711
+    },
+    {
+      "cid": "F3",
+      "desc": "Stationary Gyro Bias Stabilization",
+      "err_60s": 27.56,
+      "err_120s": 417.69,
+      "err_300s": 542.51,
+      "delta_300s_m": 323.58,
+      "pct_300s": 147.8,
+      "heading_mae_deg": 51.12,
+      "final_heading_err_deg": 163.47,
+      "fper_pct": 39.4,
+      "zupt_count": 786,
+      "max_yaw_corr_deg": 0.1004
+    },
+    {
+      "cid": "F4",
+      "desc": "Stationary Bias + Motion Kinematic Constraint",
+      "err_60s": 28.55,
+      "err_120s": 564.51,
+      "err_300s": 1231.38,
+      "delta_300s_m": 1012.45,
+      "pct_300s": 462.45,
+      "heading_mae_deg": 103.6,
+      "final_heading_err_deg": 31.0,
+      "fper_pct": 89.42,
+      "zupt_count": 786,
+      "max_yaw_corr_deg": 0.1343
+    },
+    {
+      "cid": "F5",
+      "desc": "Zero-Velocity Heading-Drift Bound",
+      "err_60s": 8.64,
+      "err_120s": 481.9,
+      "err_300s": 598.34,
+      "delta_300s_m": 379.41,
+      "pct_300s": 173.3,
+      "heading_mae_deg": 65.64,
+      "final_heading_err_deg": 172.39,
+      "fper_pct": 43.45,
+      "zupt_count": 786,
+      "max_yaw_corr_deg": 0.1258
+    }
+  ],
+  "final_verdict": "GENERALIZATION FAILURE",
+  "verdict_reason": "Candidate F5 improved validation (452.99m) but degraded locked test (598.34m vs 218.93m).",
+  "production_status": "UNCHANGED_AT_M028"
+}

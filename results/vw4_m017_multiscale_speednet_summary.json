@@ -1,0 +1,126 @@
+{
+  "milestone": "M017",
+  "title": "Multi-Scale Temporal SpeedNet Ensemble",
+  "historical_benchmark": 263.11,
+  "m013_control": 254.11,
+  "m014_control": 233.18,
+  "selected_val_alpha": 0.25,
+  "results_table": [
+    {
+      "name": "F0 (Control W=40)",
+      "desc": "SpeedNet v2 W=40 Baseline Control",
+      "speed_mae_kmh": 7.36,
+      "speed_bias_kmh": 5.92,
+      "brk_mae_kmh": 11.62,
+      "brk_bias_kmh": 9.94,
+      "err_60s": 27.36,
+      "err_120s": 428.45,
+      "err_300s": 233.18,
+      "pct_vs_263": -11.4,
+      "pct_vs_254": -8.2,
+      "pct_vs_233": 0.0
+    },
+    {
+      "name": "F1 (SpeedNet W=20)",
+      "desc": "SpeedNet v2 W=20 (Short Temporal Context)",
+      "speed_mae_kmh": 8.1,
+      "speed_bias_kmh": 6.7,
+      "brk_mae_kmh": 13.01,
+      "brk_bias_kmh": 11.51,
+      "err_60s": 56.87,
+      "err_120s": 676.32,
+      "err_300s": 745.76,
+      "pct_vs_263": 183.4,
+      "pct_vs_254": 193.5,
+      "pct_vs_233": 219.8
+    },
+    {
+      "name": "F2 (SpeedNet W=30)",
+      "desc": "SpeedNet v2 W=30 (Mid Temporal Context)",
+      "speed_mae_kmh": 9.09,
+      "speed_bias_kmh": 7.41,
+      "brk_mae_kmh": 14.09,
+      "brk_bias_kmh": 11.65,
+      "err_60s": 193.08,
+      "err_120s": 1117.46,
+      "err_300s": 1299.97,
+      "pct_vs_263": 394.1,
+      "pct_vs_254": 411.6,
+      "pct_vs_233": 457.5
+    },
+    {
+      "name": "F3 (SpeedNet W=40 Ref)",
+      "desc": "SpeedNet v2 W=40 Reference",
+      "speed_mae_kmh": 7.36,
+      "speed_bias_kmh": 5.92,
+      "brk_mae_kmh": 11.62,
+      "brk_bias_kmh": 9.94,
+      "err_60s": 27.36,
+      "err_120s": 428.45,
+      "err_300s": 233.18,
+      "pct_vs_263": -11.4,
+      "pct_vs_254": -8.2,
+      "pct_vs_233": 0.0
+    },
+    {
+      "name": "F4 (W20+W40 Ensemble)",
+      "desc": "Two-Scale Ensemble (alpha=0.25)",
+      "speed_mae_kmh": 7.4,
+      "speed_bias_kmh": 6.11,
+      "brk_mae_kmh": 11.77,
+      "brk_bias_kmh": 10.33,
+      "err_60s": 37.63,
+      "err_120s": 493.77,
+      "err_300s": 657.56,
+      "pct_vs_263": 149.9,
+      "pct_vs_254": 158.8,
+      "pct_vs_233": 182.0
+    },
+    {
+      "name": "F5 (Braking Ensemble)",
+      "desc": "Braking-Selective Two-Scale Ensemble",
+      "speed_mae_kmh": 7.57,
+      "speed_bias_kmh": 6.2,
+      "brk_mae_kmh": 12.51,
+      "brk_bias_kmh": 11.12,
+      "err_60s": 66.32,
+      "err_120s": 456.74,
+      "err_300s": 685.55,
+      "pct_vs_263": 160.6,
+      "pct_vs_254": 169.8,
+      "pct_vs_233": 194.0
+    }
+  ],
+  "braking_diagnostics": {
+    "F0 (Control W=40)": {
+      "brk_mae_kmh": 11.62,
+      "brk_bias_kmh": 9.94,
+      "brk_p95_kmh": 31.84
+    },
+    "F1 (SpeedNet W=20)": {
+      "brk_mae_kmh": 13.01,
+      "brk_bias_kmh": 11.51,
+      "brk_p95_kmh": 32.2
+    },
+    "F2 (SpeedNet W=30)": {
+      "brk_mae_kmh": 14.09,
+      "brk_bias_kmh": 11.65,
+      "brk_p95_kmh": 33.42
+    },
+    "F3 (SpeedNet W=40 Ref)": {
+      "brk_mae_kmh": 11.62,
+      "brk_bias_kmh": 9.94,
+      "brk_p95_kmh": 31.84
+    },
+    "F4 (W20+W40 Ensemble)": {
+      "brk_mae_kmh": 11.77,
+      "brk_bias_kmh": 10.33,
+      "brk_p95_kmh": 28.51
+    },
+    "F5 (Braking Ensemble)": {
+      "brk_mae_kmh": 12.51,
+      "brk_bias_kmh": 11.12,
+      "brk_p95_kmh": 29.48
+    }
+  }
+}

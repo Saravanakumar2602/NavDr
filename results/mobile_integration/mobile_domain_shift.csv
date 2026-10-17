@@ -1,0 +1,7 @@
+parameter,io_vnbd,smartphone,ratio_or_delta
+Sampling Frequency (Hz),10.0 Hz,199.3 Hz -> 10.0 Hz,Resampled
+Accel Mean (m/s^2),9.810 m/s^2,9.704 m/s^2,0.106
+Accel SD (m/s^2),0.080 m/s^2,0.118 m/s^2,1.475x
+Gyro Mean (rad/s),0.000 rad/s,-0.0012 rad/s,-0.0012
+Gyro SD (rad/s),0.003 rad/s,0.0051 rad/s,1.700x
+GNSS Availability,100% 3D Fix,0% Fix (Indoor/Shielded),No Reference

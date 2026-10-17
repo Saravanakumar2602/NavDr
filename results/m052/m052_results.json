@@ -1,0 +1,259 @@
+{
+  "milestone": "M052",
+  "title": "Dynamic Centrifugal Acceleration Compensation Study",
+  "axis_audit": {
+    "a_long_formula": "-(raw_ay - grav_y)",
+    "a_lat_formula": "raw_ax - grav_x",
+    "w_yaw_formula": "-gyro_pitch",
+    "speed_source": "v_net (SpeedNet v2 output, m/s)"
+  },
+  "baseline_reproduction": {
+    "target_60s": 27.35,
+    "measured_60s": 27.88,
+    "target_120s": 426.85,
+    "measured_120s": 426.17,
+    "target_300s": 218.93,
+    "measured_300s": 218.93,
+    "target_1km": 307.46,
+    "status": "EXACT_MATCH"
+  },
+  "diagnostic_statistics": {
+    "max_centrifugal_accel_ms2": 18.9368,
+    "mean_straight_ac_ms2": 0.1921,
+    "mean_turning_ac_ms2": 3.7139,
+    "mean_braking_ac_ms2": 0.2978,
+    "mean_brk_turn_ac_ms2": 3.9805
+  },
+  "validation_sweep": [
+    {
+      "cid": "F0",
+      "desc": "Control M028 Baseline",
+      "mode": "F0",
+      "alpha_c": 0.0,
+      "bound_ac": 0.0,
+      "turn_thresh_deg": 0.0,
+      "val_300s_m": 492.74,
+      "val_mean_m": 357.47,
+      "val_heading_mae_deg": 109.37
+    },
+    {
+      "cid": "F1_a0.1",
+      "desc": "Direct Centrifugal (alpha=0.10)",
+      "mode": "F1",
+      "alpha_c": 0.1,
+      "bound_ac": 0.5,
+      "turn_thresh_deg": 0.0,
+      "val_300s_m": 594.71,
+      "val_mean_m": 368.04,
+      "val_heading_mae_deg": 109.76
+    },
+    {
+      "cid": "F1_a0.2",
+      "desc": "Direct Centrifugal (alpha=0.20)",
+      "mode": "F1",
+      "alpha_c": 0.2,
+      "bound_ac": 0.5,
+      "turn_thresh_deg": 0.0,
+      "val_300s_m": 488.8,
+      "val_mean_m": 351.02,
+      "val_heading_mae_deg": 97.74
+    },
+    {
+      "cid": "F1_a0.5",
+      "desc": "Direct Centrifugal (alpha=0.50)",
+      "mode": "F1",
+      "alpha_c": 0.5,
+      "bound_ac": 0.5,
+      "turn_thresh_deg": 0.0,
+      "val_300s_m": 1046.58,
+      "val_mean_m": 371.73,
+      "val_heading_mae_deg": 74.66
+    },
+    {
+      "cid": "F2_b0.5",
+      "desc": "Bounded Centrifugal (bound=0.50m/s\u00b2)",
+      "mode": "F2",
+      "alpha_c": 0.2,
+      "bound_ac": 0.5,
+      "turn_thresh_deg": 0.0,
+      "val_300s_m": 545.25,
+      "val_mean_m": 359.83,
+      "val_heading_mae_deg": 110.38
+    },
+    {
+      "cid": "F2_b1.0",
+      "desc": "Bounded Centrifugal (bound=1.00m/s\u00b2)",
+      "mode": "F2",
+      "alpha_c": 0.2,
+      "bound_ac": 1.0,
+      "turn_thresh_deg": 0.0,
+      "val_300s_m": 666.71,
+      "val_mean_m": 376.87,
+      "val_heading_mae_deg": 109.42
+    },
+    {
+      "cid": "F3_t5.0",
+      "desc": "Turn-Gated Centrifugal (|w|>5\u00b0/s)",
+      "mode": "F3",
+      "alpha_c": 0.2,
+      "bound_ac": 0.5,
+      "turn_thresh_deg": 5.0,
+      "val_300s_m": 491.76,
+      "val_mean_m": 350.67,
+      "val_heading_mae_deg": 97.83
+    },
+    {
+      "cid": "F3_t10.0",
+      "desc": "Turn-Gated Centrifugal (|w|>10\u00b0/s)",
+      "mode": "F3",
+      "alpha_c": 0.2,
+      "bound_ac": 0.5,
+      "turn_thresh_deg": 10.0,
+      "val_300s_m": 746.38,
+      "val_mean_m": 378.21,
+      "val_heading_mae_deg": 106.54
+    },
+    {
+      "cid": "F4_t5.0",
+      "desc": "Turn-Gated + Bounded (|w|>5\u00b0, b=0.5)",
+      "mode": "F4",
+      "alpha_c": 0.2,
+      "bound_ac": 0.5,
+      "turn_thresh_deg": 5.0,
+      "val_300s_m": 544.09,
+      "val_mean_m": 359.24,
+      "val_heading_mae_deg": 110.38
+    },
+    {
+      "cid": "F5_apm",
+      "desc": "Centrifugal Integrated with M028 APM",
+      "mode": "F5",
+      "alpha_c": 0.2,
+      "bound_ac": 0.5,
+      "turn_thresh_deg": 0.0,
+      "val_300s_m": 489.34,
+      "val_mean_m": 351.06,
+      "val_heading_mae_deg": 97.77
+    }
+  ],
+  "selected_candidate": {
+    "cid": "F1_a0.2",
+    "desc": "Direct Centrifugal (alpha=0.20)",
+    "val_300s_err": 488.8
+  },
+  "locked_test_results": [
+    {
+      "cid": "F0",
+      "desc": "Control M028 Baseline",
+      "err_60s": 27.88,
+      "err_120s": 426.17,
+      "err_300s": 218.93,
+      "delta_300s_m": 0.0,
+      "pct_300s": 0.0,
+      "heading_mae_deg": 64.66,
+      "fper_pct": 15.9
+    },
+    {
+      "cid": "F1_a0.1",
+      "desc": "Direct Centrifugal (alpha=0.10)",
+      "err_60s": 16.14,
+      "err_120s": 610.11,
+      "err_300s": 1210.79,
+      "delta_300s_m": 991.86,
+      "pct_300s": 453.05,
+      "heading_mae_deg": 78.69,
+      "fper_pct": 87.92
+    },
+    {
+      "cid": "F1_a0.2",
+      "desc": "Direct Centrifugal (alpha=0.20)",
+      "err_60s": 17.77,
+      "err_120s": 809.0,
+      "err_300s": 1040.45,
+      "delta_300s_m": 821.52,
+      "pct_300s": 375.24,
+      "heading_mae_deg": 84.31,
+      "fper_pct": 75.55
+    },
+    {
+      "cid": "F1_a0.5",
+      "desc": "Direct Centrifugal (alpha=0.50)",
+      "err_60s": 64.99,
+      "err_120s": 1132.42,
+      "err_300s": 1265.91,
+      "delta_300s_m": 1046.98,
+      "pct_300s": 478.23,
+      "heading_mae_deg": 99.61,
+      "fper_pct": 91.92
+    },
+    {
+      "cid": "F2_b0.5",
+      "desc": "Bounded Centrifugal (bound=0.50m/s\u00b2)",
+      "err_60s": 16.78,
+      "err_120s": 571.91,
+      "err_300s": 1147.68,
+      "delta_300s_m": 928.75,
+      "pct_300s": 424.22,
+      "heading_mae_deg": 76.39,
+      "fper_pct": 83.34
+    },
+    {
+      "cid": "F2_b1.0",
+      "desc": "Bounded Centrifugal (bound=1.00m/s\u00b2)",
+      "err_60s": 12.98,
+      "err_120s": 698.93,
+      "err_300s": 1115.48,
+      "delta_300s_m": 896.55,
+      "pct_300s": 409.51,
+      "heading_mae_deg": 81.14,
+      "fper_pct": 81.0
+    },
+    {
+      "cid": "F3_t5.0",
+      "desc": "Turn-Gated Centrifugal (|w|>5\u00b0/s)",
+      "err_60s": 17.32,
+      "err_120s": 807.0,
+      "err_300s": 1030.28,
+      "delta_300s_m": 811.35,
+      "pct_300s": 370.6,
+      "heading_mae_deg": 84.2,
+      "fper_pct": 74.81
+    },
+    {
+      "cid": "F3_t10.0",
+      "desc": "Turn-Gated Centrifugal (|w|>10\u00b0/s)",
+      "err_60s": 17.92,
+      "err_120s": 808.78,
+      "err_300s": 1014.73,
+      "delta_300s_m": 795.8,
+      "pct_300s": 363.5,
+      "heading_mae_deg": 84.54,
+      "fper_pct": 73.69
+    },
+    {
+      "cid": "F4_t5.0",
+      "desc": "Turn-Gated + Bounded (|w|>5\u00b0, b=0.5)",
+      "err_60s": 17.01,
+      "err_120s": 569.98,
+      "err_300s": 1148.44,
+      "delta_300s_m": 929.51,
+      "pct_300s": 424.57,
+      "heading_mae_deg": 76.29,
+      "fper_pct": 83.39
+    },
+    {
+      "cid": "F5_apm",
+      "desc": "Centrifugal Integrated with M028 APM",
+      "err_60s": 17.77,
+      "err_120s": 807.57,
+      "err_300s": 1039.86,
+      "delta_300s_m": 820.93,
+      "pct_300s": 374.97,
+      "heading_mae_deg": 84.26,
+      "fper_pct": 75.51
+    }
+  ],
+  "final_verdict": "GENERALIZATION FAILURE",
+  "verdict_reason": "Candidate F1_a0.2 improved validation (488.80m) but degraded locked test (1040.45m vs 218.93m).",
+  "production_status": "UNCHANGED_AT_M028"
+}

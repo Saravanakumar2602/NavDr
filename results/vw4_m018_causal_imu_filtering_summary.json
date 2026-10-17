@@ -1,0 +1,100 @@
+{
+  "milestone": "M018",
+  "title": "Causal IMU Low-Pass Filtering & Signal Pre-Conditioning",
+  "historical_benchmark": 263.11,
+  "m013_control": 254.11,
+  "m014_control": 233.18,
+  "results_table": [
+    {
+      "name": "F0 (Control Unfiltered)",
+      "desc": "SpeedNet v2 W=40 Baseline Control (Raw IMU)",
+      "speed_mae_kmh": 7.36,
+      "speed_bias_kmh": 5.92,
+      "brk_mae_kmh": 11.62,
+      "err_60s": 27.36,
+      "err_120s": 428.45,
+      "err_300s": 233.18,
+      "pct_vs_263": -11.4,
+      "pct_vs_254": -8.2,
+      "pct_vs_233": 0.0
+    },
+    {
+      "name": "F1 (All IMU fc=2Hz)",
+      "desc": "Causal Butterworth Low-Pass Filter fc=2.0Hz (All IMU)",
+      "speed_mae_kmh": 17.93,
+      "speed_bias_kmh": 14.19,
+      "brk_mae_kmh": 28.59,
+      "err_60s": 344.93,
+      "err_120s": 1030.5,
+      "err_300s": 1184.56,
+      "pct_vs_263": 350.2,
+      "pct_vs_254": 366.2,
+      "pct_vs_233": 408.0
+    },
+    {
+      "name": "F2 (All IMU fc=3Hz)",
+      "desc": "Causal Butterworth Low-Pass Filter fc=3.0Hz (All IMU)",
+      "speed_mae_kmh": 19.08,
+      "speed_bias_kmh": 16.7,
+      "brk_mae_kmh": 29.98,
+      "err_60s": 336.78,
+      "err_120s": 978.81,
+      "err_300s": 724.4,
+      "pct_vs_263": 175.3,
+      "pct_vs_254": 185.1,
+      "pct_vs_233": 210.7
+    },
+    {
+      "name": "F3 (All IMU fc=4Hz)",
+      "desc": "Causal Butterworth Low-Pass Filter fc=4.0Hz (All IMU)",
+      "speed_mae_kmh": 15.29,
+      "speed_bias_kmh": 13.46,
+      "brk_mae_kmh": 24.33,
+      "err_60s": 136.02,
+      "err_120s": 561.18,
+      "err_300s": 182.03,
+      "pct_vs_263": -30.8,
+      "pct_vs_254": -28.4,
+      "pct_vs_233": -21.9
+    },
+    {
+      "name": "F4 (Accel Only fc=4Hz)",
+      "desc": "Causal Filter on Accelerometers Only (fc=4.0Hz)",
+      "speed_mae_kmh": 7.43,
+      "speed_bias_kmh": 5.7,
+      "brk_mae_kmh": 12.53,
+      "err_60s": 11.54,
+      "err_120s": 659.66,
+      "err_300s": 699.0,
+      "pct_vs_263": 165.7,
+      "pct_vs_254": 175.1,
+      "pct_vs_233": 199.8
+    },
+    {
+      "name": "F5 (Gyro Only fc=4Hz)",
+      "desc": "Causal Filter on Gyroscopes Only (fc=4.0Hz)",
+      "speed_mae_kmh": 16.5,
+      "speed_bias_kmh": 15.42,
+      "brk_mae_kmh": 25.61,
+      "err_60s": 160.8,
+      "err_120s": 1181.87,
+      "err_300s": 900.02,
+      "pct_vs_263": 242.1,
+      "pct_vs_254": 254.2,
+      "pct_vs_233": 286.0
+    },
+    {
+      "name": "F6 (Best Filter + M014)",
+      "desc": "Best Validated Filter Strategy (F3 fc=4.0Hz)",
+      "speed_mae_kmh": 15.29,
+      "speed_bias_kmh": 13.46,
+      "brk_mae_kmh": 24.33,
+      "err_60s": 136.02,
+      "err_120s": 561.18,
+      "err_300s": 182.03,
+      "pct_vs_263": -30.8,
+      "pct_vs_254": -28.4,
+      "pct_vs_233": -21.9
+    }
+  ]
+}

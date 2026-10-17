@@ -1,0 +1,55 @@
+{
+  "scenario_id": "case_06_planetary_nav",
+  "title": "CASE 06 \u2014 PLANETARY / DEEP-SPACE NAV",
+  "subtitle": "Extraterrestrial Rover Dead Reckoning Concept (Mars Jezero Crater)",
+  "environment": {
+    "type": "Planetary Crater Floor",
+    "location_name": "Mars Jezero Crater Traverse",
+    "lat_center": 18.38,
+    "lon_center": 77.58,
+    "gnss_condition": "PERMANENT GNSS-DENIED ENVIRONMENT (NO SATELLITE CONSTELLATION)"
+  },
+  "navigation_engine": {
+    "name": "M029 Multi-Anchor Heading Architecture",
+    "locked_benchmark": {
+      "m028_err_300s_m": 218.93,
+      "m029_err_300s_m": 48.2,
+      "comparison_label": "Benchmark: M028 218.93 m \u2192 M029 48.20 m @ 300 s"
+    }
+  },
+  "timeline": {
+    "total_duration_sec": 300.0,
+    "gnss_aided_pre_outage_sec": 30.0,
+    "gnss_outage_start_sec": 30.0,
+    "gnss_outage_end_sec": 270.0,
+    "gnss_outage_duration_sec": 240.0,
+    "gnss_aided_post_outage_sec": 30.0
+  },
+  "waypoints": {
+    "start": {
+      "lat": 18.37,
+      "lon": 77.57,
+      "name": "Lander Base Beacon"
+    },
+    "outage_start": {
+      "lat": 18.375,
+      "lon": 77.575,
+      "name": "Beacon Horizon Out-of-Sight"
+    },
+    "sample_site": {
+      "lat": 18.38,
+      "lon": 77.58,
+      "name": "Jezero Delta Sample Drill Location"
+    },
+    "outage_end": {
+      "lat": 18.385,
+      "lon": 77.585,
+      "name": "Relay Satellite Line-of-Sight Window"
+    },
+    "destination": {
+      "lat": 18.39,
+      "lon": 77.59,
+      "name": "Planetary Outpost Habitat"
+    }
+  }
+}
